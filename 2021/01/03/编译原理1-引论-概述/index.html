@@ -234,7 +234,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年1月3日 上午
+                  本文最后更新于：2021年1月3日 下午
                 
               </p>
             
@@ -318,13 +318,14 @@
 <li>语法分析的方法 - 推导 (derive) 和归约 (reduce)</li>
 </ul>
 <p><strong>推导</strong>：最左推导、最右推导（规范推导）</p>
-<p><strong>归约</strong>：最右归约、最左归约</p>
+<p><strong>归约</strong>：最右归约、最左归约（规范规约）</p>
 <p>例：</p>
 <p>最右推导&amp;最左归约：</p>
 <p><img src="https://i.loli.net/2021/01/03/uyFSU69hmwj2CcR.png" srcset="/img/loading.gif" alt="image-20210102220448968" /></p>
 <p>最左推导&amp;最右归约：</p>
 <p><img src="https://i.loli.net/2021/01/02/aNKEhBYxoe9F4uD.png" srcset="/img/loading.gif" alt="image-20210102220543811" /></p>
 <p>推导时，最哪边推导则最先推导哪边的变量。归约同理。</p>
+<p>规范推导的逆过程即规范规约。</p>
 <p>如果推不出则说明该语句的语法错误。</p>
 <p>语法分析过程也可以用一棵倒着的树来表示，这棵树叫做<strong>语法树</strong>。</p>
 <p>例如：x=a+b*50的语法树</p>
