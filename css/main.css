@@ -29,22 +29,6 @@
   -webkit-box-shadow: 0 12px 15px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   box-shadow: 0 12px 15px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
-#starsBox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.75);
-  opacity: 0.5;
-}
-#starsBox span {
-  display: inline-block;
-  width: auto;
-  position: absolute;
-  border-radius: 100%;
-  transition: 100s linear;
-}
 .copy-btn {
   display: inline-block;
   cursor: pointer;
