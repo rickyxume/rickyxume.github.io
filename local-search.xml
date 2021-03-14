@@ -35,13 +35,13 @@
     
     <tags>
       
-      <tag>深度学习</tag>
-      
       <tag>环境部署</tag>
       
       <tag>TensorFlow</tag>
       
       <tag>Keras</tag>
+      
+      <tag>深度学习</tag>
       
     </tags>
     
@@ -60,13 +60,13 @@
     
     <tags>
       
-      <tag>环境部署</tag>
-      
       <tag>Anaconda</tag>
       
       <tag>Jupyterlab</tag>
       
       <tag>数据科学</tag>
+      
+      <tag>环境部署</tag>
       
     </tags>
     
@@ -85,11 +85,11 @@
     
     <tags>
       
-      <tag>PyTorch</tag>
+      <tag>环境部署</tag>
       
       <tag>深度学习</tag>
       
-      <tag>环境部署</tag>
+      <tag>PyTorch</tag>
       
     </tags>
     
