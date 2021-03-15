@@ -243,6 +243,7 @@
 <script src="/js/duration.js"></script>
 <script src="/js/bg-starsky.js"></script>
 <body>
+<div id="starsBox" ></div>
 <div class="header"><canvas id="canvas"></canvas></div>
 <script>
 var canvas = document.getElementById('canvas'),
@@ -252,11 +253,11 @@ h = canvas.height = window.innerHeight,
 hue = 217,
 stars = [],
 count = 0,
-maxStars = 999;//星星数量
+maxStars = 2999;//星星数量
 var canvas2 = document.createElement('canvas'),
 ctx2 = canvas2.getContext('2d');
-canvas2.width = 60;
-canvas2.height = 60;
+canvas2.width = window.innerWidth / 2;
+canvas2.height = window.innerHeight / 2;
 var half = canvas2.width / 2,
 gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
 gradient2.addColorStop(0.025, '#CCC');
