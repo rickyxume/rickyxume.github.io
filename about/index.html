@@ -230,36 +230,27 @@
 </div>
 <div class="mt-5 markdown-body">
   <h1 id="方塘的半亩塘"><a class="markdownIt-Anchor" href="#方塘的半亩塘"></a> 方塘的半亩塘</h1>
-<p>方塘的半亩塘
-	<span>"Stay Hungry. Stay Foolish."</span>
-    <br>
-	<a>“you can't connect the dots looking forward, you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future. You have to trust in something - your gut, destiny, life, karma, whatever. This approach has never let me down, and it has made all the difference in my life.”</a>
-</p>
-<body><div id="starsBox" ></div></body>
+<p>“Stay Hungry. Stay Foolish.”</p>
+<p>“you can’t connect the dots looking forward, you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future. You have to trust in something - your gut, destiny, life, karma, whatever. This approach has never let me down, and it has made all the difference in my life.”</p>
 <div>
-    <span id="timeDate">载入天数...</span>
-    <span id="times">载入时分秒...</span>
+    <canvas id="canvas" style="width:100%;height:auto;"></canvas>
 </div>
-<script src="/js/duration.js"></script>
-<script src="/js/bg-starsky.js"></script>
-<body>
-<div id="starsBox" ></div>
-<div class="header"><canvas id="canvas"></canvas></div>
 <script>
 var canvas = document.getElementById('canvas'),
-ctx = canvas.getContext('2d'),
-w = canvas.width = window.innerWidth,
-h = canvas.height = window.innerHeight,
-hue = 217,
-stars = [],
-count = 0,
-maxStars = 2999;//星星数量
+    ctx = canvas.getContext('2d'),
+    w = canvas.width = window.innerWidth,
+    h = canvas.height = window.innerHeight,
+    cols = [217,222,200,210], //随机选取颜色
+    hue = cols[parseInt(Math.random() * 4)],
+    stars = [],
+    count = 0,
+    maxStars = 1999; //星星数量
 var canvas2 = document.createElement('canvas'),
-ctx2 = canvas2.getContext('2d');
-canvas2.width = document.documentElement.clientWidth;
-canvas2.height = document.documentElement.clientHeight;
+    ctx2 = canvas2.getContext('2d');
+canvas2.width = w;
+canvas2.height = h;
 var half = canvas2.width / 2,
-gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
+    gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
 gradient2.addColorStop(0.025, '#CCC');
 gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
 gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
@@ -270,66 +261,71 @@ ctx2.arc(half, half, half, 0, Math.PI * 2);
 ctx2.fill();
 // End cache
 function random(min, max) {
-if (arguments.length < 2) {
-max = min;
-min = 0;
-}
-if (min > max) {
-var hold = max;
-max = min;
-min = hold;
-}
-return Math.floor(Math.random() * (max - min + 1)) + min;
+    if (arguments.length < 2) {
+        max = min;
+        min = 0;
+    }
+    if (min > max) {
+        var hold = max;
+        max = min;
+        min = hold;
+    }
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 function maxOrbit(x, y) {
-var max = Math.max(x, y),
-diameter = Math.round(Math.sqrt(max * max + max * max));
-return diameter / 2;
-//星星移动范围，值越大范围越小，
+    var max = Math.max(x, y),
+        diameter = Math.round(Math.sqrt(max * max + max * max));
+    return diameter / 2;
+    //星星移动范围，值越大范围越小，
 }
 var Star = function() {
-this.orbitRadius = random(maxOrbit(w, h));
-this.radius = random(60, this.orbitRadius) / 8;
-//星星大小
-this.orbitX = w / 2;
-this.orbitY = h / 2;
-this.timePassed = random(0, maxStars);
-this.speed = random(this.orbitRadius) / 60000;
-//星星移动速度
-this.alpha = random(2, 10) / 10;
-count++;
-stars[count] = this;
+    this.orbitRadius = random(maxOrbit(w, h));
+    this.radius = random(60, this.orbitRadius) / 16;
+    //星星大小
+    this.rand_wh = random(1.9,2.1),
+    this.orbitX = w / this.rand_wh;
+    this.orbitY = h / this.rand_wh;
+    this.timePassed = random(0, maxStars);
+    this.speed = random(this.orbitRadius) / 999999;
+    //星星移动速度
+    this.alpha = random(2, 12) / 10;
+    count++;
+    stars[count] = this;
 }
 Star.prototype.draw = function() {
-var x = Math.sin(this.timePassed) * this.orbitRadius + this.orbitX,
-y = Math.cos(this.timePassed) * this.orbitRadius + this.orbitY,
-twinkle = random(10);
-if (twinkle === 1 && this.alpha > 0) {
-this.alpha -= 0.05;
-} else if (twinkle === 2 && this.alpha < 1) {
-this.alpha += 0.05;
-}
-ctx.globalAlpha = this.alpha;
-ctx.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
-this.timePassed += this.speed;
+    var x = Math.sin(this.timePassed) * this.orbitRadius + this.orbitX,
+        y = Math.cos(this.timePassed) * this.orbitRadius + this.orbitY,
+        twinkle = random(6,8);
+    if (twinkle === 1 && this.alpha > 0) {
+        this.alpha -= 0.05;
+    } else if (twinkle === 2 && this.alpha < 1) {
+        this.alpha += 0.05;
+    }
+    ctx.globalAlpha = this.alpha;
+    ctx.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
+    this.timePassed += this.speed;
 }
 for (var i = 0; i < maxStars; i++) {
-new Star();
+    new Star();
 }
 function animation() {
-ctx.globalCompositeOperation = 'source-over';
-ctx.globalAlpha = 0.5; //尾巴
-ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 2)';
-ctx.fillRect(0, 0, w, h)
-ctx.globalCompositeOperation = 'lighter';
-for (var i = 1, l = stars.length; i < l; i++) {
-stars[i].draw();
-};
-window.requestAnimationFrame(animation);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.globalAlpha = 0.55; //尾巴
+    ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 2)';
+    ctx.fillRect(0, 0, w, h)
+    ctx.globalCompositeOperation = 'lighter';
+    for (var i = 1, l = stars.length; i < l; i++) {
+        stars[i].draw();
+    };
+    window.requestAnimationFrame(animation);
 }
 animation();
 </script>
-</body>
+<div>
+    <span id="timeDate">载入天数...</span>
+    <span id="times">载入时分秒...</span>
+</div>
+<script src="/js/duration.js"></script>
 </div>
 
               </div>
