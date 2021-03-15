@@ -252,11 +252,11 @@ h = canvas.height = window.innerHeight,
 hue = 217,
 stars = [],
 count = 0,
-maxStars = 3000;//星星数量
+maxStars = 999;//星星数量
 var canvas2 = document.createElement('canvas'),
 ctx2 = canvas2.getContext('2d');
-canvas2.width = 100;
-canvas2.height = 100;
+canvas2.width = 60;
+canvas2.height = 60;
 var half = canvas2.width / 2,
 gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
 gradient2.addColorStop(0.025, '#CCC');
@@ -293,7 +293,7 @@ this.radius = random(60, this.orbitRadius) / 8;
 this.orbitX = w / 2;
 this.orbitY = h / 2;
 this.timePassed = random(0, maxStars);
-this.speed = random(this.orbitRadius) / 50000;
+this.speed = random(this.orbitRadius) / 60000;
 //星星移动速度
 this.alpha = random(2, 10) / 10;
 count++;
