@@ -1,0 +1,1046 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="愿如方塘，日日自新。">
+  <meta name="author" content="Ricky Xu">
+  <meta name="keywords" content="">
+  <title>编译原理2-词法分析 - 方塘的半亩塘</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>方塘的半亩塘</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/home_bg1.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ricky Xu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-05 10:41" pubdate>
+        2021年1月5日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      28
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">编译原理2-词法分析</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年4月7日 晚上
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p># 编译原理2-词法分析</p>
+<h2 id="20-状态转换图与正规表达式"><a class="markdownIt-Anchor" href="#20-状态转换图与正规表达式"></a> 2.0 状态转换图与正规表达式</h2>
+<p><strong>状态转换图</strong>：有限的有向图。圆圈（结点）表示状态，其间用有向边连接，边上可标记字符，表示某一状态接受有向边上的字符/字符集输入后到达另一状态。必有一初态及若干终态，终态结点用双圈表示。终态上用 “ * ”标识表明识别符号时多读了一个其它字符要予以回退，即去掉到终态的有向边上的字符。</p>
+<p>[图以后补]</p>
+<p>将状态转换图的概念通过正规式加以形式化。</p>
+<p><strong>正规表达式（正规式）</strong>：形式化的表示法，可以表示单词符号的结构，从而精确地定义单词符号集。其表示的集合即正规集。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span> 是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Σ</span></span></span></span> 上的正规式则其表示的正规集为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L(R)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">)</span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">或</mi><mi mathvariant="normal">：</mi><mi>R</mi><mi mathvariant="normal">∣</mi><mi>S</mi><mo>=</mo><mo>&gt;</mo><mi>L</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>∪</mo><mi>L</mi><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mi mathvariant="normal">连</mi><mi mathvariant="normal">接</mi><mi mathvariant="normal">：</mi><mi>R</mi><mo>⋅</mo><mi>S</mi><mo>=</mo><mo>&gt;</mo><mi>L</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mi>L</mi><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mi mathvariant="normal">闭</mi><mi mathvariant="normal">包</mi><mi mathvariant="normal">：</mi><mo stretchy="false">(</mo><mi>R</mi><msup><mo stretchy="false">)</mo><mo>∗</mo></msup><mo>=</mo><mo>&gt;</mo><mo stretchy="false">(</mo><mi>L</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><msup><mo stretchy="false">)</mo><mo>∗</mo></msup><mspace linebreak="newline"></mspace><mi mathvariant="normal">空</mi><mi mathvariant="normal">字</mi><mi mathvariant="normal">：</mi><mi>ε</mi><mo>=</mo><mo>&gt;</mo><mo stretchy="false">{</mo><mi>ε</mi><mo stretchy="false">}</mo><mspace linebreak="newline"></mspace><mi mathvariant="normal">空</mi><mi mathvariant="normal">集</mi><mi mathvariant="normal">：</mi><mi>ϕ</mi><mo>=</mo><mo>&gt;</mo><mo stretchy="false">{</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">或：R|S =&gt; L(R)∪L(S) \\ 连接：R\cdot S =&gt; L(R)L(S) \\ 闭包：(R)^*=&gt;(L(R))^* \\ 空字：\varepsilon =&gt; \{ \varepsilon \} \\ 空集：\phi =&gt; \{\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">或</span><span class="mord cjk_fallback">：</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">连</span><span class="mord cjk_fallback">接</span><span class="mord cjk_fallback">：</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">)</span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">闭</span><span class="mord cjk_fallback">包</span><span class="mord cjk_fallback">：</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">)</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord cjk_fallback">空</span><span class="mord cjk_fallback">字</span><span class="mord cjk_fallback">：</span><span class="mord mathdefault">ε</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathdefault">ε</span><span class="mclose">}</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord cjk_fallback">空</span><span class="mord cjk_fallback">集</span><span class="mord cjk_fallback">：</span><span class="mord mathdefault">ϕ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mclose">}</span></span></span></span></p>
+<p><strong>闭包</strong></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>R</mi><mn>0</mn></msup><mo>=</mo><mo stretchy="false">{</mo><mi>ε</mi><mo stretchy="false">}</mo><mspace linebreak="newline"></mspace><msup><mi>R</mi><mo>∗</mo></msup><mi mathvariant="normal">是</mi><mi>R</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">闭</mi><mi mathvariant="normal">包</mi><mi mathvariant="normal">：</mi><msup><mi>R</mi><mo>∗</mo></msup><mo>=</mo><msup><mi>R</mi><mn>0</mn></msup><mo>∪</mo><msup><mi>R</mi><mn>1</mn></msup><mo>∪</mo><msup><mi>R</mi><mn>2</mn></msup><mo>…</mo><mspace linebreak="newline"></mspace><msup><mi>R</mi><mo>+</mo></msup><mi mathvariant="normal">是</mi><mi>R</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">正</mi><mi mathvariant="normal">则</mi><mi mathvariant="normal">闭</mi><mi mathvariant="normal">包</mi><mi mathvariant="normal">：</mi><msup><mi>R</mi><mo>+</mo></msup><mo>=</mo><msup><mi>R</mi><mn>1</mn></msup><mo>∪</mo><msup><mi>R</mi><mn>2</mn></msup><mo>…</mo></mrow><annotation encoding="application/x-tex">R^0=\{\varepsilon\} \\R^*是R的闭包：R^*=R^0 \cup R^1 \cup R^2 \dots \\R^+是R的正则闭包：R^+=R^1 \cup R^2 \dots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathdefault">ε</span><span class="mclose">}</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.688696em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mord cjk_fallback">是</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">闭</span><span class="mord cjk_fallback">包</span><span class="mord cjk_fallback">：</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span><span class="mord cjk_fallback">是</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">正</span><span class="mord cjk_fallback">则</span><span class="mord cjk_fallback">闭</span><span class="mord cjk_fallback">包</span><span class="mord cjk_fallback">：</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span></span></span></span></p>
+<p>如果正规集相等则正规式等价。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>=</mo><mi>L</mi><mo stretchy="false">(</mo><mi>S</mi><mo stretchy="false">)</mo><mo>=</mo><mo>&gt;</mo><mi>R</mi><mo>⇔</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">L(R)=L(S) =&gt; R\Leftrightarrow S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⇔</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span></p>
+<p>(α+ β)*= (α* + β*)*= (α* β*)*</p>
+<p>给出语言推正规表达式：最小连接递增倍数闭包</p>
+<h2 id="21-状态转换图的实现词法分析器示例"><a class="markdownIt-Anchor" href="#21-状态转换图的实现词法分析器示例"></a> 2.1 状态转换图的实现（词法分析器示例）</h2>
+<p>简单的词法分析器示例，书p13图2-5：</p>
+<p>重要函数解释：</p>
+<p>token：用来存单词符号的字符串。</p>
+<p>concatenation()：将token中的字符串与扫描到的字符连接得到新的token。</p>
+<p>getbe()：过滤空格读字符。</p>
+<p>letter() 和 digit()：分别用于判断字符类型是否为字母和是否为数字。</p>
+<p>retract()：扫描指针回退一个字符，并把字符变量置空。</p>
+<p>reserve()：查是否为保留字，不是则为标识符，返回0。</p>
+<p>buildlist()：将标识符登记到符号表中或将常数登记到常数表中。</p>
+<p>error()：出现非法字符报错。</p>
+<p>关键部分代码：</p>
+<div class="hljs"><pre><code class="hljs c">token=&#x27;&#x27;; //初始化token数组
+s=getchar(); <span class="hljs-comment">//读字符</span>
+getbe(); <span class="hljs-comment">//过滤空格</span>
+<span class="hljs-keyword">switch</span>(s)
+&#123;
+    <span class="hljs-comment">//遇到字母时</span>
+	<span class="hljs-keyword">case</span><span class="hljs-number">&#x27;</span>a<span class="hljs-number">&#x27;</span>:
+    ...
+    <span class="hljs-keyword">case</span><span class="hljs-number">&#x27;</span>z<span class="hljs-number">&#x27;</span>:
+        <span class="hljs-keyword">while</span>(letter()||digit()) <span class="hljs-comment">//当读到字母或数字时</span>
+        &#123;
+            concatenation(); <span class="hljs-comment">//连接组成新token</span>
+            getchar(); <span class="hljs-comment">//继续读下一个字符</span>
+        &#125;
+        <span class="hljs-comment">//读到非字母或数字之后跳出循环</span>
+        retract(); <span class="hljs-comment">//扫描指针回退一个字符。由于while时多读了一个字符，要退回去再判断</span>
+        c=reserve(); <span class="hljs-comment">//读一个字符c，判断c是不是保留字</span>
+        <span class="hljs-keyword">if</span>(c==<span class="hljs-number">0</span>) <span class="hljs-comment">//如果是标识符（不是保留字）</span>
+        &#123;
+            buildlist(); <span class="hljs-comment">//将标识符登记到符号表里</span>
+            <span class="hljs-keyword">return</span>(id,指向id的符号表入口指针);
+        &#125;
+        <span class="hljs-keyword">else</span>
+        &#123;
+            retrn(保留字码,null);
+        &#125;
+        <span class="hljs-keyword">break</span>; <span class="hljs-comment">//到达终态</span>
+
+    <span class="hljs-comment">//遇到数字时</span>
+    <span class="hljs-keyword">case</span><span class="hljs-number">&#x27;0&#x27;</span>:
+    ...
+    <span class="hljs-keyword">case</span><span class="hljs-number">&#x27;9&#x27;</span>:
+        <span class="hljs-keyword">while</span>(digit())
+        &#123;
+            concatenation();
+            getchar();
+        &#125;
+        retract();
+        buildlist();
+        <span class="hljs-keyword">return</span>(num,num的常数表入口指针);
+       <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span><span class="hljs-number">&#x27;.</span>.<span class="hljs-number">.&#x27;</span>:
+        <span class="hljs-keyword">return</span>(...,...);
+        <span class="hljs-keyword">break</span>;
+        
+    <span class="hljs-keyword">default</span>:
+        error(); <span class="hljs-comment">//剩下的都是非法字符，读到就报错</span>
+&#125;</code></pre></div>
+<h2 id="22-有限自动机fa"><a class="markdownIt-Anchor" href="#22-有限自动机fa"></a> 2.2 有限自动机FA</h2>
+<p>有限自动机是更一般化的状态转换图，分为两种：确定有限自动机DFA和非确定有限自动机NFA。</p>
+<h3 id="221-dfanfa的表示及区别"><a class="markdownIt-Anchor" href="#221-dfanfa的表示及区别"></a> 2.2.1 DFA&amp;NFA的表示及区别</h3>
+<p>有限自动机的表示：五元组（有限状态集，有穷输入字母表，所有的映射函数，初态或初态集，终态集）</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>DFA</th>
+<th>NFA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>五元组表示</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>M</mi><mi>d</mi></msub><mo>=</mo><mo stretchy="false">(</mo><mi>S</mi><mo separator="true">,</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi>f</mi><mo separator="true">,</mo><msub><mi>s</mi><mn>0</mn></msub><mo separator="true">,</mo><mi>Z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">M_d=(S,\Sigma,f,s_0,Z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">Σ</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>M</mi><mi>n</mi></msub><mo>=</mo><mo stretchy="false">(</mo><mi>S</mi><mo separator="true">,</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi>f</mi><mo separator="true">,</mo><mi>Q</mi><mo separator="true">,</mo><mi>Z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">M_n=(S,\Sigma,f,Q,Z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">Σ</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">Q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="mclose">)</span></span></span></span></td>
+</tr>
+<tr>
+<td>相同符号含义</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi mathvariant="normal">：</mi><mi mathvariant="normal">状</mi><mi mathvariant="normal">态</mi><mi mathvariant="normal">组</mi><mi mathvariant="normal">成</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">有</mi><mi mathvariant="normal">限</mi><mi mathvariant="normal">状</mi><mi mathvariant="normal">态</mi><mi mathvariant="normal">集</mi><mspace linebreak="newline"></mspace><mi mathvariant="normal">Σ</mi><mi mathvariant="normal">：</mi><mi mathvariant="normal">输</mi><mi mathvariant="normal">入</mi><mi mathvariant="normal">字</mi><mi mathvariant="normal">符</mi><mi mathvariant="normal">组</mi><mi mathvariant="normal">成</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">有</mi><mi mathvariant="normal">穷</mi><mi mathvariant="normal">输</mi><mi mathvariant="normal">入</mi><mi mathvariant="normal">字</mi><mi mathvariant="normal">母</mi><mi mathvariant="normal">表</mi><mspace linebreak="newline"></mspace><mi>Z</mi><mo>⊂</mo><mi>S</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">是</mi><mi mathvariant="normal">一</mi><mi mathvariant="normal">个</mi><mi mathvariant="normal">终</mi><mi mathvariant="normal">态</mi><mi mathvariant="normal">集</mi></mrow><annotation encoding="application/x-tex">S：状态组成的有限状态集 \\  \Sigma：输入字符组成的有穷输入字母表  \\  Z \subset S，是一个终态集</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord cjk_fallback">：</span><span class="mord cjk_fallback">状</span><span class="mord cjk_fallback">态</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">成</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">有</span><span class="mord cjk_fallback">限</span><span class="mord cjk_fallback">状</span><span class="mord cjk_fallback">态</span><span class="mord cjk_fallback">集</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Σ</span><span class="mord cjk_fallback">：</span><span class="mord cjk_fallback">输</span><span class="mord cjk_fallback">入</span><span class="mord cjk_fallback">字</span><span class="mord cjk_fallback">符</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">成</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">有</span><span class="mord cjk_fallback">穷</span><span class="mord cjk_fallback">输</span><span class="mord cjk_fallback">入</span><span class="mord cjk_fallback">字</span><span class="mord cjk_fallback">母</span><span class="mord cjk_fallback">表</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">Z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⊂</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">一</span><span class="mord cjk_fallback">个</span><span class="mord cjk_fallback">终</span><span class="mord cjk_fallback">态</span><span class="mord cjk_fallback">集</span></span></span></span></td>
+<td>一样</td>
+</tr>
+<tr>
+<td>差异符号含义</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>s</mi><mn>0</mn></msub><mi mathvariant="normal">：</mi><mi mathvariant="normal">唯</mi><mi mathvariant="normal">一</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">初</mi><mi mathvariant="normal">态</mi><mspace linebreak="newline"></mspace><mi>f</mi><mi mathvariant="normal">：</mi><mi mathvariant="normal">一</mi><mi mathvariant="normal">个</mi><mi mathvariant="normal">从</mi><mi>S</mi><mo>×</mo><mi mathvariant="normal">Σ</mi><mi mathvariant="normal">到</mi><mi>S</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">单</mi><mi mathvariant="normal">值</mi><mi mathvariant="normal">映</mi><mi mathvariant="normal">射</mi><mi mathvariant="normal">（</mi><mi mathvariant="normal">一</mi><mi mathvariant="normal">或</mi><mi mathvariant="normal">多</mi><mi mathvariant="normal">对</mi><mi mathvariant="normal">一</mi><mi mathvariant="normal">）</mi></mrow><annotation encoding="application/x-tex">s_0：唯一的初态 \\ f：一个从 S\times\Sigma到 S 的单值映射（一或多对一）</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">：</span><span class="mord cjk_fallback">唯</span><span class="mord cjk_fallback">一</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">初</span><span class="mord cjk_fallback">态</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord cjk_fallback">：</span><span class="mord cjk_fallback">一</span><span class="mord cjk_fallback">个</span><span class="mord cjk_fallback">从</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Σ</span><span class="mord cjk_fallback">到</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">单</span><span class="mord cjk_fallback">值</span><span class="mord cjk_fallback">映</span><span class="mord cjk_fallback">射</span><span class="mord cjk_fallback">（</span><span class="mord cjk_fallback">一</span><span class="mord cjk_fallback">或</span><span class="mord cjk_fallback">多</span><span class="mord cjk_fallback">对</span><span class="mord cjk_fallback">一</span><span class="mord cjk_fallback">）</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Q</mi><mo>⊂</mo><mi>S</mi><mo separator="true">,</mo><mi mathvariant="normal">是</mi><mi mathvariant="normal">非</mi><mi mathvariant="normal">空</mi><mi mathvariant="normal">初</mi><mi mathvariant="normal">态</mi><mi mathvariant="normal">集</mi><mspace linebreak="newline"></mspace><mi>f</mi><mi mathvariant="normal">：</mi><mi mathvariant="normal">子</mi><mi mathvariant="normal">集</mi><mi mathvariant="normal">映</mi><mi mathvariant="normal">射</mi><mi mathvariant="normal">或</mi><mi mathvariant="normal">多</mi><mi mathvariant="normal">值</mi><mi mathvariant="normal">映</mi><mi mathvariant="normal">射</mi><mi mathvariant="normal">（</mi><mi mathvariant="normal">一</mi><mi mathvariant="normal">对</mi><mi mathvariant="normal">多</mi><mi mathvariant="normal">）</mi></mrow><annotation encoding="application/x-tex">Q\subset S,是非空初态集 \\ f：子集映射或多值映射（一对多）</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">Q</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⊂</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">非</span><span class="mord cjk_fallback">空</span><span class="mord cjk_fallback">初</span><span class="mord cjk_fallback">态</span><span class="mord cjk_fallback">集</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord cjk_fallback">：</span><span class="mord cjk_fallback">子</span><span class="mord cjk_fallback">集</span><span class="mord cjk_fallback">映</span><span class="mord cjk_fallback">射</span><span class="mord cjk_fallback">或</span><span class="mord cjk_fallback">多</span><span class="mord cjk_fallback">值</span><span class="mord cjk_fallback">映</span><span class="mord cjk_fallback">射</span><span class="mord cjk_fallback">（</span><span class="mord cjk_fallback">一</span><span class="mord cjk_fallback">对</span><span class="mord cjk_fallback">多</span><span class="mord cjk_fallback">）</span></span></span></span></td>
+</tr>
+<tr>
+<td>区别1：初态</td>
+<td>仅一个初态</td>
+<td>可以有若干个初态</td>
+</tr>
+<tr>
+<td>区别2：映射函数</td>
+<td>状态转换函数是单值函数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>s</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>s</mi><mn>1</mn></msub><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">f(s,a)=s_1...</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span></span></span></span></td>
+<td>多值函数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>s</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">{</mo><msub><mi>s</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>s</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>s</mi><mn>3</mn></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">f(s,a)=\{s_1,s_2,s_3\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span></td>
+</tr>
+</tbody>
+</table>
+<p>区别1</p>
+<p>区别2即：从同一个状态出发同一字符的出边有多个状态的就是NFA，一个的就是DFA。</p>
+<p>DFA输入字符中没有空串ε，NFA中有。</p>
+<p>DFA的集合为 ( )，NFA的集合为 { }。</p>
+<h3 id="222-状态转换图和状态转换矩阵"><a class="markdownIt-Anchor" href="#222-状态转换图和状态转换矩阵"></a> 2.2.2 状态转换图和状态转换矩阵</h3>
+<table>
+<thead>
+<tr>
+<th>状态\字符</th>
+<th>输入字符a</th>
+<th>输入字符b</th>
+<th>…</th>
+<th>标记（可省略）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>S</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">S_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+<td>下一个状态的集合</td>
+<td></td>
+<td></td>
+<td>0或1</td>
+</tr>
+<tr>
+<td>状态<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>S</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">S_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td>
+<td>{}</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>…</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>注意</td>
+<td>注意括号：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mi>F</mi><mi>A</mi><mo stretchy="false">(</mo><msub><mi>S</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>S</mi><mn>3</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mi>N</mi><mi>F</mi><mi>A</mi><mo stretchy="false">{</mo><msub><mi>S</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>S</mi><mn>3</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">DFA(S_2,S_3,..) \\ NFA\{S_2,S_3,...\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault">A</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault">A</span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mclose">}</span></span></span></span></td>
+<td>没有则填∅</td>
+<td></td>
+<td>f（状态，符号）（相应终态行标1，非终态标0）</td>
+</tr>
+</tbody>
+</table>
+<p>FA M 和 FA M’的等价条件，L(M)=L(M’)，即能识别的字符串集相同。</p>
+<p>对于任一给定的NFA M，一定存在一个DFA M’ 使得L(M)=L(M’)，因此，DFA是NFA的特例。</p>
+<h3 id="由正规表达式构造fa"><a class="markdownIt-Anchor" href="#由正规表达式构造fa"></a> 由正规表达式构造FA</h3>
+<h4 id="1r-等价构造-nfarnfa"><a class="markdownIt-Anchor" href="#1r-等价构造-nfarnfa"></a> （1）<strong>R 等价构造 NFA（R=&gt;NFA）</strong></h4>
+<p>把R表达式一个一个按优先级拆开，逐个按规则画成拓广转换图。</p>
+<p>[书上p21例2.6图2-12以后放]</p>
+<h4 id="2用子集法对nfa-确定化nfa-dfa"><a class="markdownIt-Anchor" href="#2用子集法对nfa-确定化nfa-dfa"></a> （2）<strong>用子集法对NFA 确定化（NFA=&gt; DFA）</strong></h4>
+<p>用<strong>子集法</strong>对给定的NFA构造等价的DFA步骤：</p>
+<p>0️⃣：状态子集 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span> 的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ε</mi></mrow><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ε</span></span></span></span> 闭包 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ε</mi><mi mathvariant="normal">_</mi><mi>C</mi><mi>L</mi><mi>O</mi><mi>S</mi><mi>U</mi><mi>R</mi><mi>E</mi><mo stretchy="false">(</mo><mi>I</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\varepsilon\_CLOSURE(I)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord mathdefault">ε</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mclose">)</span></span></span></span></p>
+<p>对于  <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ε</mi></mrow><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ε</span></span></span></span> ，从某状态出发经过任意条 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ε</mi></mrow><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ε</span></span></span></span> 通路所能达到的状态集</p>
+<p>对于输入字符a，有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>I</mi><mi>a</mi></msub><mo>=</mo><mi>ε</mi><mi mathvariant="normal">_</mi><mi>C</mi><mi>L</mi><mi>O</mi><mi>S</mi><mi>E</mi><mi>U</mi><mi>R</mi><mi>E</mi><mo stretchy="false">(</mo><mi>J</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">I_a=\varepsilon \_CLOSEURE(J)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord mathdefault">ε</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mclose">)</span></span></span></span></p>
+<p>其中，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>J</mi><mo>=</mo><mo stretchy="false">{</mo><mi mathvariant="normal">∀</mi><mi>f</mi><mo stretchy="false">(</mo><mi>I</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">J=\{\forall f(I,a)\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">∀</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mclose">}</span></span></span></span> ，表示所有那些从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span></span></span></span> 中某一状态出发经过一条有向边a（或多个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ε</mi></mrow><annotation encoding="application/x-tex">\varepsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ε</span></span></span></span> ）能到达的状态集</p>
+<p>①<strong>构造转换表</strong>（ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">算</mi><msub><mi>I</mi><mi>a</mi></msub><mi mathvariant="normal">求</mi><mi mathvariant="normal">集</mi><mi mathvariant="normal">合</mi><mi>J</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">闭</mi><mi mathvariant="normal">包</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">把</mi><mi mathvariant="normal">右</mi><mi mathvariant="normal">边</mi><mi mathvariant="normal">新</mi><mi mathvariant="normal">增</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">状</mi><mi mathvariant="normal">态</mi><mi mathvariant="normal">子</mi><mi mathvariant="normal">集</mi><mi mathvariant="normal">放</mi><mi mathvariant="normal">最</mi><mi mathvariant="normal">左</mi><mi mathvariant="normal">边</mi><mi mathvariant="normal">第</mi><mi mathvariant="normal">一</mi><mi mathvariant="normal">列</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">循</mi><mi mathvariant="normal">环</mi><mi mathvariant="normal">步</mi><mi mathvariant="normal">骤</mi><mi mathvariant="normal">填</mi><mi mathvariant="normal">转</mi><mi mathvariant="normal">换</mi><mi mathvariant="normal">表</mi></mrow><annotation encoding="application/x-tex">算I_a求集合J的闭包，把右边新增的状态子集放最左边第一列，循环步骤填转换表</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord cjk_fallback">算</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">求</span><span class="mord cjk_fallback">集</span><span class="mord cjk_fallback">合</span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">闭</span><span class="mord cjk_fallback">包</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">把</span><span class="mord cjk_fallback">右</span><span class="mord cjk_fallback">边</span><span class="mord cjk_fallback">新</span><span class="mord cjk_fallback">增</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">状</span><span class="mord cjk_fallback">态</span><span class="mord cjk_fallback">子</span><span class="mord cjk_fallback">集</span><span class="mord cjk_fallback">放</span><span class="mord cjk_fallback">最</span><span class="mord cjk_fallback">左</span><span class="mord cjk_fallback">边</span><span class="mord cjk_fallback">第</span><span class="mord cjk_fallback">一</span><span class="mord cjk_fallback">列</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">循</span><span class="mord cjk_fallback">环</span><span class="mord cjk_fallback">步</span><span class="mord cjk_fallback">骤</span><span class="mord cjk_fallback">填</span><span class="mord cjk_fallback">转</span><span class="mord cjk_fallback">换</span><span class="mord cjk_fallback">表</span></span></span></span> ）</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>I</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">I_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></th>
+<th><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>I</mi><mi>a</mi></msub></mrow><annotation encoding="application/x-tex">I_a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></th>
+<th><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>I</mi><mi>b</mi></msub></mrow><annotation encoding="application/x-tex">I_b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></th>
+<th><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>I</mi><mo>⋯</mo></msub></mrow><annotation encoding="application/x-tex">I_{\cdots}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.067em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="minner mtight">⋯</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态子集</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">{</mo><msub><mi>I</mi><mn>0</mn></msub><mo stretchy="false">}</mo><mi mathvariant="normal">集</mi><mi mathvariant="normal">合</mi><mi mathvariant="normal">用</mi><mi mathvariant="normal">花</mi><mi mathvariant="normal">括</mi><mi mathvariant="normal">号</mi><mspace linebreak="newline"></mspace><mi>ε</mi><mi mathvariant="normal">_</mi><mi>C</mi><mi>L</mi><mi>O</mi><mi>S</mi><mi>U</mi><mi>R</mi><mi>E</mi><mo stretchy="false">(</mo><msub><mi>s</mi><mn>0</mn></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\{I_0\} 集合用花括号\\ \varepsilon\_CLOSURE(s_0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span><span class="mord cjk_fallback">集</span><span class="mord cjk_fallback">合</span><span class="mord cjk_fallback">用</span><span class="mord cjk_fallback">花</span><span class="mord cjk_fallback">括</span><span class="mord cjk_fallback">号</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord mathdefault">ε</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>I</mi><mrow><mi>a</mi><mn>0</mn></mrow></msub><mspace linebreak="newline"></mspace><mi>ε</mi><mi mathvariant="normal">_</mi><mi>C</mi><mi>L</mi><mi>O</mi><mi>S</mi><mi>U</mi><mi>R</mi><mi>E</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>I</mi><mn>0</mn></msub><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">I_{a0}\\ ε\_CLOSURE(f(I_0,a))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord mathdefault">ε</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>I</mi><mrow><mi>b</mi><mn>0</mn></mrow></msub><mspace linebreak="newline"></mspace><mi>ε</mi><mi mathvariant="normal">_</mi><mi>C</mi><mi>L</mi><mi>O</mi><mi>S</mi><mi>U</mi><mi>R</mi><mi>E</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>I</mi><mn>0</mn></msub><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">I_{b0} \\ ε\_CLOSURE(f(I_0,b))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">b</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mord mathdefault">ε</span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></td>
+<td>…</td>
+</tr>
+<tr>
+<td></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>I</mi><mrow><mi>a</mi><mn>0</mn></mrow></msub></mrow><annotation encoding="application/x-tex">I_{a0}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> （新增）</td>
+<td>…新增的状态子集</td>
+<td>…</td>
+<td>（第一行，有多少输入字符就有多少状态子集I）</td>
+</tr>
+<tr>
+<td></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>I</mi><mrow><mi>b</mi><mn>0</mn></mrow></msub></mrow><annotation encoding="application/x-tex">I_{b0}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">b</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> （新增）</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>…新增的状态子集</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>…</td>
+<td>按照上面的规则一直算</td>
+<td>直至不新增状态子集</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>②<strong>重命名状态子集，构造状态转换矩阵</strong>。</p>
+<p>状态子集命名方式可用字母数字随意重编号，一一对应将转换表换成状态转换矩阵。</p>
+<p>表左边有多少状态子集就有多少编号</p>
+<p>终态根据最左边状态子集确定（包含终态即终态）</p>
+<table>
+<thead>
+<tr>
+<th>S</th>
+<th>a</th>
+<th>b</th>
+<th>…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>〇</td>
+<td>①</td>
+<td>②</td>
+<td></td>
+</tr>
+<tr>
+<td>①</td>
+<td>③</td>
+<td>…</td>
+<td></td>
+</tr>
+<tr>
+<td>②</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>③</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>…</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>根据状态转换表可以得到还没化简的DFA</p>
+<h3 id="化简dfa"><a class="markdownIt-Anchor" href="#化简dfa"></a> 化简DFA</h3>
+<p>找一个比 DFA M 状态数少的 DFA M’ 使得 L(M)=L(M’)，DFA M’ 满足 1）无多余状态； 2）状态集不存在两个相互等价的状态（即不存在从两个状态出发都能识别同一输入字符串而停于终态）</p>
+<p><strong>子集划分法</strong>，消除多余状态，合并等价状态。</p>
+<p>步骤如下：</p>
+<p>先划分终态组和非终态组，再分别考察直至子集不可划分。(可以看转换矩阵的右边是否一样，一样的分一块)</p>
+<p>等价可以一块走就凑一块，不等价走不到一块就分开。</p>
+<p>把分好组的都排一块编个号</p>
+<h2 id="各种表示互相转换"><a class="markdownIt-Anchor" href="#各种表示互相转换"></a> 各种表示互相转换</h2>
+<p>FA五元组&lt;-&gt;状态转换图&lt;-&gt;状态转换矩阵</p>
+<p>典型例题p24 视频词法分析4》21:30</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a>
+                    
+                      <a class="hover-with-bg" href="/tags/CS%E5%9F%BA%E7%A1%80/">CS基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/07/latex_vscode/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">学术绝配系列1：LaTex + VS Code</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/03/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%861-%E5%BC%95%E8%AE%BA-%E6%A6%82%E8%BF%B0/">
+                        <span class="hidden-mobile">编译原理1-引论&概述</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "7ijcKFMdQOMyuAVqQDIHrHCb-MdYXbMMI",
+          app_key: "ML1YIYKYfCIHsAykhvlLQqWM",
+          placeholder: "看完了说点什么吧~",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            被拜访了 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            有 
+            <span id="leancloud-site-uv"></span>
+             人来过这
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/2021/01/05/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = '7ijcKFMdQOMyuAVqQDIHrHCb-MdYXbMMI'
+    var app_key = 'ML1YIYKYfCIHsAykhvlLQqWM'
+    var server_url = ''
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 1,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "编译原理2-词法分析&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?8640170a62926ba1fcfd12b372c8460c";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

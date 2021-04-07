@@ -17,10 +17,23 @@
   <meta name="description" content="愿如方塘，日日自新。">
   <meta name="author" content="Ricky Xu">
   <meta name="keywords" content="">
-  <title>标签 - CS基础 - 方塘的半亩塘</title>
+  <title>学术绝配系列1：LaTex + VS Code - 方塘的半亩塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +56,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -147,6 +160,56 @@
             </span>
 
             
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ricky Xu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-04-07 21:30" pubdate>
+        2021年4月7日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      545 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      6
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
           
@@ -157,43 +220,165 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 2 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/01/05/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">编译原理2-词法分析</span>
-      <time style="float: right;">01-05</time>
-    </a>
-  
-    
-    <a href="/2021/01/03/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%861-%E5%BC%95%E8%AE%BA-%E6%A6%82%E8%BF%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">编译原理1-引论&amp;概述</span>
-      <time style="float: right;">01-03</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">学术绝配系列1：LaTex + VS Code</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年4月7日 晚上
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p># 学术绝配系列1：LaTex + VS Code</p>
+<p>学术绝配系列后续不一定会出，走科研这条路再继续。</p>
+<p>官网指路：<a target="_blank" rel="noopener" href="https://www.latex-project.org/">LaTex 官网</a> <a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VS Code 官网</a></p>
+<p>如果跟着本文步骤走完，不出意外的话，你可以获得一个舒适的学术写作和排版体验。</p>
+<h2 id="配置-latex-环境"><a class="markdownIt-Anchor" href="#配置-latex-环境"></a> 配置 LaTex 环境</h2>
+<h3 id="0x01下载-latex"><a class="markdownIt-Anchor" href="#0x01下载-latex"></a> 0x01下载 LaTex</h3>
+<p>进入<a target="_blank" rel="noopener" href="https://www.tug.org/texlive/acquire-iso.html">Acquiring TeX Live as an ISO image - TeX Users Group (tug.org)</a>后点击<a target="_blank" rel="noopener" href="https://mirrors.bfsu.edu.cn/CTAN/systems/texlive/Images/">从附近的镜像站下载</a>)</p>
+<p><img src="https://i.loli.net/2020/12/01/t5FHT2UyYuqviDE.png" srcset="/img/loading.gif" alt="image-20201201130403761" /></p>
+<p>找到名为 texlive2020.iso 的文件点击下载</p>
+<p><img src="https://i.loli.net/2020/12/01/DtuWPcFihXp5RLO.png" srcset="/img/loading.gif" alt="image-20201201130527758" /></p>
+<h3 id="0x02-安装-latex"><a class="markdownIt-Anchor" href="#0x02-安装-latex"></a> 0x02 安装 LaTex</h3>
+<p>用电脑自带的资源管理器打开iso文件，内容如下：</p>
+<p><img src="https://i.loli.net/2020/12/02/TjuBf8aJHyx1Eer.png" srcset="/img/loading.gif" alt="image-20201202144407515" /></p>
+<p>点击里面名为 install-tl-windows.bat 的批处理文件，弹出来下面这个小人儿~</p>
+<p><img src="https://i.loli.net/2020/12/02/8EczfLajerRdQKW.png" srcset="/img/loading.gif" alt="image-20201202144702306" /></p>
+<p>等一下下就会进到安装界面，这里就可以改改安装路径。</p>
+<p><img src="https://i.loli.net/2020/12/02/8IGHPVRTknbEWJC.png" srcset="/img/loading.gif" alt="image-20201202144727550" /></p>
+<p>点击左下角的高级设置 Advanced ，点击中间最底下的按钮 Customize</p>
+<p><img src="https://i.loli.net/2020/12/02/ZrEkWa5fQVqsm2S.png" srcset="/img/loading.gif" alt="image-20201202144946157" /></p>
+<p>左边只勾选中文 (Chinese) 和英文 (US and UK English)，右边可以去掉 TeXWorks editor，还有更好的选择，比如说 Tex Studio。</p>
+<p><img src="https://i.loli.net/2020/12/02/YWqGpocO2k619eC.png" srcset="/img/loading.gif" alt="image-20201202145218221" /></p>
+<p>确定之后安装，等的有点久，可以放一边做其他事。</p>
+<p><img src="https://i.loli.net/2020/12/02/gPMHVmetAwQjFEi.png" srcset="/img/loading.gif" alt="image-20201202145340380" /></p>
+<p>安装完成之后界面如下：</p>
+<p><img src="https://i.loli.net/2020/12/02/pMnZr1LxW5ahUwd.png" srcset="/img/loading.gif" alt="image-20201202170349620" /></p>
+<p>可以打开cmd 输入 text -v 测试下有没有安装成功</p>
+<div class="hljs"><pre><code class="hljs bash">tex -v</code></pre></div>
+<p>有输出就说明安装成功啦~</p>
+<p><img src="https://i.loli.net/2020/12/02/7qWgUXPKnLBTkhE.png" srcset="/img/loading.gif" alt="image-20201202173917071" /></p>
+<h2 id="配置-vs-code"><a class="markdownIt-Anchor" href="#配置-vs-code"></a> 配置 VS Code</h2>
+<p>VS Code 真的是一个很强大的编辑器，因其插件丰富，能做很多事情，其实它和什么插件搭配都是很棒的选择，因为轻便，和 LaTex 搭配则可以很方便地进行学术论文的排版和写作。</p>
+<p>进官网直接选择合适的版本下载安装即可，不赘述了。</p>
+<h3 id="0x03-下载-vs-code-插件-tex-workshop"><a class="markdownIt-Anchor" href="#0x03-下载-vs-code-插件-tex-workshop"></a> 0x03 下载 VS Code 插件 Tex Workshop</h3>
+<p>点进插件侧栏（四个方块那个图标）</p>
+<p>点搜索框键入 LaTeX Workshop 搜索插件并下载第一个</p>
+<p><img src="https://i.loli.net/2020/12/08/XCEIMeOJukw2Gl7.png" srcset="/img/loading.gif" alt="image-20201208090455435" /></p>
+<p>这里由于我已经下载了所以没有显示 install 下载按钮。</p>
+<p>不出意外的话，应该在这里就搞定了，如果不行的话可能是json文件需要配配置一下</p>
+<h3 id="0x04-latex-workshop的json文件配置"><a class="markdownIt-Anchor" href="#0x04-latex-workshop的json文件配置"></a> 0x04 LaTex Workshop的json文件配置</h3>
+<p>留个坑，以后写…（当时本来是很流畅的配置完的，因为备考就忘了写…）</p>
 
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/LaTex/">LaTex</a>
+                    
+                      <a class="hover-with-bg" href="/tags/VS-Code/">VS Code</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/07/git_record/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Git常规操作</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/05/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">
+                        <span class="hidden-mobile">编译原理2-词法分析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "7ijcKFMdQOMyuAVqQDIHrHCb-MdYXbMMI",
+          app_key: "ML1YIYKYfCIHsAykhvlLQqWM",
+          placeholder: "看完了说点什么吧~",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -282,6 +467,8 @@
 
 
   
+    
+      <script  src="/js/lazyload.js" ></script>
     
   
 
@@ -415,10 +602,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/tags/CS%E5%9F%BA%E7%A1%80/index.html');
+          var target = decodeURI('/2021/04/07/latex_vscode/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -480,6 +667,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 1,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -487,7 +699,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签 - CS基础&nbsp;",
+        "学术绝配系列1：LaTex + VS Code&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -502,6 +714,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -515,6 +742,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
