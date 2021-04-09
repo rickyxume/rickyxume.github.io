@@ -4,11 +4,44 @@
   
   
   <entry>
-    <title>Shell格式问题导致执行出错</title>
+    <title>数据库CMU15-445 搭建Docker实验环境</title>
+    <link href="/2021/04/09/CMU15-445_docker_bustub_env/"/>
+    <url>/2021/04/09/CMU15-445_docker_bustub_env/</url>
+    
+    <content type="html"><![CDATA[<p># 数据库CMU15-445 搭建Docker实验环境</p><h2 id="0-搭建docker实验环境"><a class="markdownIt-Anchor" href="#0-搭建docker实验环境"></a> #0 - 搭建Docker实验环境</h2><p>win10端基于WSL2部署docker实验环境</p><h3 id="克隆git仓库"><a class="markdownIt-Anchor" href="#克隆git仓库"></a> 克隆Git仓库</h3><p>找个空文件夹克隆仓库 git clone</p><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> --depth=1 https://hub.fastgit.org/cmu-db/bustub.git</code></pre><p>进入仓库文件夹</p><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> cmu-db</code></pre><h3 id="docker构建"><a class="markdownIt-Anchor" href="#docker构建"></a> Docker构建</h3><p>执行docker命令，构建容器镜像</p><pre><code class="hljs bash">docker build . -t bustub</code></pre><p>执行命令运行并进入容器</p><pre><code class="hljs bash">docker run -it bustub /bin/bash</code></pre><p>启动并进入容器</p><pre><code class="hljs bash">docker start -a -i 容器id</code></pre><p>退出容器</p><pre><code class="hljs bash"><span class="hljs-built_in">exit</span></code></pre><h3 id="配置本地目录挂载"><a class="markdownIt-Anchor" href="#配置本地目录挂载"></a> 配置本地目录挂载</h3><p>最后一步我们需要配置以下docker和本地目录的挂载来实现在本地修改在docker中自动同步<br />执行下面的命令</p><pre><code class="hljs bash">docker container run -it -v D:/myDevs/Docker/CMU-db:/bustub --name=bustub_env bustub /bin/bash</code></pre><blockquote><p>注意这里的 D:/myDevs/Docker/CMU-db 替换成你自己想要同步的目录，冒号 : 右边的 /bustub 也替换成你自己想要命名的目录，–name 可以自定义容器名，这里是 bustub_env</p></blockquote><h3 id="配置文件环境"><a class="markdownIt-Anchor" href="#配置文件环境"></a> 配置文件环境</h3><p>在WSL环境下执行</p><pre><code class="hljs bash">build_support/packages.shmkdir build<span class="hljs-built_in">cd</span> buildcmake ..make</code></pre><p>遇到提示&quot;bad interpreter: No such file or directory&quot;的问题可以看一下我的踩坑记录<a href="https://blog.rickyxu.cc/2021/04/08/shell_file_type_problem/">Shell格式问题导致执行出错解决方案</a></p><p>完成上面的操作之后我们的配置就算完成了。<br />接下来我们可以在本机的编译器编写我们的代码。然后在docer中的虚拟容器上编译和运行我们的代码</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据库</category>
+      
+      <category>CMU 15-445</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CMU</tag>
+      
+      <tag>数据库</tag>
+      
+      <tag>Docker</tag>
+      
+      <tag>环境部署</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Shell格式问题导致执行出错解决方案</title>
     <link href="/2021/04/08/shell_file_type_problem/"/>
     <url>/2021/04/08/shell_file_type_problem/</url>
     
-    <content type="html"><![CDATA[<p># Shell格式问题导致执行出错</p><h2 id="踩坑描述"><a class="markdownIt-Anchor" href="#踩坑描述"></a> 踩坑描述</h2><p>在进行CMU15-445数据库实验环境配置时，执行 build_support/packages.sh 脚本提示出错</p><blockquote><p>-bash: build_support/packages.sh: /bin/bash^M: bad interpreter: No such file or directory</p></blockquote><p>这个错误主要是由于shell文件是dos格式，即每一行结尾以\r\n来标识，而unix格式的文件行尾则以\n来标识。</p><h2 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h2><p>查看文件格式</p><pre><code class="hljs bash">vi build_support/packages.sh</code></pre><p><img src="https://i.loli.net/2021/04/09/L5zWDqcyxmtwSeV.png" srcset="/img/loading.gif" alt="image-20210409125124010" /></p><p>可以看到文件是dos格式。</p><p>按一下ESC键后输入vim命令，设置文件格式为unix</p><pre><code class="hljs routeros">:<span class="hljs-builtin-name">set</span> <span class="hljs-attribute">ff</span>=unix</code></pre><p>保存修改并退出vim</p><pre><code class="hljs clojure"><span class="hljs-symbol">:wq</span></code></pre><p>再次执行shell脚本即可</p><p>P.S. 如果提示权限不够，命令前加上sudo</p>]]></content>
+    <content type="html"><![CDATA[<p># Shell格式问题导致执行出错解决方案</p><h2 id="踩坑描述"><a class="markdownIt-Anchor" href="#踩坑描述"></a> 踩坑描述</h2><p>在进行CMU15-445数据库实验环境配置时，执行 build_support/packages.sh 脚本提示出错</p><blockquote><p>-bash: build_support/packages.sh: /bin/bash^M: bad interpreter: No such file or directory</p></blockquote><p>这个错误主要是由于shell文件是dos格式，即每一行结尾以\r\n来标识，而unix格式的文件行尾则以\n来标识。</p><h2 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h2><p>查看文件格式</p><pre><code class="hljs bash">vi build_support/packages.sh</code></pre><p><img src="https://i.loli.net/2021/04/09/L5zWDqcyxmtwSeV.png" srcset="/img/loading.gif" alt="image-20210409125124010" /></p><p>可以看到文件是dos格式。</p><p>按一下ESC键后输入vim命令，设置文件格式为unix</p><pre><code class="hljs routeros">:<span class="hljs-builtin-name">set</span> <span class="hljs-attribute">ff</span>=unix</code></pre><p>保存修改并退出vim</p><pre><code class="hljs clojure"><span class="hljs-symbol">:wq</span></code></pre><p>再次执行shell脚本即可</p><p>P.S. 如果提示权限不够，命令前加上sudo</p>]]></content>
     
     
     <categories>
@@ -283,11 +316,11 @@
     
     <tags>
       
+      <tag>环境部署</tag>
+      
       <tag>MySQL</tag>
       
       <tag>Ubuntu</tag>
-      
-      <tag>环境部署</tag>
       
     </tags>
     
