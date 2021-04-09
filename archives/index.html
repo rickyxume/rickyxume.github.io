@@ -167,12 +167,18 @@
                 
 
 <div class="list-group">
-  <p class="h4">共计 10 篇文章</p>
+  <p class="h4">共计 11 篇文章</p>
   <hr>
   
     
       
       <p class="h5">2021</p>
+    
+    <a href="/2021/04/08/shell_file_type_problem/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Shell格式问题导致执行出错</span>
+      <time style="float: right;">04-08</time>
+    </a>
+  
     
     <a href="/2021/04/07/git_record/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">Git常规操作</span>
@@ -230,16 +236,19 @@
       <time style="float: right;">09-11</time>
     </a>
   
-    
-      
-      <p class="h5">2018</p>
-    
-    <a href="/2018/09/23/hello-world/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hello World</span>
-      <time style="float: right;">09-23</time>
-    </a>
-  
 </div>
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 

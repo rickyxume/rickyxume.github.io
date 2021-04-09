@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Shell格式问题导致执行出错</title>
+    <link href="/2021/04/08/shell_file_type_problem/"/>
+    <url>/2021/04/08/shell_file_type_problem/</url>
+    
+    <content type="html"><![CDATA[<p># Shell格式问题导致执行出错</p><h2 id="踩坑描述"><a class="markdownIt-Anchor" href="#踩坑描述"></a> 踩坑描述</h2><p>在进行CMU15-445数据库实验环境配置时，执行 build_support/packages.sh 脚本提示出错</p><blockquote><p>-bash: build_support/packages.sh: /bin/bash^M: bad interpreter: No such file or directory</p></blockquote><p>这个错误主要是由于shell文件是dos格式，即每一行结尾以\r\n来标识，而unix格式的文件行尾则以\n来标识。</p><h2 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h2><p>查看文件格式</p><pre><code class="hljs bash">vi build_support/packages.sh</code></pre><p><img src="https://i.loli.net/2021/04/09/L5zWDqcyxmtwSeV.png" srcset="/img/loading.gif" alt="image-20210409125124010" /></p><p>可以看到文件是dos格式。</p><p>按一下ESC键后输入vim命令，设置文件格式为unix</p><pre><code class="hljs routeros">:<span class="hljs-builtin-name">set</span> <span class="hljs-attribute">ff</span>=unix</code></pre><p>保存修改并退出vim</p><pre><code class="hljs clojure"><span class="hljs-symbol">:wq</span></code></pre><p>再次执行shell脚本即可</p><p>P.S. 如果提示权限不够，命令前加上sudo</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>覆辙</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>踩坑记录</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Git常规操作</title>
     <link href="/2021/04/07/git_record/"/>
     <url>/2021/04/07/git_record/</url>
