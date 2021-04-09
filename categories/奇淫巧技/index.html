@@ -17,23 +17,10 @@
   <meta name="description" content="愿如方塘，日日自新。">
   <meta name="author" content="Ricky Xu">
   <meta name="keywords" content="">
-  <title>Git常规操作 - 方塘的半亩塘</title>
+  <title>分类 - 奇淫巧技 - 方塘的半亩塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-    
-  
-
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -56,7 +43,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 60vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -160,56 +147,6 @@
             </span>
 
             
-              <div class="mt-3">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-author" aria-hidden="true"></i>
-      Ricky Xu
-    </span>
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-04-07 21:30" pubdate>
-        2021年4月7日 晚上
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      312 字
-    </span>
-  
-
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      3
-       分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-post-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
           </div>
 
           
@@ -220,149 +157,37 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">共计 1 篇文章</p>
+  <hr>
+  
+    
       
+      <p class="h5">2021</p>
+    
+    <a href="/2021/02/07/get_qq_info_via_js/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">获取QQ群人数的方法</span>
+      <time style="float: right;">02-07</time>
+    </a>
+  
+</div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">Git常规操作</h1>
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：2021年4月9日 下午
-                
-              </p>
-            
-            <div class="markdown-body" id="post-body">
-              <p># Git常规操作</p>
-<p>本篇文章记录一下git的常规操作流程</p>
-<p>假设电脑上已经配置好git，已建好git仓库，去仓库下面copy地址。</p>
-<p><img src="https://i.loli.net/2021/04/07/ohucYGTWtVJXQ3L.png" srcset="/img/loading.gif" alt="image-20210407215536008" /></p>
-<h2 id="0-本地新建空文件夹"><a class="markdownIt-Anchor" href="#0-本地新建空文件夹"></a> 0、本地新建空文件夹</h2>
-<p>避免文件夹重复导致出错，建议建一个</p>
-<h2 id="1-克隆仓库"><a class="markdownIt-Anchor" href="#1-克隆仓库"></a> 1、克隆仓库</h2>
-<p>右键 -&gt; <strong>Git Bash Here</strong></p>
-<p><img src="https://i.loli.net/2021/04/07/QsKWu1Et9VId3AY.png" srcset="/img/loading.gif" alt="image-20210407215918321" /></p>
-<p>在git命令行里操作</p>
-<div class="hljs"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/账号名/仓库名.git</code></pre></div>
-<p><img src="https://i.loli.net/2021/04/07/SrVkX3IOc1gjeZK.png" srcset="/img/loading.gif" alt="image-20210407220224198" /></p>
-<p>得到一个仓库同名的文件夹</p>
-<h2 id="2-进入仓库文件夹"><a class="markdownIt-Anchor" href="#2-进入仓库文件夹"></a> 2、进入仓库文件夹</h2>
-<div class="hljs"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> 仓库文件夹名</code></pre></div>
-<h2 id="3-自己操作"><a class="markdownIt-Anchor" href="#3-自己操作"></a> 3、自己操作</h2>
-<p>建文件夹、新增文件、修改代码、blabla自己操作</p>
-<h2 id="4-提交推送"><a class="markdownIt-Anchor" href="#4-提交推送"></a> 4、提交推送</h2>
-<div class="hljs"><pre><code class="hljs bash">git init
-git add .
-git commit -m <span class="hljs-string">&quot;你提交时的备注信息&quot;</span>
-git push</code></pre></div>
-<p><strong>git init</strong> ：gti初始化；</p>
-<p><strong>git add .</strong> ：提交到缓存区，注意加点前要空格，&quot;add .&quot;意思是添加所有文件；</p>
-<p><strong>git commit -m “blabla”</strong> ：将暂存区里的改动提交到本地的版本库，注意备注信息规范化，便于回溯bug历史版本；</p>
-<p><strong>git push</strong> ：将本地版本库的分支推送到远程服务器上对应的github仓库分支（可能会提示输入账号密码，提前配置好账号密码则不需要输入）空文件夹不会被上传</p>
-<p><img src="https://i.loli.net/2021/04/07/62UdJ3MI4OLrDCj.png" srcset="/img/loading.gif" alt="image-20210407220707230" /></p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/">实用工具</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Git/">Git</a>
-                    
-                  </div>
-                
+
               </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/04/07/latex_vscode/">
-                        <span class="hidden-mobile">学术绝配系列1：LaTex + VS Code</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
-
-            
-              <!-- Comments -->
-              <article class="comments" id="comments">
-                
-                
-  <div id="vcomments"></div>
-  <script type="text/javascript">
-    function loadValine() {
-      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
-        new Valine({
-          el: "#vcomments",
-          app_id: "7ijcKFMdQOMyuAVqQDIHrHCb-MdYXbMMI",
-          app_key: "ML1YIYKYfCIHsAykhvlLQqWM",
-          placeholder: "看完了说点什么吧~",
-          path: window.location.pathname,
-          avatar: "retro",
-          meta: ["nick","mail","link"],
-          pageSize: "10",
-          lang: "zh-CN",
-          highlight: true,
-          recordIP: true,
-          serverURLs: "",
-        });
-      });
-    }
-    waitElementVisible('vcomments', loadValine);
-  </script>
-  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
-
-
-              </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
     
   </main>
 
@@ -451,8 +276,6 @@ git push</code></pre></div>
 
 
   
-    
-      <script  src="/js/lazyload.js" ></script>
     
   
 
@@ -586,10 +409,10 @@ git push</code></pre></div>
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('true' === 'true') {
+      if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2021/04/07/git_record/');
+          var target = decodeURI('/categories/%E5%A5%87%E6%B7%AB%E5%B7%A7%E6%8A%80/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -651,31 +474,6 @@ git push</code></pre></div>
 
 
 
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 1,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -683,7 +481,7 @@ git push</code></pre></div>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Git常规操作&nbsp;",
+        "分类 - 奇淫巧技&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -698,21 +496,6 @@ git push</code></pre></div>
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
-
 
 
   <script  src="/js/local-search.js" ></script>
@@ -726,20 +509,6 @@ git push</code></pre></div>
   </script>
 
 
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
 
 
 
