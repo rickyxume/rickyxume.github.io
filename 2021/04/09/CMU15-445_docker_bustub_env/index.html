@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      370 字
+      454 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      5
        分钟
     </span>
   
@@ -243,13 +243,23 @@
 <h2 id="0-搭建docker实验环境"><a class="markdownIt-Anchor" href="#0-搭建docker实验环境"></a> #0 - 搭建Docker实验环境</h2>
 <p>win10端基于WSL2部署docker实验环境</p>
 <h3 id="克隆git仓库"><a class="markdownIt-Anchor" href="#克隆git仓库"></a> 克隆Git仓库</h3>
-<p>找个空文件夹克隆仓库 git clone</p>
+<p>找个空文件夹克隆仓库</p>
+<p>命令格式为：git clone 仓库的https链接</p>
 <div class="hljs"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> --depth=1 https://hub.fastgit.org/cmu-db/bustub.git</code></pre></div>
+<blockquote>
+<p>这句用的是github的镜像链接，可以加速。</p>
+</blockquote>
 <p>进入仓库文件夹</p>
 <div class="hljs"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> cmu-db</code></pre></div>
 <h3 id="docker构建"><a class="markdownIt-Anchor" href="#docker构建"></a> Docker构建</h3>
 <p>执行docker命令，构建容器镜像</p>
 <div class="hljs"><pre><code class="hljs bash">docker build . -t bustub</code></pre></div>
+<blockquote>
+<p>注意这一步可能要很久，构建好之后</p>
+</blockquote>
+<p><em>下面docker命令仅供参考，可以看一下相关文章，后续再写一篇常用docker命令</em></p>
+<p>查看所有正在运行的容器</p>
+<div class="hljs"><pre><code class="hljs bash">docker ps -a</code></pre></div>
 <p>执行命令运行并进入容器</p>
 <div class="hljs"><pre><code class="hljs bash">docker run -it bustub /bin/bash</code></pre></div>
 <p>启动并进入容器</p>
