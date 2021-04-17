@@ -17,7 +17,7 @@
   <meta name="description" content="愿如方塘，日日自新。">
   <meta name="author" content="Ricky Xu">
   <meta name="keywords" content="">
-  <title>获取QQ群人数的方法 - 方塘的半亩塘</title>
+  <title>获取QQ群成员数据的方法 - 方塘的半亩塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      212 字
+      415 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      5
        分钟
     </span>
   
@@ -230,18 +230,18 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">获取QQ群人数的方法</h1>
+            <h1 style="display: none">获取QQ群成员数据的方法</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年4月9日 下午
+                  本文最后更新于：2021年4月17日 晚上
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <p># 获取QQ群人数的方法</p>
+              <p># 获取QQ群成员数据的方法</p>
 <p>打开浏览器进入网址 <a target="_blank" rel="noopener" href="https://qun.qq.com/member.html#gid=%E7%BE%A4%E5%8F%B7">https://qun.qq.com/member.html#gid=群号</a></p>
-<p>加载完所有的群员后，在F12控制台输入脚本</p>
+<p>一直往下翻，加载完所有的群员后，在F12控制台输入js脚本</p>
 <div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> n=$(<span class="hljs-string">&#x27;#groupMember .list tr.mb&#x27;</span>);
 <span class="hljs-keyword">var</span> t=<span class="hljs-string">&#x27;QQ,昵称,群名片,性别,入群日期,最后发言日期\n&#x27;</span>;
 <span class="hljs-function"><span class="hljs-title">for</span>(<span class="hljs-params"><span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;i&lt;n.length;i++</span>)</span> &#123;
@@ -255,7 +255,18 @@
 &#125;
 <span class="hljs-built_in">console</span>.log(t);</code></pre></div>
 <p>就可以得到csv格式的输出，复制到文件中即可分析数据</p>
-<p>可以用做考研前的同期竞争分析，通过关注人数判断院校是否热门。</p>
+<p><img src="https://i.loli.net/2021/04/17/cJ9a6XpyifGMVRm.png" srcset="/img/loading.gif" alt="image-20210417211614936" /></p>
+<p>我这里复制进 VS Code（加了csv高亮插件，看起来舒服），然后 Ctrl + S 保存文件。</p>
+<p><img src="https://i.loli.net/2021/04/17/FugMpxKfd2Z3SQe.png" srcset="/img/loading.gif" alt="image-20210417211742812" /></p>
+<p>发现 VS Code 底下还有个类似SQL查询的东西，按照它提示的语法试了试模糊查询。</p>
+<p><img src="https://i.loli.net/2021/04/17/TegBo4JLMSUNkvC.png" srcset="/img/loading.gif" alt="image-20210417211438649" /></p>
+<p>运行查询语句后输出一个csv新文件</p>
+<p><img src="https://i.loli.net/2021/04/17/JhN3DErIBfW5kew.png" srcset="/img/loading.gif" alt="image-20210417212401821" /></p>
+<p>然后我就可以初步得到一个结论——22考研的至少有295人</p>
+<p>里面可能混进去了一些考隔壁专业的，不过问题不大，全按人数只增不减来计算。</p>
+<p>接着 Ctrl + F 搜索一下“学”字，就可以知道大概有多少名意向报考学硕了。同理搜“专”就可以知道专硕报考情况，剩下的就全归为摇摆不定。</p>
+<p>P.S.老师说过几天把那些不改名片的全踢了，等那时候数据大概率会准确很多。</p>
+<p>这个办法真妙啊😎</p>
 
             </div>
             <hr>
@@ -681,7 +692,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "获取QQ群人数的方法&nbsp;",
+        "获取QQ群成员数据的方法&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
