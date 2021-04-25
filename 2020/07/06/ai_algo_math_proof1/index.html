@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      373 字
+      369 字
     </span>
   
 
@@ -251,9 +251,9 @@
 <p>化简放在本题中就是：</p>
 <p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cz5RCF"><img src="https://z3.ax1x.com/2021/04/26/cz5RCF.png" srcset="/img/loading.gif" alt="cz5RCF.png" /></a></p>
 <p>所以要是有求和的话就0和1两种情况加起来。</p>
-<p>首先看第一个性质，***μ***是成功的概率，***x***取0或1，<em><strong>μ+(1-μ)</strong></em> 概率之和显然为一，</p>
+<p>首先看第一个性质，<strong>μ</strong>是成功的概率，<strong>x</strong>取0或1，<em><strong>μ+(1-μ)</strong></em> 概率之和显然为一，</p>
 <p>第二个要用到数学期望的公式</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cz5W34"><img src="https://z3.ax1x.com/2021/04/26/cz5W34.png" srcset="/img/loading.gif" alt="cz5W34.png" /></a></p>
+<p><img src="https://z3.ax1x.com/2021/04/26/cz5W34.png" srcset="/img/loading.gif" alt="cz5W34.png" /></p>
 <p>伯努利就两个值所以直接加就好</p>
 <p>第三个要用到方差公式，这个式子显然<a target="_blank" rel="noopener" href="https://imgtu.com/i/cz5hv9"><img src="https://z3.ax1x.com/2021/04/26/cz5hv9.png" srcset="/img/loading.gif" alt="cz5hv9.png" /></a></p>
 <p>把刚才算好的期望代进去算就好</p>
@@ -261,8 +261,8 @@
 <p>最后一个，观察式子的形式，很像神经网络在做二分类问题时经常用到的交叉熵损失函数。</p>
 <p>交叉熵损失函数一般形式是：</p>
 <p><img src="https://z3.ax1x.com/2021/04/26/cz5ID1.png" srcset="/img/loading.gif" alt="cz5ID1.png" /></p>
-<p>其中，***y***和***x***是***m***维列向量，***m***是***y***的取值数量。</p>
-<p>当***y***取值为{0，1}时，就是常见的0-1分布交叉熵损失函数：</p>
+<p>其中，<strong>y</strong>和<strong>x</strong>是<strong>m</strong>维列向量，<strong>m</strong>是<strong>y</strong>的取值数量。</p>
+<p>当<strong>y</strong>取值为{0，1}时，就是常见的0-1分布交叉熵损失函数：</p>
 <p><img src="https://z3.ax1x.com/2021/04/26/cz5oHx.png" srcset="/img/loading.gif" alt="cz5oHx.png" /></p>
 <p>看起来很像但要证它就要了解熵的定义，简单查了一下熵的公式：</p>
 <p><img src="https://z3.ax1x.com/2021/04/26/cz57E6.png" srcset="/img/loading.gif" alt="cz57E6.png" /></p>

@@ -47,13 +47,13 @@
     
     <tags>
       
-      <tag>环境部署</tag>
-      
       <tag>CMU</tag>
       
       <tag>数据库</tag>
       
       <tag>Docker</tag>
+      
+      <tag>环境部署</tag>
       
     </tags>
     
@@ -341,11 +341,11 @@
     
     <tags>
       
+      <tag>环境部署</tag>
+      
       <tag>MySQL</tag>
       
       <tag>Ubuntu</tag>
-      
-      <tag>环境部署</tag>
       
     </tags>
     
@@ -358,7 +358,7 @@
     <link href="/2020/07/06/ai_algo_math_proof2/"/>
     <url>/2020/07/06/ai_algo_math_proof2/</url>
     
-    <content type="html"><![CDATA[<p># AI算法课数学证明题2思路–线性模型L1正则化证明</p><blockquote><p>注意！由于没标准答案，不确定是否完全正确，这里仅提供我个人的思路和解法。</p></blockquote><h2 id="线性模型l1正则化证明"><a class="markdownIt-Anchor" href="#线性模型l1正则化证明"></a> 线性模型L1正则化证明</h2><p><a href="https://imgtu.com/i/czIA2Q"><img src="https://z3.ax1x.com/2021/04/26/czIA2Q.png" srcset="/img/loading.gif" alt="czIA2Q.png" /></a></p>]]></content>
+    <content type="html"><![CDATA[<p># AI算法课数学证明题2思路–高斯分布下MLE等价于正则化最小二乘估计</p><blockquote><p>注意！由于没标准答案，不确定是否完全正确，这里仅提供我个人的思路和解法。</p></blockquote><h2 id="证明高斯分布下mle等价于正则化最小二乘估计"><a class="markdownIt-Anchor" href="#证明高斯分布下mle等价于正则化最小二乘估计"></a> 证明：高斯分布下MLE等价于正则化最小二乘估计</h2><p><a href="https://imgtu.com/i/czIdIK"><img src="https://z3.ax1x.com/2021/04/26/czIdIK.png" srcset="/img/loading.gif" alt="czIdIK.png" /></a></p><h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2><p>参考<a href="https://www.yuque.com/books/share/f4031f65-70c1-4909-ba01-c47c31398466/mkn2fh">白板笔记</a>、<a href="https://blog.csdn.net/TIANTANGDEGEZI/article/details/102324103?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.compare&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.compare">线性基函数模型</a></p><p>这个应该是b站白板推导里线性回归那几节讲的，平均和误差函数就是损失函数，1/2方便求导，高斯分布的噪声其实就是L2范数，损失函数其实也就是最小二乘法。</p><p>相当于最小二乘法（使得平方差之和最小）里的<a href="https://imgtu.com/i/czIDRe"><img src="https://z3.ax1x.com/2021/04/26/czIDRe.png" srcset="/img/loading.gif" alt="czIDRe.png" /></a></p><p><a href="https://imgtu.com/i/czIrxH"><img src="https://z3.ax1x.com/2021/04/26/czIrxH.png" srcset="/img/loading.gif" alt="czIrxH.png" /></a></p><p><a href="https://imgtu.com/i/czIyMd"><img src="https://z3.ax1x.com/2021/04/26/czIyMd.png" srcset="/img/loading.gif" alt="czIyMd.png" /></a></p><p><a href="https://imgtu.com/i/czIcqI"><img src="https://z3.ax1x.com/2021/04/26/czIcqI.png" srcset="/img/loading.gif" alt="czIcqI.png" /></a></p><p><a href="https://imgtu.com/i/czI2Zt"><img src="https://z3.ax1x.com/2021/04/26/czI2Zt.png" srcset="/img/loading.gif" alt="czI2Zt.png" /></a></p><p><a href="https://imgtu.com/i/czIRdP"><img src="https://z3.ax1x.com/2021/04/26/czIRdP.png" srcset="/img/loading.gif" alt="czIRdP.png" /></a></p><p>MLE把先验概率分布看作是均匀分布，先验概率是常数，所以就像是MAP的一个特例</p><p>正则化里是利用加法，而MAP里是利用乘法。</p><h2 id="证明"><a class="markdownIt-Anchor" href="#证明"></a> 证明</h2><p>根据题意，“对附加权值衰减的正则化项的⽆噪声输⼊变量的平⽅和误差函数进⾏最⼩化，其中偏置参数<img src="C:%5CUsers%5Cricky%5CAppData%5CLocal%5CTemp%5Cksohtml19444%5Cwps13.png" srcset="/img/loading.gif" alt="img" />从正则化项中被省略掉。”即L2正则化最小二乘估计；“对在噪声分布上做平均的<img src="C:%5CUsers%5Cricky%5CAppData%5CLocal%5CTemp%5Cksohtml19444%5Cwps14.png" srcset="/img/loading.gif" alt="img" />进⾏最⼩化”即噪声为高斯分布的MLE(极大似然估计)。</p><p>原题证明转化为：<a href="https://imgtu.com/i/czI5Rg"><img src="https://z3.ax1x.com/2021/04/26/czI5Rg.png" srcset="/img/loading.gif" alt="czI5Rg.png" /></a></p><p><a href="https://imgtu.com/i/czIIzQ"><img src="https://z3.ax1x.com/2021/04/26/czIIzQ.png" srcset="/img/loading.gif" alt="czIIzQ.png" /></a></p><p><a href="https://imgtu.com/i/czITMj"><img src="https://z3.ax1x.com/2021/04/26/czITMj.png" srcset="/img/loading.gif" alt="czITMj.png" /></a></p><p><a href="https://imgtu.com/i/czIHLn"><img src="https://z3.ax1x.com/2021/04/26/czIHLn.png" srcset="/img/loading.gif" alt="czIHLn.png" /></a></p><p><a href="https://imgtu.com/i/czIqZq"><img src="https://z3.ax1x.com/2021/04/26/czIqZq.png" srcset="/img/loading.gif" alt="czIqZq.png" /></a></p><p><a href="https://imgtu.com/i/czIOoV"><img src="https://z3.ax1x.com/2021/04/26/czIOoV.png" srcset="/img/loading.gif" alt="czIOoV.png" /></a></p><p>要不是《统计学习方法》书上课后题好像有类似的，不然题都读不明白，完全没思路orz</p>]]></content>
     
     
     <categories>
@@ -385,7 +385,7 @@
     <link href="/2020/07/06/ai_algo_math_proof1/"/>
     <url>/2020/07/06/ai_algo_math_proof1/</url>
     
-    <content type="html"><![CDATA[<p># AI算法课数学证明题1思路–伯努利分布性质证明</p><blockquote><p>注意！由于没标准答案，不确定是否完全正确，这里仅提供我个人的思路和解法。</p></blockquote><h2 id="伯努利分布性质证明"><a class="markdownIt-Anchor" href="#伯努利分布性质证明"></a> 伯努利分布性质证明</h2><p><a href="https://imgtu.com/i/cz56EV"><img src="https://z3.ax1x.com/2021/04/26/cz56EV.png" srcset="/img/loading.gif" alt="cz56EV.png" /></a></p><h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路：</h3><p>伯努利分布又叫0-1分布，一个随机变量X服从参数为p的伯努利分布，其概率函数可以表示为：</p><p><a href="https://imgtu.com/i/cz5Dun"><img src="https://z3.ax1x.com/2021/04/26/cz5Dun.png" srcset="/img/loading.gif" alt="cz5Dun.png" /></a></p><p>化简放在本题中就是：</p><p><a href="https://imgtu.com/i/cz5RCF"><img src="https://z3.ax1x.com/2021/04/26/cz5RCF.png" srcset="/img/loading.gif" alt="cz5RCF.png" /></a></p><p>所以要是有求和的话就0和1两种情况加起来。</p><p>首先看第一个性质，***μ***是成功的概率，***x***取0或1，<em><strong>μ+(1-μ)</strong></em> 概率之和显然为一，</p><p>第二个要用到数学期望的公式</p><p><a href="https://imgtu.com/i/cz5W34"><img src="https://z3.ax1x.com/2021/04/26/cz5W34.png" srcset="/img/loading.gif" alt="cz5W34.png" /></a></p><p>伯努利就两个值所以直接加就好</p><p>第三个要用到方差公式，这个式子显然<a href="https://imgtu.com/i/cz5hv9"><img src="https://z3.ax1x.com/2021/04/26/cz5hv9.png" srcset="/img/loading.gif" alt="cz5hv9.png" /></a></p><p>把刚才算好的期望代进去算就好</p><p><img src="https://z3.ax1x.com/2021/04/26/cz55uR.png" srcset="/img/loading.gif" alt="cz55uR.png" /></p><p>最后一个，观察式子的形式，很像神经网络在做二分类问题时经常用到的交叉熵损失函数。</p><p>交叉熵损失函数一般形式是：</p><p><img src="https://z3.ax1x.com/2021/04/26/cz5ID1.png" srcset="/img/loading.gif" alt="cz5ID1.png" /></p><p>其中，***y***和***x***是***m***维列向量，***m***是***y***的取值数量。</p><p>当***y***取值为{0，1}时，就是常见的0-1分布交叉熵损失函数：</p><p><img src="https://z3.ax1x.com/2021/04/26/cz5oHx.png" srcset="/img/loading.gif" alt="cz5oHx.png" /></p><p>看起来很像但要证它就要了解熵的定义，简单查了一下熵的公式：</p><p><img src="https://z3.ax1x.com/2021/04/26/cz57E6.png" srcset="/img/loading.gif" alt="cz57E6.png" /></p><blockquote><p>P.S. Log还是ln不重要，就是熵的单位不同而已。</p></blockquote><p><img src="https://z3.ax1x.com/2021/04/26/cz5HUK.png" srcset="/img/loading.gif" alt="cz5HUK.png" /></p><p>在伯努利分布中就两个值，加起来就行了。</p><h3 id="证明"><a class="markdownIt-Anchor" href="#证明"></a> 证明：</h3><p><a href="https://imgtu.com/i/cz5O8e"><img src="https://z3.ax1x.com/2021/04/26/cz5O8e.png" srcset="/img/loading.gif" alt="cz5O8e.png" /></a></p><p><a href="https://imgtu.com/i/czIk8g"><img src="https://z3.ax1x.com/2021/04/26/czIk8g.png" srcset="/img/loading.gif" alt="czIk8g.png" /></a></p>]]></content>
+    <content type="html"><![CDATA[<p># AI算法课数学证明题1思路–伯努利分布性质证明</p><blockquote><p>注意！由于没标准答案，不确定是否完全正确，这里仅提供我个人的思路和解法。</p></blockquote><h2 id="伯努利分布性质证明"><a class="markdownIt-Anchor" href="#伯努利分布性质证明"></a> 伯努利分布性质证明</h2><p><a href="https://imgtu.com/i/cz56EV"><img src="https://z3.ax1x.com/2021/04/26/cz56EV.png" srcset="/img/loading.gif" alt="cz56EV.png" /></a></p><h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路：</h3><p>伯努利分布又叫0-1分布，一个随机变量X服从参数为p的伯努利分布，其概率函数可以表示为：</p><p><a href="https://imgtu.com/i/cz5Dun"><img src="https://z3.ax1x.com/2021/04/26/cz5Dun.png" srcset="/img/loading.gif" alt="cz5Dun.png" /></a></p><p>化简放在本题中就是：</p><p><a href="https://imgtu.com/i/cz5RCF"><img src="https://z3.ax1x.com/2021/04/26/cz5RCF.png" srcset="/img/loading.gif" alt="cz5RCF.png" /></a></p><p>所以要是有求和的话就0和1两种情况加起来。</p><p>首先看第一个性质，<strong>μ</strong>是成功的概率，<strong>x</strong>取0或1，<em><strong>μ+(1-μ)</strong></em> 概率之和显然为一，</p><p>第二个要用到数学期望的公式</p><p><img src="https://z3.ax1x.com/2021/04/26/cz5W34.png" srcset="/img/loading.gif" alt="cz5W34.png" /></p><p>伯努利就两个值所以直接加就好</p><p>第三个要用到方差公式，这个式子显然<a href="https://imgtu.com/i/cz5hv9"><img src="https://z3.ax1x.com/2021/04/26/cz5hv9.png" srcset="/img/loading.gif" alt="cz5hv9.png" /></a></p><p>把刚才算好的期望代进去算就好</p><p><img src="https://z3.ax1x.com/2021/04/26/cz55uR.png" srcset="/img/loading.gif" alt="cz55uR.png" /></p><p>最后一个，观察式子的形式，很像神经网络在做二分类问题时经常用到的交叉熵损失函数。</p><p>交叉熵损失函数一般形式是：</p><p><img src="https://z3.ax1x.com/2021/04/26/cz5ID1.png" srcset="/img/loading.gif" alt="cz5ID1.png" /></p><p>其中，<strong>y</strong>和<strong>x</strong>是<strong>m</strong>维列向量，<strong>m</strong>是<strong>y</strong>的取值数量。</p><p>当<strong>y</strong>取值为{0，1}时，就是常见的0-1分布交叉熵损失函数：</p><p><img src="https://z3.ax1x.com/2021/04/26/cz5oHx.png" srcset="/img/loading.gif" alt="cz5oHx.png" /></p><p>看起来很像但要证它就要了解熵的定义，简单查了一下熵的公式：</p><p><img src="https://z3.ax1x.com/2021/04/26/cz57E6.png" srcset="/img/loading.gif" alt="cz57E6.png" /></p><blockquote><p>P.S. Log还是ln不重要，就是熵的单位不同而已。</p></blockquote><p><img src="https://z3.ax1x.com/2021/04/26/cz5HUK.png" srcset="/img/loading.gif" alt="cz5HUK.png" /></p><p>在伯努利分布中就两个值，加起来就行了。</p><h3 id="证明"><a class="markdownIt-Anchor" href="#证明"></a> 证明：</h3><p><a href="https://imgtu.com/i/cz5O8e"><img src="https://z3.ax1x.com/2021/04/26/cz5O8e.png" srcset="/img/loading.gif" alt="cz5O8e.png" /></a></p><p><a href="https://imgtu.com/i/czIk8g"><img src="https://z3.ax1x.com/2021/04/26/czIk8g.png" srcset="/img/loading.gif" alt="czIk8g.png" /></a></p>]]></content>
     
     
     <categories>
