@@ -17,23 +17,10 @@
   <meta name="description" content="愿如方塘，日日自新。">
   <meta name="author" content="Ricky Xu">
   <meta name="keywords" content="">
-  <title>AI算法课数学题1思路--伯努利分布性质证明 - 方塘的半亩塘</title>
+  <title>标签 - 数学 - 方塘的半亩塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-    
-  
-
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -56,7 +43,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -160,56 +147,6 @@
             </span>
 
             
-              <div class="mt-3">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-author" aria-hidden="true"></i>
-      Ricky Xu
-    </span>
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-07-06 21:30" pubdate>
-        2020年7月6日 晚上
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      367 字
-    </span>
-  
-
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      3
-       分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-post-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
           </div>
 
           
@@ -220,165 +157,43 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">共计 2 篇文章</p>
+  <hr>
+  
+    
       
+      <p class="h5">2020</p>
+    
+    <a href="/2020/07/06/ai_algo_math_resolve4/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">AI算法课数学题4思路--求解m维随机向量两夹角概率密度分布</span>
+      <time style="float: right;">07-06</time>
+    </a>
+  
+    
+    <a href="/2020/07/06/ai_algo_math_proof1/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">AI算法课数学题1思路--伯努利分布性质证明</span>
+      <time style="float: right;">07-06</time>
+    </a>
+  
+</div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">AI算法课数学题1思路--伯努利分布性质证明</h1>
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：2021年4月26日 凌晨
-                
-              </p>
-            
-            <div class="markdown-body" id="post-body">
-              <p># AI算法课数学题1思路–伯努利分布性质证明</p>
-<blockquote>
-<p>注意！由于没标准答案，不确定是否完全正确，这里仅提供我个人的思路和解法。</p>
-</blockquote>
-<h2 id="伯努利分布性质证明"><a class="markdownIt-Anchor" href="#伯努利分布性质证明"></a> 伯努利分布性质证明</h2>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cz56EV"><img src="https://z3.ax1x.com/2021/04/26/cz56EV.png" srcset="/img/loading.gif" alt="cz56EV.png" /></a></p>
-<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路：</h3>
-<p>伯努利分布又叫0-1分布，一个随机变量X服从参数为p的伯努利分布，其概率函数可以表示为：</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cz5Dun"><img src="https://z3.ax1x.com/2021/04/26/cz5Dun.png" srcset="/img/loading.gif" alt="cz5Dun.png" /></a></p>
-<p>化简放在本题中就是：</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cz5RCF"><img src="https://z3.ax1x.com/2021/04/26/cz5RCF.png" srcset="/img/loading.gif" alt="cz5RCF.png" /></a></p>
-<p>所以要是有求和的话就0和1两种情况加起来。</p>
-<p>首先看第一个性质，<strong>μ</strong>是成功的概率，<strong>x</strong>取0或1，<em><strong>μ+(1-μ)</strong></em> 概率之和显然为一，</p>
-<p>第二个要用到数学期望的公式</p>
-<p><img src="https://z3.ax1x.com/2021/04/26/cz5W34.png" srcset="/img/loading.gif" alt="cz5W34.png" /></p>
-<p>伯努利就两个值所以直接加就好</p>
-<p>第三个要用到方差公式，这个式子显然<a target="_blank" rel="noopener" href="https://imgtu.com/i/cz5hv9"><img src="https://z3.ax1x.com/2021/04/26/cz5hv9.png" srcset="/img/loading.gif" alt="cz5hv9.png" /></a></p>
-<p>把刚才算好的期望代进去算就好</p>
-<p><img src="https://z3.ax1x.com/2021/04/26/cz55uR.png" srcset="/img/loading.gif" alt="cz55uR.png" /></p>
-<p>最后一个，观察式子的形式，很像神经网络在做二分类问题时经常用到的交叉熵损失函数。</p>
-<p>交叉熵损失函数一般形式是：</p>
-<p><img src="https://z3.ax1x.com/2021/04/26/cz5ID1.png" srcset="/img/loading.gif" alt="cz5ID1.png" /></p>
-<p>其中，<strong>y</strong>和<strong>x</strong>是<strong>m</strong>维列向量，<strong>m</strong>是<strong>y</strong>的取值数量。</p>
-<p>当<strong>y</strong>取值为{0，1}时，就是常见的0-1分布交叉熵损失函数：</p>
-<p><img src="https://z3.ax1x.com/2021/04/26/cz5oHx.png" srcset="/img/loading.gif" alt="cz5oHx.png" /></p>
-<p>看起来很像但要证它就要了解熵的定义，简单查了一下熵的公式：</p>
-<p><img src="https://z3.ax1x.com/2021/04/26/cz57E6.png" srcset="/img/loading.gif" alt="cz57E6.png" /></p>
-<blockquote>
-<p>P.S. Log还是ln不重要，就是熵的单位不同而已。</p>
-</blockquote>
-<p><img src="https://z3.ax1x.com/2021/04/26/cz5HUK.png" srcset="/img/loading.gif" alt="cz5HUK.png" /></p>
-<p>在伯努利分布中就两个值，加起来就行了。</p>
-<h3 id="证明"><a class="markdownIt-Anchor" href="#证明"></a> 证明：</h3>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/cz5O8e"><img src="https://z3.ax1x.com/2021/04/26/cz5O8e.png" srcset="/img/loading.gif" alt="cz5O8e.png" /></a></p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/czIk8g"><img src="https://z3.ax1x.com/2021/04/26/czIk8g.png" srcset="/img/loading.gif" alt="czIk8g.png" /></a></p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/ML-DL/">ML/DL</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/AI%E7%AE%97%E6%B3%95/">AI算法</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-                    
-                  </div>
-                
+
               </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2020/07/06/ai_algo_math_proof2/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">AI算法课数学题2思路--高斯噪声下MLE与L2正则等价证明</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2018/09/23/hello-world/">
-                        <span class="hidden-mobile">Hello World</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
-
-            
-              <!-- Comments -->
-              <article class="comments" id="comments">
-                
-                
-  <div id="vcomments"></div>
-  <script type="text/javascript">
-    function loadValine() {
-      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
-        new Valine({
-          el: "#vcomments",
-          app_id: "7ijcKFMdQOMyuAVqQDIHrHCb-MdYXbMMI",
-          app_key: "ML1YIYKYfCIHsAykhvlLQqWM",
-          placeholder: "看完了说点什么吧~😊",
-          path: window.location.pathname,
-          avatar: "retro",
-          meta: ["nick","mail","link"],
-          pageSize: "10",
-          lang: "zh-CN",
-          highlight: true,
-          recordIP: true,
-          serverURLs: "",
-        });
-      });
-    }
-    waitElementVisible('vcomments', loadValine);
-  </script>
-  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
-
-
-              </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
     
   </main>
 
@@ -467,8 +282,6 @@
 
 
   
-    
-      <script  src="/js/lazyload.js" ></script>
     
   
 
@@ -602,10 +415,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('true' === 'true') {
+      if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/07/06/ai_algo_math_proof1/');
+          var target = decodeURI('/tags/%E6%95%B0%E5%AD%A6/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -667,31 +480,6 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 1,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -699,7 +487,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "AI算法课数学题1思路--伯努利分布性质证明&nbsp;",
+        "标签 - 数学&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -714,21 +502,6 @@
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
-
 
 
   <script  src="/js/local-search.js" ></script>
@@ -742,20 +515,6 @@
   </script>
 
 
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
 
 
 
