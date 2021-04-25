@@ -17,10 +17,23 @@
   <meta name="description" content="愿如方塘，日日自新。">
   <meta name="author" content="Ricky Xu">
   <meta name="keywords" content="">
-  <title>归档 - 方塘的半亩塘</title>
+  <title>AI算法课数学证明题3思路--线性可分则凸壳不交 - 方塘的半亩塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +56,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -147,6 +160,56 @@
             </span>
 
             
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ricky Xu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-07-06 21:31" pubdate>
+        2020年7月6日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      537 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      5
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
           
@@ -157,37 +220,153 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 16 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2018</p>
-    
-    <a href="/2018/09/23/hello-world/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hello World</span>
-      <time style="float: right;">09-23</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">AI算法课数学证明题3思路--线性可分则凸壳不交</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年4月26日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p># AI算法课数学证明题3思路–线性可分则凸壳不交</p>
+<h2 id="证明线性可分凸壳不交"><a class="markdownIt-Anchor" href="#证明线性可分凸壳不交"></a> 证明：线性可分=&gt;凸壳不交</h2>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/czoCLR"><img src="https://z3.ax1x.com/2021/04/26/czoCLR.png" srcset="/img/loading.gif" alt="czoCLR.png" /></a></p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<p>这题其实就是统计学习方法里感知机的学习策略，数据集的线性可分性的定义那部分，好像和凸优化理论相关。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/czoko6"><img src="https://z3.ax1x.com/2021/04/26/czoko6.png" srcset="/img/loading.gif" alt="czoko6.png" /></a></p>
+<p>题设“证明：如果它们的凸壳有相交的部分，那么这两个点集是线性不可分的；相反，如果它们是线性可分的，那么它们的凸壳就不会相交。”&lt;=等价于=&gt;“证明：样本集线性可分的充分必要条件是正实例点集和负实例点集所构成的凸壳互不相交。”只要把充分性必要性都证了就OK。</p>
+<blockquote>
+<p>证完之后的小插曲：其实这里我看错题了，我不想把之前辛辛苦苦写的删了，必要性证明也在后面附上了，也可以看看。</p>
+<p>假设p为“两个凸壳有相交的部分”，q为“两个点集是线性不可分的”</p>
+<p>题设证明的意思换句话说就是：“若p则q，反之，若~p则~q”这前一句后一句其实互为逆否命题，只需要证一个就行，而我之前错看成两个，以为和李航统计学习方法里的课后题一样，导致我还去看了凸优化理论…智商捉鸡的我实在看不懂…</p>
+</blockquote>
+<h2 id="证明"><a class="markdownIt-Anchor" href="#证明"></a> 证明</h2>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/czoZWD"><img src="https://z3.ax1x.com/2021/04/26/czoZWD.png" srcset="/img/loading.gif" alt="czoZWD.png" /></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/czonQH"><img src="https://z3.ax1x.com/2021/04/26/czonQH.png" srcset="/img/loading.gif" alt="czonQH.png" /></a></p>
+<h2 id="小插曲"><a class="markdownIt-Anchor" href="#小插曲"></a> 小插曲</h2>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/czoKOA"><img src="https://z3.ax1x.com/2021/04/26/czoKOA.png" srcset="/img/loading.gif" alt="czoKOA.png" /></a></p>
+<blockquote>
+<p>到这里，由于题设给的是两句话是逆否命题，“如果它们是线性可分的，那么它们的凸壳就不会相交”等价于“如果它们的凸壳有相交的部分，那么这两个点集是线性不可分的”，此时原命题已经得证了。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/czouyd"><img src="https://z3.ax1x.com/2021/04/26/czouyd.png" srcset="/img/loading.gif" alt="czouyd.png" /></a></p>
+<p>由①和②可以证明题设“如果它们的凸壳有相交的部分，那么这两个点集是线性不可分的；相反，如果它们是线性可分的，那么它们的凸壳就不会相交。”</p>
+<p>我这里给出的证明可能不是很严谨，详细证明参考大佬博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/y954877035/article/details/52210734">凸壳与线性可分</a></p>
 
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/ML-DL/">ML/DL</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/AI%E7%AE%97%E6%B3%95/">AI算法</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E5%AD%A6%E8%AF%81%E6%98%8E/">数学证明</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/11/MySQL5.7_remote_config_on_Ubuntu18.04/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Ubuntu18.04安装配置MySQL5.7数据库远程连接</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/06/ai_algo_math_proof2/">
+                        <span class="hidden-mobile">AI算法课数学证明题2思路--高斯噪声下MLE与L2正则等价证明</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "7ijcKFMdQOMyuAVqQDIHrHCb-MdYXbMMI",
+          app_key: "ML1YIYKYfCIHsAykhvlLQqWM",
+          placeholder: "看完了说点什么吧~😊",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -276,6 +455,8 @@
 
 
   
+    
+      <script  src="/js/lazyload.js" ></script>
     
   
 
@@ -409,10 +590,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/2018/index.html');
+          var target = decodeURI('/2020/07/06/ai_algo_math_proof3/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -474,6 +655,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 1,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -481,7 +687,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "AI算法课数学证明题3思路--线性可分则凸壳不交&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -496,6 +702,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -509,6 +730,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
