@@ -47,13 +47,13 @@
     
     <tags>
       
+      <tag>环境部署</tag>
+      
       <tag>CMU</tag>
       
       <tag>数据库</tag>
       
       <tag>Docker</tag>
-      
-      <tag>环境部署</tag>
       
     </tags>
     
@@ -341,11 +341,65 @@
     
     <tags>
       
-      <tag>环境部署</tag>
-      
       <tag>MySQL</tag>
       
       <tag>Ubuntu</tag>
+      
+      <tag>环境部署</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>AI算法课数学证明题2思路--线性模型L1正则化证明</title>
+    <link href="/2020/07/06/ai_algo_math_proof2/"/>
+    <url>/2020/07/06/ai_algo_math_proof2/</url>
+    
+    <content type="html"><![CDATA[<p># AI算法课数学证明题2思路–线性模型L1正则化证明</p><blockquote><p>注意！由于没标准答案，不确定是否完全正确，这里仅提供我个人的思路和解法。</p></blockquote><h2 id="线性模型l1正则化证明"><a class="markdownIt-Anchor" href="#线性模型l1正则化证明"></a> 线性模型L1正则化证明</h2><p><a href="https://imgtu.com/i/czIA2Q"><img src="https://z3.ax1x.com/2021/04/26/czIA2Q.png" srcset="/img/loading.gif" alt="czIA2Q.png" /></a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>ML/DL</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI算法</tag>
+      
+      <tag>数学证明</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>AI算法课数学证明题1思路--伯努利分布性质证明</title>
+    <link href="/2020/07/06/ai_algo_math_proof1/"/>
+    <url>/2020/07/06/ai_algo_math_proof1/</url>
+    
+    <content type="html"><![CDATA[<p># AI算法课数学证明题1思路–伯努利分布性质证明</p><blockquote><p>注意！由于没标准答案，不确定是否完全正确，这里仅提供我个人的思路和解法。</p></blockquote><h2 id="伯努利分布性质证明"><a class="markdownIt-Anchor" href="#伯努利分布性质证明"></a> 伯努利分布性质证明</h2><p><a href="https://imgtu.com/i/cz56EV"><img src="https://z3.ax1x.com/2021/04/26/cz56EV.png" srcset="/img/loading.gif" alt="cz56EV.png" /></a></p><h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路：</h3><p>伯努利分布又叫0-1分布，一个随机变量X服从参数为p的伯努利分布，其概率函数可以表示为：</p><p><a href="https://imgtu.com/i/cz5Dun"><img src="https://z3.ax1x.com/2021/04/26/cz5Dun.png" srcset="/img/loading.gif" alt="cz5Dun.png" /></a></p><p>化简放在本题中就是：</p><p><a href="https://imgtu.com/i/cz5RCF"><img src="https://z3.ax1x.com/2021/04/26/cz5RCF.png" srcset="/img/loading.gif" alt="cz5RCF.png" /></a></p><p>所以要是有求和的话就0和1两种情况加起来。</p><p>首先看第一个性质，***μ***是成功的概率，***x***取0或1，<em><strong>μ+(1-μ)</strong></em> 概率之和显然为一，</p><p>第二个要用到数学期望的公式</p><p><a href="https://imgtu.com/i/cz5W34"><img src="https://z3.ax1x.com/2021/04/26/cz5W34.png" srcset="/img/loading.gif" alt="cz5W34.png" /></a></p><p>伯努利就两个值所以直接加就好</p><p>第三个要用到方差公式，这个式子显然<a href="https://imgtu.com/i/cz5hv9"><img src="https://z3.ax1x.com/2021/04/26/cz5hv9.png" srcset="/img/loading.gif" alt="cz5hv9.png" /></a></p><p>把刚才算好的期望代进去算就好</p><p><img src="https://z3.ax1x.com/2021/04/26/cz55uR.png" srcset="/img/loading.gif" alt="cz55uR.png" /></p><p>最后一个，观察式子的形式，很像神经网络在做二分类问题时经常用到的交叉熵损失函数。</p><p>交叉熵损失函数一般形式是：</p><p><img src="https://z3.ax1x.com/2021/04/26/cz5ID1.png" srcset="/img/loading.gif" alt="cz5ID1.png" /></p><p>其中，***y***和***x***是***m***维列向量，***m***是***y***的取值数量。</p><p>当***y***取值为{0，1}时，就是常见的0-1分布交叉熵损失函数：</p><p><img src="https://z3.ax1x.com/2021/04/26/cz5oHx.png" srcset="/img/loading.gif" alt="cz5oHx.png" /></p><p>看起来很像但要证它就要了解熵的定义，简单查了一下熵的公式：</p><p><img src="https://z3.ax1x.com/2021/04/26/cz57E6.png" srcset="/img/loading.gif" alt="cz57E6.png" /></p><blockquote><p>P.S. Log还是ln不重要，就是熵的单位不同而已。</p></blockquote><p><img src="https://z3.ax1x.com/2021/04/26/cz5HUK.png" srcset="/img/loading.gif" alt="cz5HUK.png" /></p><p>在伯努利分布中就两个值，加起来就行了。</p><h3 id="证明"><a class="markdownIt-Anchor" href="#证明"></a> 证明：</h3><p><a href="https://imgtu.com/i/cz5O8e"><img src="https://z3.ax1x.com/2021/04/26/cz5O8e.png" srcset="/img/loading.gif" alt="cz5O8e.png" /></a></p><p><a href="https://imgtu.com/i/czIk8g"><img src="https://z3.ax1x.com/2021/04/26/czIk8g.png" srcset="/img/loading.gif" alt="czIk8g.png" /></a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>ML/DL</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI算法</tag>
+      
+      <tag>数学证明</tag>
       
     </tags>
     
