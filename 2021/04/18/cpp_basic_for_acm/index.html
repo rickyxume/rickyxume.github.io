@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      27
+      28
        分钟
     </span>
   
@@ -240,7 +240,7 @@
             
             <div class="markdown-body" id="post-body">
               <p># C/C++基础知识</p>
-<p>由于在准备考研专业课，感觉最近十分需要补习一下算法，就先回顾一下面向 ACM 的 C/C++ 的基础知识（主要是C++），顺便记录一下。</p>
+<p>由于在准备考研专业课，感觉最近十分需要补习一下算法，就先回顾一下面向ACM算法题的 C/C++ 的基础知识（主要是C++），顺便记录一下。</p>
 <h2 id="00-c基础认知"><a class="markdownIt-Anchor" href="#00-c基础认知"></a> 00 / C++基础认知</h2>
 <p>C++是一种通用程序设计语言，支持多重编程模式，例如“过程化程序设计”、“数据抽象”、“面向对象程序设计”、“泛型程序设计”和“设计模式”等。</p>
 <h2 id="01-从-helloworldcpp-分析c基本语法"><a class="markdownIt-Anchor" href="#01-从-helloworldcpp-分析c基本语法"></a> 01 / 从 helloworld.cpp 分析C++基本语法</h2>
@@ -312,7 +312,9 @@ node* head;</code></pre></div>
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre></div>
 <h2 id="03-输入输出"><a class="markdownIt-Anchor" href="#03-输入输出"></a> 03 / 输入输出</h2>
-<p>流输入cin</p>
+<ul>
+<li>流输入cin</li>
+</ul>
 <p>输入用cin，相当于C里面的scanf。所有标准数据类型都可以用cin输入。</p>
 <p>格式：</p>
 <blockquote>
@@ -322,14 +324,16 @@ node* head;</code></pre></div>
 <div class="hljs"><pre><code class="hljs c++"><span class="hljs-built_in">cin</span> &gt;&gt; number; <span class="hljs-comment">// scanf(&quot;%d&quot;, &amp;number);</span>
 <span class="hljs-built_in">cin</span> &gt;&gt; character; <span class="hljs-comment">// scanf(&quot;%c&quot;, &amp;character);</span>
 <span class="hljs-built_in">cin</span> &gt;&gt; cString; <span class="hljs-comment">// scanf(&quot;%s&quot;, cString);</span></code></pre></div>
-<p>流输出cout</p>
+<ul>
+<li>流输出cout</li>
+</ul>
 <p>将字符串或变量的值压进缓存区然后输出，endl相当于’\n’，同时会清空缓存区。</p>
 <div class="hljs"><pre><code class="hljs c++"><span class="hljs-built_in">cout</span> &lt;&lt; number &lt;&lt; <span class="hljs-built_in">endl</span>;
 <span class="hljs-built_in">cout</span> &lt;&lt; character &lt;&lt; <span class="hljs-built_in">endl</span>;
 <span class="hljs-built_in">cout</span> &lt;&lt; boolean &lt;&lt; <span class="hljs-built_in">endl</span>;
 <span class="hljs-built_in">cout</span> &lt;&lt; cString &lt;&lt; <span class="hljs-built_in">endl</span>;
 <span class="hljs-built_in">cout</span> &lt;&lt; cppString &lt;&lt; <span class="hljs-built_in">endl</span>;</code></pre></div>
-<p>常用输入方式</p>
+<h3 id="常用输入方式"><a class="markdownIt-Anchor" href="#常用输入方式"></a> 常用输入方式</h3>
 <ul>
 <li>读入一行字符串：getline()</li>
 </ul>
@@ -426,6 +430,7 @@ node* head;</code></pre></div>
 <span class="hljs-keyword">int</span>* carr = (<span class="hljs-keyword">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-number">100</span> * <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>));</code></pre></div>
 <p>写题时动态内存的分配一般用在新建一个结构体上，可以不用手动释放内存。</p>
 <h2 id="05-引用类型"><a class="markdownIt-Anchor" href="#05-引用类型"></a> 05 / 引用类型</h2>
+<p>不像C里需要取址再用指针取值修改，C++直接引用就可以修改值。</p>
 <p>例如：</p>
 <div class="hljs"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;a,<span class="hljs-keyword">int</span> &amp;b)</span></span>&#123;
 	<span class="hljs-keyword">int</span> tmp = a;
