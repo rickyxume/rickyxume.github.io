@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.2k 字
+      2.4k 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      28
+      31
        分钟
     </span>
   
@@ -234,7 +234,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年4月26日 凌晨
+                  本文最后更新于：2021年4月26日 晚上
                 
               </p>
             
@@ -312,6 +312,7 @@ node* head;</code></pre></div>
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre></div>
 <h2 id="03-输入输出"><a class="markdownIt-Anchor" href="#03-输入输出"></a> 03 / 输入输出</h2>
+<h3 id="c的输入输出"><a class="markdownIt-Anchor" href="#c的输入输出"></a> C++的输入输出</h3>
 <ul>
 <li>流输入cin</li>
 </ul>
@@ -333,6 +334,206 @@ node* head;</code></pre></div>
 <span class="hljs-built_in">cout</span> &lt;&lt; boolean &lt;&lt; <span class="hljs-built_in">endl</span>;
 <span class="hljs-built_in">cout</span> &lt;&lt; cString &lt;&lt; <span class="hljs-built_in">endl</span>;
 <span class="hljs-built_in">cout</span> &lt;&lt; cppString &lt;&lt; <span class="hljs-built_in">endl</span>;</code></pre></div>
+<h3 id="c的输入输出-2"><a class="markdownIt-Anchor" href="#c的输入输出-2"></a> C的输入输出</h3>
+<ul>
+<li>C格式化输入scanf</li>
+</ul>
+<blockquote>
+<p>scanf(&quot;%[flag]type&quot;,&amp;…);</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>flag</th>
+<th>含义</th>
+<th>flag</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>跳过</td>
+<td>l</td>
+<td>long, double</td>
+</tr>
+<tr>
+<td>数字</td>
+<td>最大字符数</td>
+<td>ll</td>
+<td>long long</td>
+</tr>
+<tr>
+<td>hh</td>
+<td>char</td>
+<td>L</td>
+<td>long double</td>
+</tr>
+<tr>
+<td>h</td>
+<td>short</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>用于</th>
+<th>type</th>
+<th>用于</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d</td>
+<td>int</td>
+<td>s</td>
+<td>字符串（单词）</td>
+</tr>
+<tr>
+<td>i</td>
+<td>整数，可能为十六进制或八进制<br />则转为十进制int</td>
+<td>[…]</td>
+<td>所允许的字符</td>
+</tr>
+<tr>
+<td>u</td>
+<td>unsigned int</td>
+<td>p</td>
+<td>指针</td>
+</tr>
+<tr>
+<td>o</td>
+<td>八进制</td>
+<td>a,e,f,g</td>
+<td>float</td>
+</tr>
+<tr>
+<td>x</td>
+<td>十六进制</td>
+<td>c</td>
+<td>char</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>C格式化输出printf</li>
+</ul>
+<blockquote>
+<p>printf(&quot;%[flags][width][width][.prec][hIL]type&quot;,…);</p>
+<p>// flags不填则默认右对齐</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>含义</th>
+<th>width或prec</th>
+<th>含义</th>
+<th>类型修饰</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>左对齐</td>
+<td>number</td>
+<td>最小字符数</td>
+<td>hh</td>
+<td>单个字节</td>
+</tr>
+<tr>
+<td>+</td>
+<td>在前面放+或-</td>
+<td>*</td>
+<td>下一个参数是字符数</td>
+<td>h</td>
+<td>short</td>
+</tr>
+<tr>
+<td>(space)</td>
+<td>正数留空</td>
+<td>.number</td>
+<td>小数点后的位数</td>
+<td>l</td>
+<td>long</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0填充</td>
+<td>.*</td>
+<td>下一个参数是小数点后的位数</td>
+<td>ll</td>
+<td>long long</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>L</td>
+<td>long double</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>用于</th>
+<th>type</th>
+<th>用于</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>i</code>或<code>d</code></td>
+<td>int有符号整数型（digit 和 integer）</td>
+<td><code>g</code>或<code>G</code></td>
+<td>实数(不显示无意义0)float</td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>无符号整数型（unsigned int）</td>
+<td><code>a</code>或<code>A</code></td>
+<td>十六进制浮点</td>
+</tr>
+<tr>
+<td><code>f</code>或<code>F</code></td>
+<td>浮点数（float）,6</td>
+<td><code>x</code></td>
+<td>十六进制</td>
+</tr>
+<tr>
+<td><code>e</code>或<code>E</code></td>
+<td>科学计数法浮点数，指数（exponent）</td>
+<td><code>X</code></td>
+<td>字母大写的十六进制</td>
+</tr>
+<tr>
+<td><code>c</code></td>
+<td>char字符型（character）</td>
+<td><code>o</code></td>
+<td>八进制</td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>字符串（string）</td>
+<td><code>p</code></td>
+<td>指针（pointer）内存地址</td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td>读入/写出的…个数</td>
+<td><code>%n</code>用法</td>
+<td>ptf(&quot;%…%n&quot;,…,&amp;num);</td>
+</tr>
+</tbody>
+</table>
 <h3 id="常用输入方式"><a class="markdownIt-Anchor" href="#常用输入方式"></a> 常用输入方式</h3>
 <ul>
 <li>读入一行字符串：getline()</li>
@@ -361,67 +562,6 @@ node* head;</code></pre></div>
 <p>使用getline()之前如果有其他输入操作，那么应该在getline()前写一个getchar()来吞掉上一步输入操作留下的换行符’\n’;</p>
 </li>
 </ul>
-<h3 id="printf格式化输出"><a class="markdownIt-Anchor" href="#printf格式化输出"></a> printf格式化输出</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">数据类型及显示</th>
-<th style="text-align:left">占位符</th>
-<th style="text-align:left">占位符来源单词首字母</th>
-<th style="text-align:left">示例数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">有符号整数型</td>
-<td style="text-align:left"><code>%d</code>或<code>%i</code></td>
-<td style="text-align:left">digit 和 integer</td>
-<td style="text-align:left">-392−392</td>
-</tr>
-<tr>
-<td style="text-align:left">字符型</td>
-<td style="text-align:left"><code>%c</code></td>
-<td style="text-align:left">character</td>
-<td style="text-align:left">A</td>
-</tr>
-<tr>
-<td style="text-align:left">无符号整数型</td>
-<td style="text-align:left"><code>%u</code></td>
-<td style="text-align:left">unsigned</td>
-<td style="text-align:left">392392</td>
-</tr>
-<tr>
-<td style="text-align:left">浮点数</td>
-<td style="text-align:left"><code>%f</code>或<code>%F</code></td>
-<td style="text-align:left">float</td>
-<td style="text-align:left">39.239.2</td>
-</tr>
-<tr>
-<td style="text-align:left">科学计数法浮点数</td>
-<td style="text-align:left"><code>%e</code>或<code>%E</code></td>
-<td style="text-align:left">exponent</td>
-<td style="text-align:left">3.9265e+23.9265<em>e</em>+2</td>
-</tr>
-<tr>
-<td style="text-align:left">实数(不显示无意义0)</td>
-<td style="text-align:left"><code>%g</code>或<code>%G</code></td>
-<td style="text-align:left"></td>
-<td style="text-align:left">39.239.2 和 1.2e+021.2<em>e</em>+02</td>
-</tr>
-<tr>
-<td style="text-align:left">内存地址</td>
-<td style="text-align:left"><code>%p</code></td>
-<td style="text-align:left">pointer</td>
-<td style="text-align:left">b8000000</td>
-</tr>
-<tr>
-<td style="text-align:left">字符串</td>
-<td style="text-align:left"><code>%s</code></td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">sample</td>
-</tr>
-</tbody>
-</table>
 <h2 id="04-动态内存分配"><a class="markdownIt-Anchor" href="#04-动态内存分配"></a> 04 / 动态内存分配</h2>
 <div class="hljs"><pre><code class="hljs c++"><span class="hljs-keyword">int</span>* number = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>; <span class="hljs-comment">// C++中用new来动态开辟内存</span>
 
@@ -529,6 +669,12 @@ s1&lt;s3?:0</p>
                 <div class="post-prevnext row">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/04/26/c_cpp_bits_stdcpp/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C/C++万能头文件——bits/stdc++.h</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
