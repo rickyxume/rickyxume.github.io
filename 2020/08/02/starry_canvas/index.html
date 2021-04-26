@@ -17,7 +17,7 @@
   <meta name="description" content="愿如方塘，日日自新。">
   <meta name="author" content="Ricky Xu">
   <meta name="keywords" content="">
-  <title>Ubuntu18.04安装配置MySQL5.7数据库远程连接 - 方塘的半亩塘</title>
+  <title>宇宙繁星闪烁动图HTML实现 - 方塘的半亩塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -170,8 +170,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-09-11 21:30" pubdate>
-        2020年9月11日 晚上
+      <time datetime="2020-08-02 21:30" pubdate>
+        2020年8月2日 晚上
       </time>
     </span>
   
@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      250 字
+      499 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      9
        分钟
     </span>
   
@@ -230,48 +230,106 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Ubuntu18.04安装配置MySQL5.7数据库远程连接</h1>
+            <h1 style="display: none">宇宙繁星闪烁动图HTML实现</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年4月9日 下午
+                  本文最后更新于：2021年4月27日 凌晨
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <p># Ubuntu18.04安装配置MySQL5.7数据库远程连接</p>
-<p>课程设计时因为电脑没啥内存，就在Ubuntu服务器上配置了MySQL远程用</p>
-<p>命令行记录如下：</p>
-<p>下载一些包</p>
-<div class="hljs"><pre><code class="hljs bash">su <span class="hljs-comment"># 登入超级用户</span>
-apt-get install mysql-server
-apt-get install mysql-client
-apt-get install libmysqlclient-dev
-apt install net-tools <span class="hljs-comment"># 用于查看服务状态</span>
-sudo netstat -tap | grep mysql</code></pre></div>
-<p><img src="https://i.loli.net/2021/01/09/hKLeJDkQNXUxtiV.png" srcset="/img/loading.gif" alt="image-20210109154326377" /></p>
-<p>状态为LISTEN即可</p>
-<div class="hljs"><pre><code class="hljs bash">mysql -u root -p <span class="hljs-comment"># 默认root用户初始密码为空</span></code></pre></div>
-<p>进入数据库后显示 mysql&gt;</p>
-<p>改密码</p>
-<div class="hljs"><pre><code class="hljs bash">GRANT ALL PRIVILEGES ON *.* TO root@localhost IDENTIFIED BY <span class="hljs-string">&quot;123456&quot;</span>;</code></pre></div>
-<p>新建数据库</p>
-<div class="hljs"><pre><code class="hljs bash">CREATE DATABASE edusys;</code></pre></div>
-<p>新增用户</p>
-<div class="hljs"><pre><code class="hljs bash">GRANT ALL PRIVILEGES ON edusys.* TO ricky@localhost IDENTIFIED BY <span class="hljs-string">&quot;ricky&quot;</span>;</code></pre></div>
-<p>允许用户可以从任意地址访问</p>
-<div class="hljs"><pre><code class="hljs bash">mysql&gt; GRANT ALL PRIVILEGES ON edusys.* TO ricky@<span class="hljs-string">&quot;%&quot;</span> IDENTIFIED BY <span class="hljs-string">&quot;ricky&quot;</span>;</code></pre></div>
-<p>退出mysql</p>
-<div class="hljs"><pre><code class="hljs bash"><span class="hljs-built_in">exit</span></code></pre></div>
-<p>修改配置文件</p>
-<div class="hljs"><pre><code class="hljs bash">sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf</code></pre></div>
-<p><img src="https://i.loli.net/2021/01/09/R9SKC6BWfeXu1vM.png" srcset="/img/loading.gif" alt="image-20210109155120911" /></p>
-<p>127.0.0.1改成0.0.0.0</p>
-<p><img src="https://i.loli.net/2021/01/09/8WCRsh62GNQzgfn.png" srcset="/img/loading.gif" alt="image-20210109155157161" /></p>
-<p>重启MySQL服务</p>
-<div class="hljs"><pre><code class="hljs bash">service mysql restart</code></pre></div>
-<p>用navicat远程连接服务器上的MySQL，用户名密码就是前面配置的。</p>
-<p><img src="https://i.loli.net/2021/01/09/5nh2C6DfQigjurc.png" srcset="/img/loading.gif" alt="image-20210109155714951" /></p>
+              <p># 宇宙繁星闪烁动图HTML实现</p>
+<p>用canvas绘制宇宙繁星闪烁动图，可自己DIY，实现效果详见我的<a target="_blank" rel="noopener" href="https://blog.rickyxu.cc/about/">关于页</a></p>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;canvas&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:100%;height:auto;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="javascript"><span class="hljs-keyword">var</span> canvas = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;canvas&#x27;</span>),</span>
+<span class="javascript">    ctx = canvas.getContext(<span class="hljs-string">&#x27;2d&#x27;</span>),</span>
+<span class="javascript">    w = canvas.width = <span class="hljs-built_in">window</span>.innerWidth,</span>
+<span class="javascript">    h = canvas.height = <span class="hljs-built_in">window</span>.innerHeight,</span>
+<span class="javascript">    cols = [<span class="hljs-number">217</span>,<span class="hljs-number">222</span>,<span class="hljs-number">200</span>,<span class="hljs-number">210</span>], <span class="hljs-comment">//随机选取颜色</span></span>
+<span class="javascript">    hue = cols[<span class="hljs-built_in">parseInt</span>(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">4</span>)],</span>
+    stars = [],
+    count = 0,
+<span class="javascript">    maxStars = <span class="hljs-number">1999</span>; <span class="hljs-comment">//星星数量</span></span>
+<span class="javascript"><span class="hljs-keyword">var</span> canvas2 = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;canvas&#x27;</span>),</span>
+<span class="javascript">    ctx2 = canvas2.getContext(<span class="hljs-string">&#x27;2d&#x27;</span>);</span>
+canvas2.width = w;
+canvas2.height = h;
+<span class="javascript"><span class="hljs-keyword">var</span> half = canvas2.width / <span class="hljs-number">2</span>,</span>
+    gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
+<span class="javascript">gradient2.addColorStop(<span class="hljs-number">0.025</span>, <span class="hljs-string">&#x27;#CCC&#x27;</span>);</span>
+<span class="javascript">gradient2.addColorStop(<span class="hljs-number">0.1</span>, <span class="hljs-string">&#x27;hsl(&#x27;</span> + hue + <span class="hljs-string">&#x27;, 61%, 33%)&#x27;</span>);</span>
+<span class="javascript">gradient2.addColorStop(<span class="hljs-number">0.25</span>, <span class="hljs-string">&#x27;hsl(&#x27;</span> + hue + <span class="hljs-string">&#x27;, 64%, 6%)&#x27;</span>);</span>
+<span class="javascript">gradient2.addColorStop(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;transparent&#x27;</span>);</span>
+ctx2.fillStyle = gradient2;
+ctx2.beginPath();
+<span class="javascript">ctx2.arc(half, half, half, <span class="hljs-number">0</span>, <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span>);</span>
+ctx2.fill();
+<span class="javascript"><span class="hljs-comment">// End cache</span></span>
+<span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">random</span>(<span class="hljs-params">min, max</span>) </span>&#123;</span>
+<span class="javascript">    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>.length &lt; <span class="hljs-number">2</span>) &#123;</span>
+        max = min;
+        min = 0;
+    &#125;
+    if (min &gt; max) &#123;
+<span class="javascript">        <span class="hljs-keyword">var</span> hold = max;</span>
+        max = min;
+        min = hold;
+    &#125;
+<span class="javascript">    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * (max - min + <span class="hljs-number">1</span>)) + min;</span>
+&#125;
+<span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">maxOrbit</span>(<span class="hljs-params">x, y</span>) </span>&#123;</span>
+<span class="javascript">    <span class="hljs-keyword">var</span> max = <span class="hljs-built_in">Math</span>.max(x, y),</span>
+<span class="javascript">        diameter = <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.sqrt(max * max + max * max));</span>
+<span class="javascript">    <span class="hljs-keyword">return</span> diameter / <span class="hljs-number">2</span>;</span>
+<span class="javascript">    <span class="hljs-comment">//星星移动范围，值越大范围越小，</span></span>
+&#125;
+<span class="javascript"><span class="hljs-keyword">var</span> Star = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span>
+<span class="javascript">    <span class="hljs-built_in">this</span>.orbitRadius = random(maxOrbit(w, h));</span>
+<span class="javascript">    <span class="hljs-built_in">this</span>.radius = random(<span class="hljs-number">60</span>, <span class="hljs-built_in">this</span>.orbitRadius) / <span class="hljs-number">16</span>;</span>
+<span class="javascript">    <span class="hljs-comment">//星星大小</span></span>
+<span class="javascript">    <span class="hljs-built_in">this</span>.rand_wh = random(<span class="hljs-number">1.9</span>,<span class="hljs-number">2.1</span>),</span>
+<span class="javascript">    <span class="hljs-built_in">this</span>.orbitX = w / <span class="hljs-built_in">this</span>.rand_wh;</span>
+<span class="javascript">    <span class="hljs-built_in">this</span>.orbitY = h / <span class="hljs-built_in">this</span>.rand_wh;</span>
+<span class="javascript">    <span class="hljs-built_in">this</span>.timePassed = random(<span class="hljs-number">0</span>, maxStars);</span>
+<span class="javascript">    <span class="hljs-built_in">this</span>.speed = random(<span class="hljs-built_in">this</span>.orbitRadius) / <span class="hljs-number">999999</span>;</span>
+<span class="javascript">    <span class="hljs-comment">//星星移动速度</span></span>
+<span class="javascript">    <span class="hljs-built_in">this</span>.alpha = random(<span class="hljs-number">2</span>, <span class="hljs-number">12</span>) / <span class="hljs-number">10</span>;</span>
+    count++;
+<span class="javascript">    stars[count] = <span class="hljs-built_in">this</span>;</span>
+&#125;
+<span class="javascript">Star.prototype.draw = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span>
+<span class="javascript">    <span class="hljs-keyword">var</span> x = <span class="hljs-built_in">Math</span>.sin(<span class="hljs-built_in">this</span>.timePassed) * <span class="hljs-built_in">this</span>.orbitRadius + <span class="hljs-built_in">this</span>.orbitX,</span>
+<span class="javascript">        y = <span class="hljs-built_in">Math</span>.cos(<span class="hljs-built_in">this</span>.timePassed) * <span class="hljs-built_in">this</span>.orbitRadius + <span class="hljs-built_in">this</span>.orbitY,</span>
+        twinkle = random(6,8);
+<span class="javascript">    <span class="hljs-keyword">if</span> (twinkle === <span class="hljs-number">1</span> &amp;&amp; <span class="hljs-built_in">this</span>.alpha &gt; <span class="hljs-number">0</span>) &#123;</span>
+<span class="javascript">        <span class="hljs-built_in">this</span>.alpha -= <span class="hljs-number">0.05</span>;</span>
+<span class="javascript">    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (twinkle === <span class="hljs-number">2</span> &amp;&amp; <span class="hljs-built_in">this</span>.alpha &lt; <span class="hljs-number">1</span>) &#123;</span>
+<span class="javascript">        <span class="hljs-built_in">this</span>.alpha += <span class="hljs-number">0.05</span>;</span>
+    &#125;
+<span class="javascript">    ctx.globalAlpha = <span class="hljs-built_in">this</span>.alpha;</span>
+<span class="javascript">    ctx.drawImage(canvas2, x - <span class="hljs-built_in">this</span>.radius / <span class="hljs-number">2</span>, y - <span class="hljs-built_in">this</span>.radius / <span class="hljs-number">2</span>, <span class="hljs-built_in">this</span>.radius, <span class="hljs-built_in">this</span>.radius);</span>
+<span class="javascript">    <span class="hljs-built_in">this</span>.timePassed += <span class="hljs-built_in">this</span>.speed;</span>
+&#125;
+<span class="javascript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; maxStars; i++) &#123;</span>
+<span class="javascript">    <span class="hljs-keyword">new</span> Star();</span>
+&#125;
+<span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animation</span>(<span class="hljs-params"></span>) </span>&#123;</span>
+<span class="javascript">    ctx.globalCompositeOperation = <span class="hljs-string">&#x27;source-over&#x27;</span>;</span>
+<span class="javascript">    ctx.globalAlpha = <span class="hljs-number">0.55</span>; <span class="hljs-comment">//尾巴</span></span>
+<span class="javascript">    ctx.fillStyle = <span class="hljs-string">&#x27;hsla(&#x27;</span> + hue + <span class="hljs-string">&#x27;, 64%, 6%, 2)&#x27;</span>;</span>
+    ctx.fillRect(0, 0, w, h)
+<span class="javascript">    ctx.globalCompositeOperation = <span class="hljs-string">&#x27;lighter&#x27;</span>;</span>
+<span class="javascript">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>, l = stars.length; i &lt; l; i++) &#123;</span>
+        stars[i].draw();
+    &#125;;
+<span class="javascript">    <span class="hljs-built_in">window</span>.requestAnimationFrame(animation);</span>
+&#125;
+animation();
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 
             </div>
             <hr>
@@ -281,9 +339,7 @@ sudo netstat -tap | grep mysql</code></pre></div>
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a>
+                      <a class="hover-with-bg" href="/categories/%E6%97%A0%E7%94%A8%E4%BD%86%E6%9C%89%E8%B6%A3/">无用但有趣</a>
                     
                   </div>
                 
@@ -291,11 +347,7 @@ sudo netstat -tap | grep mysql</code></pre></div>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a>
-                    
-                      <a class="hover-with-bg" href="/tags/MySQL/">MySQL</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Ubuntu/">Ubuntu</a>
+                      <a class="hover-with-bg" href="/tags/%E6%97%A0%E7%94%A8%E4%BD%86%E6%9C%89%E8%B6%A3/">无用但有趣</a>
                     
                   </div>
                 
@@ -308,9 +360,9 @@ sudo netstat -tap | grep mysql</code></pre></div>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/29/%E4%BD%8E%E9%85%8D-Win10-%E9%83%A8%E7%BD%B2-PyTorch-GPU-%E7%8E%AF%E5%A2%83%EF%BC%88Win10-mx150-CUDA10-2%EF%BC%89/">
+                      <a href="/2020/09/11/MySQL5.7_remote_config_on_Ubuntu18.04/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">低配 Win10 部署 PyTorch-GPU 深度学习环境（Win10+mx150+CUDA10.2）</span>
+                        <span class="hidden-mobile">Ubuntu18.04安装配置MySQL5.7数据库远程连接</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -318,8 +370,8 @@ sudo netstat -tap | grep mysql</code></pre></div>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/08/02/starry_canvas/">
-                        <span class="hidden-mobile">宇宙繁星闪烁动图HTML实现</span>
+                      <a href="/2020/07/06/ai_algo_math_resolve4/">
+                        <span class="hidden-mobile">AI算法课数学题4思路--求解m维随机向量两夹角概率密度分布</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -607,7 +659,7 @@ sudo netstat -tap | grep mysql</code></pre></div>
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/09/11/MySQL5.7_remote_config_on_Ubuntu18.04/');
+          var target = decodeURI('/2020/08/02/starry_canvas/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -701,7 +753,7 @@ sudo netstat -tap | grep mysql</code></pre></div>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Ubuntu18.04安装配置MySQL5.7数据库远程连接&nbsp;",
+        "宇宙繁星闪烁动图HTML实现&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
