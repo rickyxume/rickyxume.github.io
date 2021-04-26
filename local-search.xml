@@ -33,6 +33,35 @@
   
   
   <entry>
+    <title>快乐打码之 VS Code 配置代码模板</title>
+    <link href="/2021/04/25/vscode_set_cpp_user_snippets/"/>
+    <url>/2021/04/25/vscode_set_cpp_user_snippets/</url>
+    
+    <content type="html"><![CDATA[<p># 快乐打码之 VS Code 配置代码模板（以C++为例）</p><p>依次点击：</p><p>文件（File）- 首选项（Preferences） - 用户代码片段（User Snippets）</p><p><img src="https://i.loli.net/2021/04/21/iapzhcCPD2uj8wQ.png" srcset="/img/loading.gif" alt="image-20210421235419388" /></p><p>如图以创建cpp模板 <code>cpp.json</code> 为例</p><pre><code class="hljs json">&#123;<span class="hljs-attr">&quot;Print to console&quot;</span>:&#123;<span class="hljs-attr">&quot;prefix&quot;</span>: <span class="hljs-string">&quot;mycpp&quot;</span>, <span class="hljs-comment">// 预设的触发词，在新建页面中输入mycpp就会有智能提示，Tab或回车后会自动生成预设代码模板</span><span class="hljs-attr">&quot;body&quot;</span>: [<span class="hljs-string">&quot;#include &lt;iostream&gt;&quot;</span>, <span class="hljs-comment">// 常用头文件，可以自己修改</span><span class="hljs-string">&quot;#include &lt;cmath&gt;&quot;</span>,<span class="hljs-string">&quot;#include &lt;vector&gt;&quot;</span>,<span class="hljs-string">&quot;#include &lt;string&gt;&quot;</span>,<span class="hljs-string">&quot;&quot;</span>, <span class="hljs-comment">// 空行</span><span class="hljs-string">&quot;using namespace std;&quot;</span>, <span class="hljs-comment">// 标准命名空间</span><span class="hljs-string">&quot;&quot;</span>,<span class="hljs-string">&quot;int main()&quot;</span>, <span class="hljs-comment">//main()函数</span><span class="hljs-string">&quot;&#123;&quot;</span>,<span class="hljs-string">&quot;    $0&quot;</span>, <span class="hljs-comment">//$0最终光标会在这里等待输入</span><span class="hljs-string">&quot;    return 0;&quot;</span>, <span class="hljs-comment">//结束</span><span class="hljs-string">&quot;&#125;&quot;</span>,<span class="hljs-string">&quot;&quot;</span>,],<span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;生成我的cpp模板代码&quot;</span> <span class="hljs-comment">//用户输入后智能提示的内容</span>&#125;&#125;</code></pre><p>也可以继续按照json格式写多几份模板，如搭配ACM的模板代码来使用，可以快速上手敲码。</p><pre><code class="hljs json">&#123;<span class="hljs-attr">&quot;Print to console -- cpp&quot;</span>: &#123;<span class="hljs-attr">&quot;prefix&quot;</span>: <span class="hljs-string">&quot;mycpp&quot;</span>, <span class="hljs-comment">// 预设的触发词，在新建页面中输入mycpp就会有智能提示，Tab或回车后会自动生成预设代码模板</span><span class="hljs-attr">&quot;body&quot;</span>: [<span class="hljs-string">&quot;#include &lt;iostream&gt;&quot;</span>, <span class="hljs-comment">// 常用头文件，可以自己修改</span><span class="hljs-string">&quot;#include &lt;cmath&gt;&quot;</span>,<span class="hljs-string">&quot;#include &lt;vector&gt;&quot;</span>,<span class="hljs-string">&quot;#include &lt;set&gt;&quot;</span>,<span class="hljs-string">&quot;#include &lt;map&gt;&quot;</span>,<span class="hljs-string">&quot;#include &lt;string&gt;&quot;</span>,<span class="hljs-string">&quot;&quot;</span>, <span class="hljs-comment">// 空行</span><span class="hljs-string">&quot;using namespace std;&quot;</span>, <span class="hljs-comment">// 标准命名空间</span><span class="hljs-string">&quot;&quot;</span>,<span class="hljs-string">&quot;int main()&quot;</span>, <span class="hljs-comment">//main()函数</span><span class="hljs-string">&quot;&#123;&quot;</span>,<span class="hljs-string">&quot;    $0&quot;</span>, <span class="hljs-comment">//$0最终光标会在这里等待输入</span><span class="hljs-string">&quot;    // system(\&quot;pause\&quot;);&quot;</span>, <span class="hljs-comment">//标准C++的等待用户动作</span><span class="hljs-string">&quot;    return 0;&quot;</span>, <span class="hljs-comment">//结束</span><span class="hljs-string">&quot;&#125;&quot;</span>,<span class="hljs-string">&quot;&quot;</span>,],<span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;生成我的cpp模板代码&quot;</span> <span class="hljs-comment">//用户输入后智能提示的内容</span>&#125;,<span class="hljs-attr">&quot;Print to console -- ACM&quot;</span>: &#123;<span class="hljs-attr">&quot;prefix&quot;</span>: <span class="hljs-string">&quot;myacmcpp&quot;</span>, <span class="hljs-comment">// ACM比赛写题cpp模板</span><span class="hljs-attr">&quot;body&quot;</span>: [<span class="hljs-string">&quot;#include &lt;bits/stdc++.h&gt;&quot;</span>, <span class="hljs-comment">// only in GCC</span><span class="hljs-string">&quot;#define IO\\ &quot;</span>,<span class="hljs-string">&quot;    ios::sync_with_stdio(false);\\&quot;</span>,<span class="hljs-string">&quot;    cin.tie(0);\\&quot;</span>,<span class="hljs-string">&quot;    cout.tie(0);&quot;</span>,<span class="hljs-string">&quot;#define mem(a,x) memset(a,x,sizeof(a))&quot;</span>,<span class="hljs-string">&quot;#define per(x,a,b) for (int x = a; x &lt;= b; x++)&quot;</span>,<span class="hljs-string">&quot;#define rep(x,a,b) for (int x = a; x &gt;= b; x--)&quot;</span>,<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-string">&quot;using namespace std;&quot;</span>,<span class="hljs-string">&quot;typedef long long LL;&quot;</span>,<span class="hljs-string">&quot;typedef pair&lt;int, int&gt; P;&quot;</span>,<span class="hljs-string">&quot;const int maxn = 1e5 + 10;&quot;</span>,<span class="hljs-string">&quot;const int mod = 1e9 + 7;&quot;</span>,<span class="hljs-string">&quot;const double eps = 1e-8;&quot;</span>,<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-string">&quot;int main() &#123;&quot;</span>,<span class="hljs-string">&quot;#ifdef LOCAL_RickyXu&quot;</span>,<span class="hljs-string">&quot;    freopen(\&quot;test.in\&quot;,\&quot;r\&quot;,stdin);&quot;</span>,<span class="hljs-string">&quot;    // freopen(\&quot;test.out\&quot;,\&quot;w\&quot;,stdout);&quot;</span>,<span class="hljs-string">&quot;#else&quot;</span>,<span class="hljs-string">&quot;    // IO;&quot;</span>,<span class="hljs-string">&quot;#endif // LOCAL_RickyXu&quot;</span>,<span class="hljs-string">&quot;    $0&quot;</span>, <span class="hljs-comment">//$0最终光标会在这里等待输入</span><span class="hljs-string">&quot;    return 0;&quot;</span>,<span class="hljs-string">&quot;&#125;&quot;</span>,<span class="hljs-string">&quot;&quot;</span>,],<span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;生成我的ACM模板in C++代码&quot;</span>&#125;&#125;</code></pre><p>根据自己的实际情况来定制，效率upup！</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>实用向</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>ACM</tag>
+      
+      <tag>奇淫巧技</tag>
+      
+      <tag>VS Code</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>C/C++基础知识回顾</title>
     <link href="/2021/04/18/cpp_basic_for_acm/"/>
     <url>/2021/04/18/cpp_basic_for_acm/</url>
