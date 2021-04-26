@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      638 字
+      644 字
     </span>
   
 
@@ -242,7 +242,7 @@
               <p># C/C<ins>万能头文件 —— bits/stdc</ins>.h</p>
 <p>最近跟着打ACM的思路学算法时发现有这个好东西，感觉可以很省时间，但在 VS Code 里用发现会报错，找到编译器所在文件夹的include文件夹<code>..\MinGW\lib\gcc\x86_64-w64-mingw32\8.1.0\include\c++\bits</code>新建一个stdc++.h文件，再把内容复制进去即可。</p>
 <p>头文件代码内容如下：</p>
-<div class="hljs"><pre><code class="hljs cpp"><span class="hljs-comment">// C++ includes used for precompiling -*- C++ -*-</span>
+<div class="hljs"><pre><code class="hljs h"><span class="hljs-comment">// C++ includes used for precompiling -*- C++ -*-</span>
  
 <span class="hljs-comment">// Copyright (C) 2003-2015 Free Software Foundation, Inc.</span>
 <span class="hljs-comment">//</span>
@@ -360,9 +360,10 @@
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;unordered_set&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></code></pre></div>
 <blockquote>
-<p>代码from<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41684261/article/details/86322737?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-9.control&amp;dist_request_id=1332048.12311.16194474837003235&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-9.control">博客</a></p>
+<p>代码from<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41684261/article/details/86322737?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-9.control&amp;dist_request_id=1332048.12311.16194474837003235&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-9.control">某CSDN博客</a></p>
 </blockquote>
-<p>注意，可能只适用于GCC，初学还是老老实实敲#include&lt;…&gt;</p>
+<p>注意，可能只适用于GCC编译器。</p>
+<p>另，初学还是老老实实敲#include&lt;…&gt;吧</p>
 
             </div>
             <hr>
