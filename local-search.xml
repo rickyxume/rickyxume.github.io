@@ -105,13 +105,13 @@
     
     <tags>
       
-      <tag>环境部署</tag>
-      
       <tag>CMU</tag>
       
       <tag>数据库</tag>
       
       <tag>Docker</tag>
+      
+      <tag>环境部署</tag>
       
     </tags>
     
@@ -399,11 +399,11 @@
     
     <tags>
       
+      <tag>环境部署</tag>
+      
       <tag>MySQL</tag>
       
       <tag>Ubuntu</tag>
-      
-      <tag>环境部署</tag>
       
     </tags>
     
