@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>数据可视化 | Tableau地理数据可视化</title>
+    <link href="/2021/05/05/data_vis_tableau_geo_vis/"/>
+    <url>/2021/05/05/data_vis_tableau_geo_vis/</url>
+    
+    <content type="html"><![CDATA[<p># 数据可视化 | Tableau地理数据可视化</p><p>这里以我从北大法宝网采集的各省份的法律文书数据为例对中国各省份的数据进行可视化，数据集可以从我的<a href="">github</a>_上找到，或者可以发邮箱问我要。</p><h2 id="导入数据"><a class="markdownIt-Anchor" href="#导入数据"></a> 导入数据</h2><p>导入包含地理位置信息（如省份）的数据表，进入工作表</p><h2 id="编辑字段角色"><a class="markdownIt-Anchor" href="#编辑字段角色"></a> 编辑字段角色</h2><p>右键<code>省份</code>依次选择<code>地理角色</code>-<code>州/省/市/自治区</code></p><p>之后下面会自动生成经度和纬度</p><p><img src="https://i.loli.net/2021/05/06/dwhSgQbROraEJse.png" srcset="/img/loading.gif" alt="image-20210506194630873" /></p><h2 id="拖动对应字段"><a class="markdownIt-Anchor" href="#拖动对应字段"></a> 拖动对应字段</h2><p>将<code>省份</code>拖到右边的<code>标记</code>一栏下面</p><p>tableau会自动识别帮你把地图画出来</p><p>接着继续拖入<code>省份</code>，左键下图中黄框的图标，选择两项将其数据属性切换为<code>大小</code>和<code>标签</code>，</p><p><img src="https://i.loli.net/2021/05/06/5X6PziLvjMNmpIO.png" srcset="/img/loading.gif" alt="image-20210506200511802" /></p><p>对最后一项<code>省份</code>右键，依次点击<code>度量</code>-<code>计数</code>，然后将其拖到<code>颜色</code>处，</p><p><img src="https://i.loli.net/2021/05/06/3ziKbk5faDF1HCS.png" srcset="/img/loading.gif" alt="image-20210506200736682" /></p><h2 id="修改细节美化"><a class="markdownIt-Anchor" href="#修改细节美化"></a> 修改细节&amp;美化</h2><p>在<code>大小</code>那一项那里右键排序，按字段升序排序，用聚合计数来决定显示圈的大小。</p><p><img src="https://i.loli.net/2021/05/06/fAudQl821OvPYpJ.png" srcset="/img/loading.gif" alt="image-20210506202606751" /></p><p>右键<code>颜色</code>点击<code>编辑颜色</code>可以编辑修改配色</p><p><img src="https://i.loli.net/2021/05/06/jPkztlImDTYuyMb.png" srcset="/img/loading.gif" alt="image-20210506201006482" /></p><p>标题那些都可以双击编辑，地图背景也可以在菜单栏<code>地图</code>那里换成其他样式，个人觉得浅色她好看的就没换。</p><p><img src="https://i.loli.net/2021/05/06/S4bRvxpZrnNiQI3.png" srcset="/img/loading.gif" alt="image-20210506201552150" /></p><h2 id="展示"><a class="markdownIt-Anchor" href="#展示"></a> 展示</h2><p>最后展示效果如下</p><p><img src="https://i.loli.net/2021/05/06/uGij36pSnketZ1d.png" srcset="/img/loading.gif" alt="image-20210506203301997" /></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据可视化</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数据可视化</tag>
+      
+      <tag>Tableau</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>C/C++万能头文件 —— bits/stdc++.h</title>
     <link href="/2021/04/26/c_cpp_bits_stdcpp/"/>
     <url>/2021/04/26/c_cpp_bits_stdcpp/</url>
