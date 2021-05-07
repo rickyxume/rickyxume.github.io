@@ -8,7 +8,7 @@
     <link href="/2021/05/05/data_vis_tableau_geo_vis/"/>
     <url>/2021/05/05/data_vis_tableau_geo_vis/</url>
     
-    <content type="html"><![CDATA[<p># 数据可视化 | Tableau地理数据可视化</p><p>这里以我从北大法宝网采集的各省份的法律文书数据为例对中国各省份的数据进行可视化，数据集可以从我的<a href="">github</a>_上找到，或者可以发邮箱问我要。</p><h2 id="导入数据"><a class="markdownIt-Anchor" href="#导入数据"></a> 导入数据</h2><p>导入包含地理位置信息（如省份）的数据表，进入工作表</p><h2 id="编辑字段角色"><a class="markdownIt-Anchor" href="#编辑字段角色"></a> 编辑字段角色</h2><p>右键<code>省份</code>依次选择<code>地理角色</code>-<code>州/省/市/自治区</code></p><p>之后下面会自动生成经度和纬度</p><p><img src="https://i.loli.net/2021/05/06/dwhSgQbROraEJse.png" srcset="/img/loading.gif" alt="image-20210506194630873" /></p><h2 id="拖动对应字段"><a class="markdownIt-Anchor" href="#拖动对应字段"></a> 拖动对应字段</h2><p>将<code>省份</code>拖到右边的<code>标记</code>一栏下面</p><p>tableau会自动识别帮你把地图画出来</p><p>接着继续拖入<code>省份</code>，左键下图中黄框的图标，选择两项将其数据属性切换为<code>大小</code>和<code>标签</code>，</p><p><img src="https://i.loli.net/2021/05/06/5X6PziLvjMNmpIO.png" srcset="/img/loading.gif" alt="image-20210506200511802" /></p><p>对最后一项<code>省份</code>右键，依次点击<code>度量</code>-<code>计数</code>，然后将其拖到<code>颜色</code>处，</p><p><img src="https://i.loli.net/2021/05/06/3ziKbk5faDF1HCS.png" srcset="/img/loading.gif" alt="image-20210506200736682" /></p><p>再增加一个<code>计数</code>将其属性换成<code>标签</code>，这样可以将数量显示在省份名称下面。</p><p><img src="https://i.loli.net/2021/05/06/aUQZ1EmYcjJXyBK.png" srcset="/img/loading.gif" alt="image-20210506205928138" /></p><h2 id="修改细节美化"><a class="markdownIt-Anchor" href="#修改细节美化"></a> 修改细节&amp;美化</h2><p>在<code>大小</code>那一项那里右键排序，按字段升序排序，用聚合计数来决定显示圈的大小。</p><p><img src="https://i.loli.net/2021/05/06/fAudQl821OvPYpJ.png" srcset="/img/loading.gif" alt="image-20210506202606751" /></p><p>右键<code>颜色</code>点击<code>编辑颜色</code>可以编辑修改配色</p><p><img src="https://i.loli.net/2021/05/06/jPkztlImDTYuyMb.png" srcset="/img/loading.gif" alt="image-20210506201006482" /></p><p>标题那些都可以双击编辑，地图背景也可以在菜单栏<code>地图</code>那里换成其他样式，个人觉得浅色她好看的就没换。</p><p><img src="https://i.loli.net/2021/05/06/S4bRvxpZrnNiQI3.png" srcset="/img/loading.gif" alt="image-20210506201552150" /></p><h2 id="展示"><a class="markdownIt-Anchor" href="#展示"></a> 展示</h2><p>最后展示效果如下</p><p><img src="https://i.loli.net/2021/05/06/Pt3Xo71YOjfF5eV.png" srcset="/img/loading.gif" alt="image-20210506210105097" /></p>]]></content>
+    <content type="html"><![CDATA[<p># 数据可视化 | Tableau地理数据可视化</p><p>这里以我从北大法宝网采集的各省份的法律文书数据为例对中国各省份的数据进行可视化，数据集可以从我的[github](<a href="https://github.com/rickyxume/Law_Mining/tree/main/dataset">Law_Mining/dataset at main · rickyxume/Law_Mining (github.com)</a>)上找到，或者可以发邮箱问我要。</p><h2 id="导入数据"><a class="markdownIt-Anchor" href="#导入数据"></a> 导入数据</h2><p>导入包含地理位置信息（如省份）的数据表，进入工作表</p><h2 id="编辑字段角色"><a class="markdownIt-Anchor" href="#编辑字段角色"></a> 编辑字段角色</h2><p>右键<code>省份</code>依次选择<code>地理角色</code>-<code>州/省/市/自治区</code></p><p>之后下面会自动生成经度和纬度</p><p><img src="https://i.loli.net/2021/05/06/dwhSgQbROraEJse.png" srcset="/img/loading.gif" alt="image-20210506194630873" /></p><h2 id="拖动对应字段"><a class="markdownIt-Anchor" href="#拖动对应字段"></a> 拖动对应字段</h2><p>将<code>省份</code>拖到右边的<code>标记</code>一栏下面</p><p>tableau会自动识别帮你把地图画出来</p><p>接着继续拖入<code>省份</code>，左键下图中黄框的图标，选择两项将其数据属性切换为<code>大小</code>和<code>标签</code>，</p><p><img src="https://i.loli.net/2021/05/06/5X6PziLvjMNmpIO.png" srcset="/img/loading.gif" alt="image-20210506200511802" /></p><p>对最后一项<code>省份</code>右键，依次点击<code>度量</code>-<code>计数</code>，然后将其拖到<code>颜色</code>处，</p><p><img src="https://i.loli.net/2021/05/06/3ziKbk5faDF1HCS.png" srcset="/img/loading.gif" alt="image-20210506200736682" /></p><p>再增加一个<code>计数</code>将其属性换成<code>标签</code>，这样可以将数量显示在省份名称下面。</p><p><img src="https://i.loli.net/2021/05/06/aUQZ1EmYcjJXyBK.png" srcset="/img/loading.gif" alt="image-20210506205928138" /></p><h2 id="修改细节美化"><a class="markdownIt-Anchor" href="#修改细节美化"></a> 修改细节&amp;美化</h2><p>在<code>大小</code>那一项那里右键排序，按字段升序排序，用聚合计数来决定显示圈的大小。</p><p><img src="https://i.loli.net/2021/05/06/fAudQl821OvPYpJ.png" srcset="/img/loading.gif" alt="image-20210506202606751" /></p><p>右键<code>颜色</code>点击<code>编辑颜色</code>可以编辑修改配色</p><p><img src="https://i.loli.net/2021/05/06/jPkztlImDTYuyMb.png" srcset="/img/loading.gif" alt="image-20210506201006482" /></p><p>标题那些都可以双击编辑，地图背景也可以在菜单栏<code>地图</code>那里换成其他样式，个人觉得浅色她好看的就没换。</p><p><img src="https://i.loli.net/2021/05/06/S4bRvxpZrnNiQI3.png" srcset="/img/loading.gif" alt="image-20210506201552150" /></p><h2 id="展示"><a class="markdownIt-Anchor" href="#展示"></a> 展示</h2><p>最后展示效果如下</p><p><img src="https://i.loli.net/2021/05/06/Pt3Xo71YOjfF5eV.png" srcset="/img/loading.gif" alt="image-20210506210105097" /></p>]]></content>
     
     
     <categories>
@@ -23,6 +23,33 @@
       <tag>数据可视化</tag>
       
       <tag>Tableau</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>USACO - PROB Your Ride Is Here</title>
+    <link href="/2021/04/29/USACO_ride/"/>
+    <url>/2021/04/29/USACO_ride/</url>
+    
+    <content type="html"><![CDATA[<h1 id="your-ride-is-here"><a class="markdownIt-Anchor" href="#your-ride-is-here"></a> <a href="https://train.usaco.org/usacoprob2?a=JMwhZ3Erybt&amp;S=ride">Your Ride Is Here</a></h1><h3 id="sample-input-file-ridein"><a class="markdownIt-Anchor" href="#sample-input-file-ridein"></a> SAMPLE INPUT (file <a href="http://ride.in">ride.in</a>)</h3><pre><code class="hljs ebnf"><span class="hljs-attribute">COMETQ</span><span class="hljs-attribute">HVNGAT</span></code></pre><h3 id="output-format"><a class="markdownIt-Anchor" href="#output-format"></a> OUTPUT FORMAT</h3><p>“GO” or “STAY”.</p><h3 id="sample-output-file-rideout"><a class="markdownIt-Anchor" href="#sample-output-file-rideout"></a> SAMPLE OUTPUT (file ride.out)</h3><pre><code class="hljs ebnf"><span class="hljs-attribute">GO</span></code></pre><h3 id="output-explanation"><a class="markdownIt-Anchor" href="#output-explanation"></a> OUTPUT EXPLANATION</h3><p>Converting the letters to numbers:</p><table><thead><tr><th><code>C</code></th><th><code>O</code></th><th><code>M</code></th><th><code>E</code></th><th><code>T</code></th><th><code>Q</code></th><th></th></tr></thead><tbody><tr><td><code>3</code></td><td><code>15</code></td><td><code>13</code></td><td><code>5</code></td><td><code>20</code></td><td><code>17</code></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td><code>H</code></td><td><code>V</code></td><td><code>N</code></td><td><code>G</code></td><td><code>A</code></td><td><code>T</code></td><td></td></tr><tr><td><code>8</code></td><td><code>22</code></td><td><code>14</code></td><td><code>7</code></td><td><code>1</code></td><td><code>20</code></td><td></td></tr></tbody></table><p>then calculate the product mod 47:</p><pre><code class="hljs basic"><span class="hljs-symbol">3 </span>* <span class="hljs-number">15</span> * <span class="hljs-number">13</span> * <span class="hljs-number">5</span> * <span class="hljs-number">20</span> * <span class="hljs-number">17</span> = <span class="hljs-number">994500</span> <span class="hljs-keyword">mod</span> <span class="hljs-number">47</span> = <span class="hljs-number">27</span><span class="hljs-symbol">8 </span>* <span class="hljs-number">22</span> * <span class="hljs-number">14</span> * <span class="hljs-number">7</span> *  <span class="hljs-number">1</span> * <span class="hljs-number">20</span> = <span class="hljs-number">344960</span> <span class="hljs-keyword">mod</span> <span class="hljs-number">47</span> = <span class="hljs-number">27</span></code></pre><p>Because both products evaluate to 27 (when modded by 47), the mission is ‘GO’.</p><pre><code class="hljs cpp"><span class="hljs-comment">/*</span><span class="hljs-comment">ID: rickyxu1</span><span class="hljs-comment">LANG: C++     </span><span class="hljs-comment">PROG: ride            </span><span class="hljs-comment">*/</span><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fstream&gt;</span></span><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;    <span class="hljs-function">ofstream <span class="hljs-title">fout</span> <span class="hljs-params">(<span class="hljs-string">&quot;ride.out&quot;</span>)</span></span>;    <span class="hljs-function">ifstream <span class="hljs-title">fin</span> <span class="hljs-params">(<span class="hljs-string">&quot;ride.in&quot;</span>)</span></span>;    <span class="hljs-keyword">char</span> inpstr1[<span class="hljs-number">8</span>],inpstr2[<span class="hljs-number">8</span>];    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; vnum1,vnum2;    fin &gt;&gt; inpstr1 &gt;&gt; inpstr2;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; inpstr1[i] != <span class="hljs-string">&#x27;\0&#x27;</span>;i++)    &#123;        <span class="hljs-keyword">int</span> num1 = (<span class="hljs-keyword">int</span>)inpstr1[i] - <span class="hljs-string">&#x27;A&#x27;</span> + <span class="hljs-number">1</span>;        <span class="hljs-comment">// cout &lt;&lt; &quot;num1:&quot; &lt;&lt; num1 &lt;&lt; endl;//test output</span>        vnum1.push_back(num1);    &#125;    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; inpstr2[i] != <span class="hljs-string">&#x27;\0&#x27;</span>;i++)    &#123;        <span class="hljs-keyword">int</span> num2 = (<span class="hljs-keyword">int</span>)inpstr2[i] - <span class="hljs-string">&#x27;A&#x27;</span> + <span class="hljs-number">1</span>;        <span class="hljs-comment">// cout &lt;&lt; &quot;num2:&quot;&lt;&lt;num2 &lt;&lt; endl;//test output</span>        vnum2.push_back(num2);    &#125;    <span class="hljs-keyword">int</span> sum1 = <span class="hljs-number">1</span>;    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; vnum1.size();j++)&#123;        sum1 *= vnum1[j];    &#125;    <span class="hljs-keyword">int</span> res1 = sum1 % <span class="hljs-number">47</span>;    <span class="hljs-keyword">int</span> sum2 = <span class="hljs-number">1</span>;    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; vnum2.size();j++)&#123;        sum2 *= vnum2[j];    &#125;    <span class="hljs-keyword">int</span> res2 = sum2 % <span class="hljs-number">47</span>;    <span class="hljs-comment">// cout &lt;&lt; &quot;res1:&quot;&lt;&lt;res1 &lt;&lt; endl;//test output</span>    <span class="hljs-comment">// cout &lt;&lt; &quot;res2:&quot;&lt;&lt;res2 &lt;&lt; endl;//test output</span>    <span class="hljs-keyword">if</span> (res1 == res2)    &#123;        fout &lt;&lt; <span class="hljs-string">&quot;GO&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;    &#125;    <span class="hljs-keyword">else</span>    &#123;        fout &lt;&lt; <span class="hljs-string">&quot;STAY&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;    &#125;        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;&#125;</code></pre><p>一开始没读懂题，以为是一行一行读的数据，就按照一行的来写了，后来发现不对就直接一式两份，最后判断一下是否相等就输出结果了。</p><blockquote><p>Test 1: TEST OK [0.004 secs, 1348 KB]<br />Test 2: TEST OK [0.004 secs, 1332 KB]<br />Test 3: TEST OK [0.004 secs, 1424 KB]<br />Test 4: TEST OK [0.004 secs, 1408 KB]<br />Test 5: TEST OK [0.004 secs, 1348 KB]<br />Test 6: TEST OK [0.004 secs, 1348 KB]<br />Test 7: TEST OK [0.004 secs, 1404 KB]<br />Test 8: TEST OK [0.004 secs, 1352 KB]<br />Test 9: TEST OK [0.004 secs, 1364 KB]<br />Test 10: TEST OK [0.004 secs, 1364 KB]</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>USACO</tag>
+      
+      <tag>算法题</tag>
       
     </tags>
     
@@ -172,33 +199,6 @@
   
   
   <entry>
-    <title>Git常规操作</title>
-    <link href="/2021/04/07/git_record/"/>
-    <url>/2021/04/07/git_record/</url>
-    
-    <content type="html"><![CDATA[<p># Git常规操作</p><p>本篇文章记录一下git的常规操作流程</p><p>假设电脑上已经配置好git，已建好git仓库，去仓库下面copy地址。</p><p><img src="https://i.loli.net/2021/04/07/ohucYGTWtVJXQ3L.png" srcset="/img/loading.gif" alt="image-20210407215536008" /></p><h2 id="0-本地新建空文件夹"><a class="markdownIt-Anchor" href="#0-本地新建空文件夹"></a> 0、本地新建空文件夹</h2><p>避免文件夹重复导致出错，建议建一个</p><h2 id="1-克隆仓库"><a class="markdownIt-Anchor" href="#1-克隆仓库"></a> 1、克隆仓库</h2><p>右键 -&gt; <strong>Git Bash Here</strong></p><p><img src="https://i.loli.net/2021/04/07/QsKWu1Et9VId3AY.png" srcset="/img/loading.gif" alt="image-20210407215918321" /></p><p>在git命令行里操作</p><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/账号名/仓库名.git</code></pre><p><img src="https://i.loli.net/2021/04/07/SrVkX3IOc1gjeZK.png" srcset="/img/loading.gif" alt="image-20210407220224198" /></p><p>得到一个仓库同名的文件夹</p><h2 id="2-进入仓库文件夹"><a class="markdownIt-Anchor" href="#2-进入仓库文件夹"></a> 2、进入仓库文件夹</h2><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> 仓库文件夹名</code></pre><h2 id="3-自己操作"><a class="markdownIt-Anchor" href="#3-自己操作"></a> 3、自己操作</h2><p>建文件夹、新增文件、修改代码、blabla自己操作</p><h2 id="4-提交推送"><a class="markdownIt-Anchor" href="#4-提交推送"></a> 4、提交推送</h2><pre><code class="hljs bash">git initgit add .git commit -m <span class="hljs-string">&quot;你提交时的备注信息&quot;</span>git push</code></pre><p><strong>git init</strong> ：gti初始化；</p><p><strong>git add .</strong> ：提交到缓存区，注意加点前要空格，&quot;add .&quot;意思是添加所有文件；</p><p><strong>git commit -m “blabla”</strong> ：将暂存区里的改动提交到本地的版本库，注意备注信息规范化，便于回溯bug历史版本；</p><p><strong>git push</strong> ：将本地版本库的分支推送到远程服务器上对应的github仓库分支（可能会提示输入账号密码，提前配置好账号密码则不需要输入）空文件夹不会被上传</p><p><img src="https://i.loli.net/2021/04/07/62UdJ3MI4OLrDCj.png" srcset="/img/loading.gif" alt="image-20210407220707230" /></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>实用向</category>
-      
-      <category>实用工具</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Git</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>学术绝配系列1：LaTex + VS Code</title>
     <link href="/2021/04/07/latex_vscode/"/>
     <url>/2021/04/07/latex_vscode/</url>
@@ -222,6 +222,33 @@
       <tag>VS Code</tag>
       
       <tag>环境配置</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Git常规操作</title>
+    <link href="/2021/04/07/git_record/"/>
+    <url>/2021/04/07/git_record/</url>
+    
+    <content type="html"><![CDATA[<p># Git常规操作</p><p>本篇文章记录一下git的常规操作流程</p><p>假设电脑上已经配置好git，已建好git仓库，去仓库下面copy地址。</p><p><img src="https://i.loli.net/2021/04/07/ohucYGTWtVJXQ3L.png" srcset="/img/loading.gif" alt="image-20210407215536008" /></p><h2 id="0-本地新建空文件夹"><a class="markdownIt-Anchor" href="#0-本地新建空文件夹"></a> 0、本地新建空文件夹</h2><p>避免文件夹重复导致出错，建议建一个</p><h2 id="1-克隆仓库"><a class="markdownIt-Anchor" href="#1-克隆仓库"></a> 1、克隆仓库</h2><p>右键 -&gt; <strong>Git Bash Here</strong></p><p><img src="https://i.loli.net/2021/04/07/QsKWu1Et9VId3AY.png" srcset="/img/loading.gif" alt="image-20210407215918321" /></p><p>在git命令行里操作</p><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/账号名/仓库名.git</code></pre><p><img src="https://i.loli.net/2021/04/07/SrVkX3IOc1gjeZK.png" srcset="/img/loading.gif" alt="image-20210407220224198" /></p><p>得到一个仓库同名的文件夹</p><h2 id="2-进入仓库文件夹"><a class="markdownIt-Anchor" href="#2-进入仓库文件夹"></a> 2、进入仓库文件夹</h2><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> 仓库文件夹名</code></pre><h2 id="3-自己操作"><a class="markdownIt-Anchor" href="#3-自己操作"></a> 3、自己操作</h2><p>建文件夹、新增文件、修改代码、blabla自己操作</p><h2 id="4-提交推送"><a class="markdownIt-Anchor" href="#4-提交推送"></a> 4、提交推送</h2><pre><code class="hljs bash">git initgit add .git commit -m <span class="hljs-string">&quot;你提交时的备注信息&quot;</span>git push</code></pre><p><strong>git init</strong> ：gti初始化；</p><p><strong>git add .</strong> ：提交到缓存区，注意加点前要空格，&quot;add .&quot;意思是添加所有文件；</p><p><strong>git commit -m “blabla”</strong> ：将暂存区里的改动提交到本地的版本库，注意备注信息规范化，便于回溯bug历史版本；</p><p><strong>git push</strong> ：将本地版本库的分支推送到远程服务器上对应的github仓库分支（可能会提示输入账号密码，提前配置好账号密码则不需要输入）空文件夹不会被上传</p><p><img src="https://i.loli.net/2021/04/07/62UdJ3MI4OLrDCj.png" srcset="/img/loading.gif" alt="image-20210407220707230" /></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>实用向</category>
+      
+      <category>实用工具</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Git</tag>
       
     </tags>
     

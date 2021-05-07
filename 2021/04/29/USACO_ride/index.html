@@ -17,7 +17,7 @@
   <meta name="description" content="日日自新，步履不停。">
   <meta name="author" content="Ricky Xu">
   <meta name="keywords" content="">
-  <title>获取Q群成员数据并分析考研竞争情况 - 方塘的半亩塘</title>
+  <title>USACO - PROB Your Ride Is Here - 方塘的半亩塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -170,8 +170,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-02-07 21:30" pubdate>
-        2021年2月7日 晚上
+      <time datetime="2021-04-29 21:30" pubdate>
+        2021年4月29日 晚上
       </time>
     </span>
   
@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      421 字
+      472 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      8
        分钟
     </span>
   
@@ -230,43 +230,151 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">获取Q群成员数据并分析考研竞争情况</h1>
+            <h1 style="display: none">USACO - PROB Your Ride Is Here</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年4月17日 晚上
+                  本文最后更新于：2021年5月7日 晚上
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <p># 获取Q群成员数据并分析考研竞争情况</p>
-<p>打开浏览器进入网址 <a target="_blank" rel="noopener" href="https://qun.qq.com/member.html#gid=%E7%BE%A4%E5%8F%B7">https://qun.qq.com/member.html#gid=群号</a></p>
-<p>一直往下翻，加载完所有的群员后，在F12控制台输入js脚本</p>
-<div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> n=$(<span class="hljs-string">&#x27;#groupMember .list tr.mb&#x27;</span>);
-<span class="hljs-keyword">var</span> t=<span class="hljs-string">&#x27;QQ,昵称,群名片,性别,入群日期,最后发言日期\n&#x27;</span>;
-<span class="hljs-function"><span class="hljs-title">for</span>(<span class="hljs-params"><span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;i&lt;n.length;i++</span>)</span> &#123;
-    <span class="hljs-keyword">var</span> nn = n[i].children[<span class="hljs-number">2</span>].children[<span class="hljs-number">2</span>].innerText;
-    <span class="hljs-keyword">var</span> mp = n[i].children[<span class="hljs-number">3</span>].children[<span class="hljs-number">0</span>].innerText;
-    <span class="hljs-keyword">var</span> qq = n[i].children[<span class="hljs-number">4</span>].innerText;
-    <span class="hljs-keyword">var</span> sex = n[i].children[<span class="hljs-number">5</span>].innerText;
-    <span class="hljs-keyword">var</span> enter_date = n[i].children[<span class="hljs-number">7</span>].innerText;
-    <span class="hljs-keyword">var</span> last_talk = n[i].children[<span class="hljs-number">8</span>].innerText;
-    t += qq + <span class="hljs-string">&#x27;,&#x27;</span>+ nn.trim() + <span class="hljs-string">&#x27;,&#x27;</span> + mp.trim() + <span class="hljs-string">&#x27;,&#x27;</span> + sex.trim() + <span class="hljs-string">&#x27;,&#x27;</span> + enter_date.trim() + <span class="hljs-string">&#x27;,&#x27;</span> + last_talk.trim() + <span class="hljs-string">&#x27;\n&#x27;</span>;
-&#125;
-<span class="hljs-built_in">console</span>.log(t);</code></pre></div>
-<p>就可以得到csv格式的输出，复制到文件中即可分析数据</p>
-<p><img src="https://i.loli.net/2021/04/17/cJ9a6XpyifGMVRm.png" srcset="/img/loading.gif" alt="image-20210417211614936" /></p>
-<p>我这里复制进 VS Code（加了csv高亮插件，看起来舒服），然后 Ctrl + S 保存文件。</p>
-<p><img src="https://i.loli.net/2021/04/17/FugMpxKfd2Z3SQe.png" srcset="/img/loading.gif" alt="image-20210417211742812" /></p>
-<p>发现 VS Code 底下还有个类似SQL查询的东西，按照它提示的语法试了试模糊查询。</p>
-<p><img src="https://i.loli.net/2021/04/17/TegBo4JLMSUNkvC.png" srcset="/img/loading.gif" alt="image-20210417211438649" /></p>
-<p>运行查询语句后输出一个csv新文件</p>
-<p><img src="https://i.loli.net/2021/04/17/JhN3DErIBfW5kew.png" srcset="/img/loading.gif" alt="image-20210417212401821" /></p>
-<p>然后我就可以初步得到一个结论——22考研的至少有295人</p>
-<p>里面可能混进去了一些考隔壁专业的，不过问题不大，全按人数只增不减来计算。</p>
-<p>接着 Ctrl + F 搜索一下“学”字，就可以知道大概有多少名意向报考学硕了。同理搜“专”就可以知道专硕报考情况，剩下的就全归为摇摆不定。</p>
-<p>P.S.老师说过几天把那些不改名片的全踢了，等那时候数据大概率会准确很多。</p>
-<p>这个办法真妙啊😎</p>
+              <h1 id="your-ride-is-here"><a class="markdownIt-Anchor" href="#your-ride-is-here"></a> <a target="_blank" rel="noopener" href="https://train.usaco.org/usacoprob2?a=JMwhZ3Erybt&amp;S=ride">Your Ride Is Here</a></h1>
+<h3 id="sample-input-file-ridein"><a class="markdownIt-Anchor" href="#sample-input-file-ridein"></a> SAMPLE INPUT (file <a target="_blank" rel="noopener" href="http://ride.in">ride.in</a>)</h3>
+<div class="hljs"><pre><code class="hljs ebnf"><span class="hljs-attribute">COMETQ</span>
+<span class="hljs-attribute">HVNGAT</span></code></pre></div>
+<h3 id="output-format"><a class="markdownIt-Anchor" href="#output-format"></a> OUTPUT FORMAT</h3>
+<p>“GO” or “STAY”.</p>
+<h3 id="sample-output-file-rideout"><a class="markdownIt-Anchor" href="#sample-output-file-rideout"></a> SAMPLE OUTPUT (file ride.out)</h3>
+<div class="hljs"><pre><code class="hljs ebnf"><span class="hljs-attribute">GO</span></code></pre></div>
+<h3 id="output-explanation"><a class="markdownIt-Anchor" href="#output-explanation"></a> OUTPUT EXPLANATION</h3>
+<p>Converting the letters to numbers:</p>
+<table>
+<thead>
+<tr>
+<th><code>C</code></th>
+<th><code>O</code></th>
+<th><code>M</code></th>
+<th><code>E</code></th>
+<th><code>T</code></th>
+<th><code>Q</code></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>3</code></td>
+<td><code>15</code></td>
+<td><code>13</code></td>
+<td><code>5</code></td>
+<td><code>20</code></td>
+<td><code>17</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>H</code></td>
+<td><code>V</code></td>
+<td><code>N</code></td>
+<td><code>G</code></td>
+<td><code>A</code></td>
+<td><code>T</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>8</code></td>
+<td><code>22</code></td>
+<td><code>14</code></td>
+<td><code>7</code></td>
+<td><code>1</code></td>
+<td><code>20</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>then calculate the product mod 47:</p>
+<div class="hljs"><pre><code class="hljs basic"><span class="hljs-symbol">3 </span>* <span class="hljs-number">15</span> * <span class="hljs-number">13</span> * <span class="hljs-number">5</span> * <span class="hljs-number">20</span> * <span class="hljs-number">17</span> = <span class="hljs-number">994500</span> <span class="hljs-keyword">mod</span> <span class="hljs-number">47</span> = <span class="hljs-number">27</span>
+<span class="hljs-symbol">8 </span>* <span class="hljs-number">22</span> * <span class="hljs-number">14</span> * <span class="hljs-number">7</span> *  <span class="hljs-number">1</span> * <span class="hljs-number">20</span> = <span class="hljs-number">344960</span> <span class="hljs-keyword">mod</span> <span class="hljs-number">47</span> = <span class="hljs-number">27</span></code></pre></div>
+<p>Because both products evaluate to 27 (when modded by 47), the mission is ‘GO’.</p>
+<div class="hljs"><pre><code class="hljs cpp"><span class="hljs-comment">/*</span>
+<span class="hljs-comment">ID: rickyxu1</span>
+<span class="hljs-comment">LANG: C++     </span>
+<span class="hljs-comment">PROG: ride            </span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fstream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-function">ofstream <span class="hljs-title">fout</span> <span class="hljs-params">(<span class="hljs-string">&quot;ride.out&quot;</span>)</span></span>;
+    <span class="hljs-function">ifstream <span class="hljs-title">fin</span> <span class="hljs-params">(<span class="hljs-string">&quot;ride.in&quot;</span>)</span></span>;
+    <span class="hljs-keyword">char</span> inpstr1[<span class="hljs-number">8</span>],inpstr2[<span class="hljs-number">8</span>];
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; vnum1,vnum2;
+    fin &gt;&gt; inpstr1 &gt;&gt; inpstr2;
+    
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; inpstr1[i] != <span class="hljs-string">&#x27;\0&#x27;</span>;i++)
+    &#123;
+        <span class="hljs-keyword">int</span> num1 = (<span class="hljs-keyword">int</span>)inpstr1[i] - <span class="hljs-string">&#x27;A&#x27;</span> + <span class="hljs-number">1</span>;
+        <span class="hljs-comment">// cout &lt;&lt; &quot;num1:&quot; &lt;&lt; num1 &lt;&lt; endl;//test output</span>
+        vnum1.push_back(num1);
+    &#125;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; inpstr2[i] != <span class="hljs-string">&#x27;\0&#x27;</span>;i++)
+    &#123;
+        <span class="hljs-keyword">int</span> num2 = (<span class="hljs-keyword">int</span>)inpstr2[i] - <span class="hljs-string">&#x27;A&#x27;</span> + <span class="hljs-number">1</span>;
+        <span class="hljs-comment">// cout &lt;&lt; &quot;num2:&quot;&lt;&lt;num2 &lt;&lt; endl;//test output</span>
+        vnum2.push_back(num2);
+    &#125;
+
+
+    <span class="hljs-keyword">int</span> sum1 = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; vnum1.size();j++)&#123;
+        sum1 *= vnum1[j];
+    &#125;
+    <span class="hljs-keyword">int</span> res1 = sum1 % <span class="hljs-number">47</span>;
+
+    <span class="hljs-keyword">int</span> sum2 = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; vnum2.size();j++)&#123;
+        sum2 *= vnum2[j];
+    &#125;
+    <span class="hljs-keyword">int</span> res2 = sum2 % <span class="hljs-number">47</span>;
+
+    <span class="hljs-comment">// cout &lt;&lt; &quot;res1:&quot;&lt;&lt;res1 &lt;&lt; endl;//test output</span>
+    <span class="hljs-comment">// cout &lt;&lt; &quot;res2:&quot;&lt;&lt;res2 &lt;&lt; endl;//test output</span>
+    <span class="hljs-keyword">if</span> (res1 == res2)
+    &#123;
+        fout &lt;&lt; <span class="hljs-string">&quot;GO&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    &#125;
+    <span class="hljs-keyword">else</span>
+    &#123;
+        fout &lt;&lt; <span class="hljs-string">&quot;STAY&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    &#125;
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+<p>一开始没读懂题，以为是一行一行读的数据，就按照一行的来写了，后来发现不对就直接一式两份，最后判断一下是否相等就输出结果了。</p>
+<blockquote>
+<p>Test 1: TEST OK [0.004 secs, 1348 KB]<br />
+Test 2: TEST OK [0.004 secs, 1332 KB]<br />
+Test 3: TEST OK [0.004 secs, 1424 KB]<br />
+Test 4: TEST OK [0.004 secs, 1408 KB]<br />
+Test 5: TEST OK [0.004 secs, 1348 KB]<br />
+Test 6: TEST OK [0.004 secs, 1348 KB]<br />
+Test 7: TEST OK [0.004 secs, 1404 KB]<br />
+Test 8: TEST OK [0.004 secs, 1352 KB]<br />
+Test 9: TEST OK [0.004 secs, 1364 KB]<br />
+Test 10: TEST OK [0.004 secs, 1364 KB]</p>
+</blockquote>
 
             </div>
             <hr>
@@ -276,9 +384,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%AE%9E%E7%94%A8%E5%90%91/">实用向</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E5%AE%9E%E7%94%A8%E5%90%91/%E5%A5%87%E6%B7%AB%E5%B7%A7%E6%8A%80/">奇淫巧技</a>
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
                     
                   </div>
                 
@@ -286,7 +392,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Tips/">Tips</a>
+                      <a class="hover-with-bg" href="/tags/USACO/">USACO</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
                     
                   </div>
                 
@@ -299,9 +407,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/04/07/git_record/">
+                      <a href="/2021/05/05/data_vis_tableau_geo_vis/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Git常规操作</span>
+                        <span class="hidden-mobile">数据可视化 | Tableau地理数据可视化</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -309,8 +417,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/01/05/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">
-                        <span class="hidden-mobile">编译原理2-词法分析</span>
+                      <a href="/2021/04/26/c_cpp_bits_stdcpp/">
+                        <span class="hidden-mobile">C/C++万能头文件 —— bits/stdc++.h</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -598,7 +706,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2021/02/07/get_qq_info_via_js/');
+          var target = decodeURI('/2021/04/29/USACO_ride/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -692,7 +800,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "获取Q群成员数据并分析考研竞争情况&nbsp;",
+        "USACO - PROB Your Ride Is Here&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
