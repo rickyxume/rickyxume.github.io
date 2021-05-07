@@ -1,0 +1,1405 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="日日自新，步履不停。">
+  <meta name="author" content="Ricky Xu">
+  <meta name="keywords" content="">
+  <title>数据挖掘 | 鸢尾花分类 - 方塘的半亩塘</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>方塘的半亩塘</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/home_bg1.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ricky Xu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-06 21:30" pubdate>
+        2021年1月6日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      60
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">数据挖掘 | 鸢尾花分类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年5月8日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p># 数据挖掘 | 鸢尾花分类</p>
+<p>本文主要分为四个部分：</p>
+<ol>
+<li>
+<p>数据集探索（了解数据内容）</p>
+</li>
+<li>
+<p>各维度数据可视化（绘制各维度直方图和散点图矩阵，但不限于此）</p>
+</li>
+<li>
+<p>决策树模型、可视化及调参（训练决策树模型，可视化决策树，尝试不同决策树参数对分类准确度的影响）</p>
+</li>
+<li>
+<p>扩展实验（随机森林模型）</p>
+</li>
+</ol>
+<h2 id="01-数据集和模型简介"><a class="markdownIt-Anchor" href="#01-数据集和模型简介"></a> 01 / 数据集和模型简介</h2>
+<h3 id="鸢尾花数据集"><a class="markdownIt-Anchor" href="#鸢尾花数据集"></a> 鸢尾花数据集</h3>
+<p>鸢尾花数据集内包含 3 类（iris-setosa, iris-versicolour, iris-virginica）共 150 条记录，每类各 50 个数据，每条记录都有 4 项特征：花萼（Sepal）长度、花萼宽度、花瓣（Petal）长度、花瓣宽度。 可以通过这4个特征对鸢尾花进行聚类或者预测鸢尾花卉属于中的哪一品种。</p>
+<p><img src="https://i.loli.net/2021/05/07/62AbDqw1KCNX3xc.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<p><img src="https://i.loli.net/2021/05/07/OKLJwyExzShm8oH.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<h3 id="决策树模型"><a class="markdownIt-Anchor" href="#决策树模型"></a> 决策树模型</h3>
+<p>决策树（decision tree）是一种描述对实例进行分类的树形结构。</p>
+<p>决策树由结点和有向边组成。结点有两种类型：内部结点和叶结点。内部结点表示一个特征或属性，每个分支代表这个特征属性在某个值域上的输出，叶结点表示一个类。</p>
+<p>使用决策树进行决策的过程就是从根结点开始，测试待分类项中相应的特征属性，并按照其值选择输出分支，直到到达叶结点，将叶结点存放的类别作为决策结果。</p>
+<h2 id="02-探索性数据分析"><a class="markdownIt-Anchor" href="#02-探索性数据分析"></a> 02 / 探索性数据分析</h2>
+<h3 id="数据集探索"><a class="markdownIt-Anchor" href="#数据集探索"></a> 数据集探索</h3>
+<h4 id="导入工具包和鸢尾花数据集"><a class="markdownIt-Anchor" href="#导入工具包和鸢尾花数据集"></a> 导入工具包和鸢尾花数据集</h4>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_iris
+
+<span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> tree
+<span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> metrics
+<span class="hljs-keyword">from</span> sklearn.tree <span class="hljs-keyword">import</span> DecisionTreeClassifier
+<span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestClassifier
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split</code></pre></div>
+<h4 id="加载鸢尾花数据集"><a class="markdownIt-Anchor" href="#加载鸢尾花数据集"></a> 加载鸢尾花数据集</h4>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.datasets <span class="hljs-keyword">import</span> load_iris
+iris_dataset = load_iris()</code></pre></div>
+<h4 id="查看数据集对象的属性和方法"><a class="markdownIt-Anchor" href="#查看数据集对象的属性和方法"></a> 查看数据集对象的属性和方法</h4>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-built_in">dir</span>(iris_dataset)</code></pre></div>
+<blockquote>
+<p>[‘DESCR’,<br />
+‘data’,<br />
+‘feature_names’,<br />
+‘filename’,<br />
+‘frame’,<br />
+‘target’,<br />
+‘target_names’]</p>
+</blockquote>
+<h4 id="查看数据集标签名"><a class="markdownIt-Anchor" href="#查看数据集标签名"></a> 查看数据集标签名</h4>
+<div class="hljs"><pre><code class="hljs python">iris_dataset.target_names</code></pre></div>
+<blockquote>
+<p>array([‘setosa’, ‘versicolor’, ‘virginica’], dtype=’&lt;U10’)</p>
+</blockquote>
+<h4 id="查看数据集标签"><a class="markdownIt-Anchor" href="#查看数据集标签"></a> 查看数据集标签</h4>
+<div class="hljs"><pre><code class="hljs python">iris_dataset.target</code></pre></div>
+<blockquote>
+<p>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,<br />
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,<br />
+0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,<br />
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,<br />
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,<br />
+2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,<br />
+2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2])</p>
+</blockquote>
+<h4 id="查看数据集特征名"><a class="markdownIt-Anchor" href="#查看数据集特征名"></a> 查看数据集特征名</h4>
+<div class="hljs"><pre><code class="hljs python">iris_dataset.feature_names</code></pre></div>
+<blockquote>
+<p>[‘sepal length (cm)’,<br />
+‘sepal width (cm)’,<br />
+‘petal length (cm)’,<br />
+‘petal width (cm)’]</p>
+</blockquote>
+<h4 id="查看数据集特征数据"><a class="markdownIt-Anchor" href="#查看数据集特征数据"></a> 查看数据集特征数据</h4>
+<div class="hljs"><pre><code class="hljs python">iris_dataset.data</code></pre></div>
+<blockquote>
+<p>array([[5.1, 3.5, 1.4, 0.2],<br />
+[4.9, 3. , 1.4, 0.2],<br />
+[4.7, 3.2, 1.3, 0.2],</p>
+<p>​		…</p>
+<p>​		[6.2, 3.4, 5.4, 2.3],<br />
+​       [5.9, 3. , 5.1, 1.8]])</p>
+</blockquote>
+<h4 id="查看特征数据尺寸"><a class="markdownIt-Anchor" href="#查看特征数据尺寸"></a> 查看特征数据尺寸</h4>
+<div class="hljs"><pre><code class="hljs python">iris_dataset.data.shape</code></pre></div>
+<blockquote>
+<p>(150, 4)</p>
+</blockquote>
+<h4 id="用pandas列出鸢尾花数据集的内容和标签"><a class="markdownIt-Anchor" href="#用pandas列出鸢尾花数据集的内容和标签"></a> 用pandas列出鸢尾花数据集的内容和标签</h4>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+iris_df = pd.DataFrame(iris_dataset.data, columns=iris_dataset.feature_names)
+iris_df[<span class="hljs-string">&#x27;label&#x27;</span>] = iris_dataset.target</code></pre></div>
+<h4 id="用pandas将数据整合成-dataframe-并展示"><a class="markdownIt-Anchor" href="#用pandas将数据整合成-dataframe-并展示"></a> 用pandas将数据整合成 DataFrame 并展示</h4>
+<div class="hljs"><pre><code class="hljs python">iris_df</code></pre></div>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">sepal length (cm)</th>
+<th style="text-align:right">sepal width (cm)</th>
+<th style="text-align:right">petal length (cm)</th>
+<th style="text-align:right">petal width (cm)</th>
+<th style="text-align:right">label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5.1</td>
+<td style="text-align:right">3.5</td>
+<td style="text-align:right">1.4</td>
+<td style="text-align:right">0.2</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">4.9</td>
+<td style="text-align:right">3.0</td>
+<td style="text-align:right">1.4</td>
+<td style="text-align:right">0.2</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">4.7</td>
+<td style="text-align:right">3.2</td>
+<td style="text-align:right">1.3</td>
+<td style="text-align:right">0.2</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">4.6</td>
+<td style="text-align:right">3.1</td>
+<td style="text-align:right">1.5</td>
+<td style="text-align:right">0.2</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">5.0</td>
+<td style="text-align:right">3.6</td>
+<td style="text-align:right">1.4</td>
+<td style="text-align:right">0.2</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+</tr>
+<tr>
+<td style="text-align:right">145</td>
+<td style="text-align:right">6.7</td>
+<td style="text-align:right">3.0</td>
+<td style="text-align:right">5.2</td>
+<td style="text-align:right">2.3</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td style="text-align:right">146</td>
+<td style="text-align:right">6.3</td>
+<td style="text-align:right">2.5</td>
+<td style="text-align:right">5.0</td>
+<td style="text-align:right">1.9</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td style="text-align:right">147</td>
+<td style="text-align:right">6.5</td>
+<td style="text-align:right">3.0</td>
+<td style="text-align:right">5.2</td>
+<td style="text-align:right">2.0</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td style="text-align:right">148</td>
+<td style="text-align:right">6.2</td>
+<td style="text-align:right">3.4</td>
+<td style="text-align:right">5.4</td>
+<td style="text-align:right">2.3</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td style="text-align:right">149</td>
+<td style="text-align:right">5.9</td>
+<td style="text-align:right">3.0</td>
+<td style="text-align:right">5.1</td>
+<td style="text-align:right">1.8</td>
+<td style="text-align:right">2</td>
+</tr>
+</tbody>
+</table>
+<p>150 rows × 5 columns</p>
+</blockquote>
+<h4 id="查看数据集各特征列的摘要统计信息"><a class="markdownIt-Anchor" href="#查看数据集各特征列的摘要统计信息"></a> 查看数据集各特征列的摘要统计信息</h4>
+<div class="hljs"><pre><code class="hljs python">iris_df.describe()</code></pre></div>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">sepal length (cm)</th>
+<th style="text-align:right">sepal width (cm)</th>
+<th style="text-align:right">petal length (cm)</th>
+<th style="text-align:right">petal width (cm)</th>
+<th style="text-align:right">label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">count</td>
+<td style="text-align:right">150.000000</td>
+<td style="text-align:right">150.000000</td>
+<td style="text-align:right">150.000000</td>
+<td style="text-align:right">150.000000</td>
+<td style="text-align:right">150.000000</td>
+</tr>
+<tr>
+<td style="text-align:right">mean</td>
+<td style="text-align:right">5.843333</td>
+<td style="text-align:right">3.057333</td>
+<td style="text-align:right">3.758000</td>
+<td style="text-align:right">1.199333</td>
+<td style="text-align:right">1.000000</td>
+</tr>
+<tr>
+<td style="text-align:right">std</td>
+<td style="text-align:right">0.828066</td>
+<td style="text-align:right">0.435866</td>
+<td style="text-align:right">1.765298</td>
+<td style="text-align:right">0.762238</td>
+<td style="text-align:right">0.819232</td>
+</tr>
+<tr>
+<td style="text-align:right">min</td>
+<td style="text-align:right">4.300000</td>
+<td style="text-align:right">2.000000</td>
+<td style="text-align:right">1.000000</td>
+<td style="text-align:right">0.100000</td>
+<td style="text-align:right">0.000000</td>
+</tr>
+<tr>
+<td style="text-align:right">25%</td>
+<td style="text-align:right">5.100000</td>
+<td style="text-align:right">2.800000</td>
+<td style="text-align:right">1.600000</td>
+<td style="text-align:right">0.300000</td>
+<td style="text-align:right">0.000000</td>
+</tr>
+<tr>
+<td style="text-align:right">50%</td>
+<td style="text-align:right">5.800000</td>
+<td style="text-align:right">3.000000</td>
+<td style="text-align:right">4.350000</td>
+<td style="text-align:right">1.300000</td>
+<td style="text-align:right">1.000000</td>
+</tr>
+<tr>
+<td style="text-align:right">75%</td>
+<td style="text-align:right">6.400000</td>
+<td style="text-align:right">3.300000</td>
+<td style="text-align:right">5.100000</td>
+<td style="text-align:right">1.800000</td>
+<td style="text-align:right">2.000000</td>
+</tr>
+<tr>
+<td style="text-align:right">max</td>
+<td style="text-align:right">7.900000</td>
+<td style="text-align:right">4.400000</td>
+<td style="text-align:right">6.900000</td>
+<td style="text-align:right">2.500000</td>
+<td style="text-align:right">2.000000</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<div class="hljs"><pre><code class="hljs py">iris_df.info()</code></pre></div>
+<blockquote>
+<p>&lt;class ‘pandas.core.frame.DataFrame’&gt;</p>
+<p>RangeIndex: 150 entries, 0 to 149</p>
+<p>Data columns (total 5 columns):</p>
+<p>#   Column             Non-Null Count  Dtype</p>
+<p>—  ------             --------------  -----</p>
+<p>0   sepal length (cm)  150 non-null    float64</p>
+<p>1   sepal width (cm)   150 non-null    float64</p>
+<p>2   petal length (cm)  150 non-null    float64</p>
+<p>3   petal width (cm)   150 non-null    float64</p>
+<p>4   label              150 non-null    int32</p>
+<p>dtypes: float64(4), int32(1)</p>
+<p>memory usage: 5.4 KB</p>
+</blockquote>
+<h3 id="各维度数据可视化"><a class="markdownIt-Anchor" href="#各维度数据可视化"></a> 各维度数据可视化</h3>
+<p>通过数据可视化对数据集进行进一步的探索性分析，比如绘制各维度直方图和散点图矩阵，找出数据中的关联。</p>
+<h4 id="导入包初始化绘图配置"><a class="markdownIt-Anchor" href="#导入包初始化绘图配置"></a> 导入包，初始化绘图配置</h4>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
+sns.set_style(<span class="hljs-string">&quot;whitegrid&quot;</span>)
+<span class="hljs-comment"># 设置颜色主题</span>
+antV = [<span class="hljs-string">&#x27;#1890FF&#x27;</span>, <span class="hljs-string">&#x27;#2FC25B&#x27;</span>, <span class="hljs-string">&#x27;#FACC14&#x27;</span>]</code></pre></div>
+<h4 id="绘制各维度直方图"><a class="markdownIt-Anchor" href="#绘制各维度直方图"></a> 绘制各维度直方图</h4>
+<div class="hljs"><pre><code class="hljs python">f, axes = plt.subplots(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>, figsize=(<span class="hljs-number">16</span>, <span class="hljs-number">8</span>), sharex=<span class="hljs-literal">True</span>)
+sns.despine(left=<span class="hljs-literal">True</span>)
+<span class="hljs-comment"># sns.histplot(x=iris_df[&#x27;label&#x27;],  color=antV[2], ax=axes[2, 0])</span>
+sns.histplot(x=iris_df[<span class="hljs-string">&#x27;sepal length (cm)&#x27;</span>], color=antV[<span class="hljs-number">0</span>], ax=axes[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>])
+sns.histplot(x=iris_df[<span class="hljs-string">&#x27;sepal width (cm)&#x27;</span>],  color=antV[<span class="hljs-number">0</span>], ax=axes[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>])
+sns.histplot(x=iris_df[<span class="hljs-string">&#x27;petal length (cm)&#x27;</span>],  color=antV[<span class="hljs-number">1</span>], ax=axes[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>])
+sns.histplot(x=iris_df[<span class="hljs-string">&#x27;petal width (cm)&#x27;</span>],  color=antV[<span class="hljs-number">1</span>], ax=axes[<span class="hljs-number">1</span>, <span class="hljs-number">1</span>])
+plt.savefig(<span class="hljs-string">&quot;features_hist.png&quot;</span>)
+plt.show()</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/YyO5W3DBjGlAdVJ.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<h4 id="绘制各维度散点图矩阵"><a class="markdownIt-Anchor" href="#绘制各维度散点图矩阵"></a> 绘制各维度散点图矩阵</h4>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> cm
+<span class="hljs-keyword">from</span> pandas.plotting <span class="hljs-keyword">import</span> scatter_matrix <span class="hljs-keyword">as</span> sm
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+cmap = cm.get_cmap(<span class="hljs-string">&#x27;gnuplot&#x27;</span>)
+s = sm(iris_df[iris_dataset.feature_names], c=antV[<span class="hljs-number">1</span>],marker=<span class="hljs-string">&quot;o&quot;</span>, s=<span class="hljs-number">40</span>,hist_kwds=&#123; <span class="hljs-string">&#x27;bins&#x27;</span>: <span class="hljs-number">15</span>&#125;, figsize=(<span class="hljs-number">12</span>, <span class="hljs-number">12</span>), cmap=cmap, alpha=<span class="hljs-number">0.4</span>)
+plt.savefig(<span class="hljs-string">&quot;feartures_scatter_mat.png&quot;</span>)
+plt.show()</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/hdvLUqbptiQ4Ofc.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<h4 id="生成各特征之间关系的矩阵图"><a class="markdownIt-Anchor" href="#生成各特征之间关系的矩阵图"></a> 生成各特征之间关系的矩阵图</h4>
+<div class="hljs"><pre><code class="hljs python">g = sns.pairplot(data=iris_df, palette=antV, hue=<span class="hljs-string">&#x27;label&#x27;</span>)
+plt.savefig(<span class="hljs-string">&quot;features_mat.png&quot;</span>)
+plt.show()</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/U4JjCVG5OSYgn6I.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<p>从上面绘制出的两幅图可以发现，花瓣比花萼的数据分布更有区分度，可以初步认定花瓣比花萼更适合用来作为鸢尾花分类的判断依据。</p>
+<h3 id="其他数据可视化"><a class="markdownIt-Anchor" href="#其他数据可视化"></a> 其他数据可视化</h3>
+<p>除了直方图和特征散点图矩阵外，还有其他数据可视化方法。</p>
+<p>下面通过Violinplot 和 Pointplot，分别从数据分布和斜率，观察各特征与品种之间的关系</p>
+<h4 id="violinplot绘制小提琴图"><a class="markdownIt-Anchor" href="#violinplot绘制小提琴图"></a> violinplot绘制小提琴图</h4>
+<div class="hljs"><pre><code class="hljs python">f, axes = plt.subplots(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, figsize=(<span class="hljs-number">8</span>, <span class="hljs-number">8</span>), sharex=<span class="hljs-literal">True</span>)
+sns.despine(left=<span class="hljs-literal">True</span>)
+sns.violinplot(x=<span class="hljs-string">&#x27;label&#x27;</span>, y=<span class="hljs-string">&#x27;sepal length (cm)&#x27;</span>, data=iris_df, palette=antV, ax=axes[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>])
+sns.violinplot(x=<span class="hljs-string">&#x27;label&#x27;</span>, y=<span class="hljs-string">&#x27;sepal width (cm)&#x27;</span>, data=iris_df, palette=antV, ax=axes[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>])
+sns.violinplot(x=<span class="hljs-string">&#x27;label&#x27;</span>, y=<span class="hljs-string">&#x27;petal length (cm)&#x27;</span>, data=iris_df, palette=antV, ax=axes[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>])
+sns.violinplot(x=<span class="hljs-string">&#x27;label&#x27;</span>, y=<span class="hljs-string">&#x27;petal width (cm)&#x27;</span>, data=iris_df, palette=antV, ax=axes[<span class="hljs-number">1</span>, <span class="hljs-number">1</span>])
+plt.savefig(<span class="hljs-string">&quot;violin.png&quot;</span>)
+plt.show()</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/ZC7IDJ26A1RoF3e.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<h4 id="pointplot绘制"><a class="markdownIt-Anchor" href="#pointplot绘制"></a> pointplot绘制</h4>
+<div class="hljs"><pre><code class="hljs python">
+f, axes = plt.subplots(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, figsize=(<span class="hljs-number">12</span>, <span class="hljs-number">8</span>), sharex=<span class="hljs-literal">True</span>)
+sns.despine(left=<span class="hljs-literal">True</span>)
+
+sns.pointplot(x=<span class="hljs-string">&#x27;label&#x27;</span>, y=<span class="hljs-string">&#x27;sepal length (cm)&#x27;</span>, data=iris_df,  color=antV[<span class="hljs-number">0</span>], ax=axes[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>])
+sns.pointplot(x=<span class="hljs-string">&#x27;label&#x27;</span>, y=<span class="hljs-string">&#x27;sepal width (cm)&#x27;</span>, data=iris_df, color=antV[<span class="hljs-number">0</span>], ax=axes[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>])
+sns.pointplot(x=<span class="hljs-string">&#x27;label&#x27;</span>, y=<span class="hljs-string">&#x27;petal length (cm)&#x27;</span>, data=iris_df, color=antV[<span class="hljs-number">0</span>], ax=axes[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>])
+sns.pointplot(x=<span class="hljs-string">&#x27;label&#x27;</span>, y=<span class="hljs-string">&#x27;petal width (cm)&#x27;</span>, data=iris_df, color=antV[<span class="hljs-number">0</span>], ax=axes[<span class="hljs-number">1</span>, <span class="hljs-number">1</span>])
+plt.savefig(<span class="hljs-string">&quot;pointplot.png&quot;</span>)
+plt.show()</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/AXKkLF3EsiYDdIt.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<h4 id="线性回归可视化"><a class="markdownIt-Anchor" href="#线性回归可视化"></a> 线性回归可视化</h4>
+<p>分别基于花萼和花瓣做线性回归的可视化：</p>
+<div class="hljs"><pre><code class="hljs python">g = sns.lmplot(data=iris_df, x=<span class="hljs-string">&#x27;sepal width (cm)&#x27;</span>, y=<span class="hljs-string">&#x27;sepal length (cm)&#x27;</span>, palette=antV, hue=<span class="hljs-string">&#x27;label&#x27;</span>)
+plt.savefig(<span class="hljs-string">&quot;lm_sepal.png&quot;</span>)
+plt.show()</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/w1aRFdzNKX49VMr.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<div class="hljs"><pre><code class="hljs python">g = sns.lmplot(data=iris_df, x=<span class="hljs-string">&#x27;petal width (cm)&#x27;</span>, y=<span class="hljs-string">&#x27;petal length (cm)&#x27;</span>, palette=antV, hue=<span class="hljs-string">&#x27;label&#x27;</span>)
+plt.savefig(<span class="hljs-string">&quot;lm_petal.png&quot;</span>)
+plt.show()</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/kpfSBUJC9tnhYyL.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<h4 id="热力矩阵图"><a class="markdownIt-Anchor" href="#热力矩阵图"></a> 热力矩阵图</h4>
+<p>通过热图可以找出数据集中不同特征之间的相关性，高正值或负值表明特征具有高度相关性。</p>
+<div class="hljs"><pre><code class="hljs python">fig=plt.gcf()
+fig.set_size_inches(<span class="hljs-number">12</span>, <span class="hljs-number">8</span>)
+fig=sns.heatmap(iris_df.corr(), annot=<span class="hljs-literal">True</span>, cmap=<span class="hljs-string">&#x27;GnBu&#x27;</span>, linewidths=<span class="hljs-number">1</span>, linecolor=<span class="hljs-string">&#x27;k&#x27;</span>, square=<span class="hljs-literal">True</span>, mask=<span class="hljs-literal">False</span>, vmin=<span class="hljs-number">-1</span>, vmax=<span class="hljs-number">1</span>, cbar_kws=&#123;<span class="hljs-string">&quot;orientation&quot;</span>: <span class="hljs-string">&quot;vertical&quot;</span>&#125;, cbar=<span class="hljs-literal">True</span>)
+plt.savefig(<span class="hljs-string">&quot;freatures_hm.png&quot;</span>)
+plt.show()</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/AlGaIzwhN7yE9p5.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<p>从热图也可以明显看出，花萼的宽度和长度不相关，而花瓣的宽度和长度则高度相关。</p>
+<h4 id="聚类可视化"><a class="markdownIt-Anchor" href="#聚类可视化"></a> 聚类可视化</h4>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> Counter, defaultdict
+<span class="hljs-keyword">import</span> matplotlib
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np 
+matplotlib.rcParams[<span class="hljs-string">&#x27;font.sans-serif&#x27;</span>] = [<span class="hljs-string">&#x27;SimHei&#x27;</span>]
+
+style_list = [<span class="hljs-string">&#x27;o&#x27;</span>, <span class="hljs-string">&#x27;^&#x27;</span>, <span class="hljs-string">&#x27;*&#x27;</span>]       <span class="hljs-comment"># 设置点的不同形状，不同形状默认颜色不同，也可自定义</span>
+data = iris_dataset.data
+labels = iris_dataset.target_names
+cc = defaultdict(<span class="hljs-built_in">list</span>)
+
+<span class="hljs-keyword">for</span> i, d <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(data):
+    cc[labels[<span class="hljs-built_in">int</span>(i/<span class="hljs-number">50</span>)]].append(d) 
+p_list = []
+c_list = []
+ 
+<span class="hljs-keyword">for</span> each <span class="hljs-keyword">in</span> [<span class="hljs-number">0</span>, <span class="hljs-number">2</span>]:
+    <span class="hljs-keyword">for</span> i, (c, ds) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(cc.items()):
+        draw_data = np.array(ds)
+        p = plt.plot(draw_data[:, each], draw_data[:, each+<span class="hljs-number">1</span>], style_list[i])
+        p_list.append(p)
+        c_list.append(c)
+ 
+    plt.legend(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x: x[<span class="hljs-number">0</span>], p_list), c_list)
+    plt.title(<span class="hljs-string">&#x27;鸢尾花花瓣的长度和宽度&#x27;</span>) <span class="hljs-keyword">if</span> each <span class="hljs-keyword">else</span> plt.title(<span class="hljs-string">&#x27;鸢尾花花萼的长度和宽度&#x27;</span>)
+    plt.xlabel(<span class="hljs-string">&#x27;花瓣的长度(cm)&#x27;</span>) <span class="hljs-keyword">if</span> each <span class="hljs-keyword">else</span> plt.xlabel(<span class="hljs-string">&#x27;花萼的长度(cm)&#x27;</span>)
+    plt.ylabel(<span class="hljs-string">&#x27;花瓣的宽度(cm)&#x27;</span>) <span class="hljs-keyword">if</span> each <span class="hljs-keyword">else</span> plt.ylabel(<span class="hljs-string">&#x27;花萼的宽度(cm)&#x27;</span>)
+    plt.show()</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/sGXeNkUmypbnLC2.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.cluster <span class="hljs-keyword">import</span> KMeans
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+kms = KMeans(n_clusters=<span class="hljs-number">3</span>)
+kms.fit(iris_dataset.data,iris_dataset.target)
+predicted = kms.predict(iris_dataset.data)
+
+names = [<span class="hljs-string">&#x27;花萼-length&#x27;</span>, <span class="hljs-string">&#x27;花萼-width&#x27;</span>, <span class="hljs-string">&#x27;花瓣-length&#x27;</span>, <span class="hljs-string">&#x27;花瓣-width&#x27;</span>] 
+df = pd.DataFrame(iris_dataset.data,columns=names)    
+L1 = df[<span class="hljs-string">&#x27;花瓣-length&#x27;</span>].values   
+L2 = df[<span class="hljs-string">&#x27;花瓣-width&#x27;</span>].values    
+ 
+plt.scatter(L1, L2, c=predicted, marker=<span class="hljs-string">&#x27;o&#x27;</span>,s=<span class="hljs-number">100</span>,cmap=plt.cm.Paired)    
+plt.title(<span class="hljs-string">&quot;花瓣KMeans聚类分析&quot;</span>)    
+plt.show()</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/3RjlqBXyPisKNAb.png" srcset="/img/loading.gif" alt="2954d7a025f3600b551a172a1856d9c" /></p>
+<p>从聚类的结果也可以发现花瓣的长度和宽度区分度确实比花萼高。</p>
+<h2 id="03-决策树"><a class="markdownIt-Anchor" href="#03-决策树"></a> 03 / 决策树</h2>
+<p>此部分包含下列步骤：</p>
+<ol>
+<li>
+<p>划分数据集为训练集和测试集</p>
+</li>
+<li>
+<p>训练决策树模型并测试</p>
+</li>
+<li>
+<p>模型可视化</p>
+</li>
+<li>
+<p>模型调参调优效果对比</p>
+</li>
+</ol>
+<h3 id="导入相关工具包"><a class="markdownIt-Anchor" href="#导入相关工具包"></a> 导入相关工具包</h3>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> tree
+<span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> metrics
+<span class="hljs-keyword">from</span> sklearn.tree <span class="hljs-keyword">import</span> DecisionTreeClassifier
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split</code></pre></div>
+<h3 id="划分数据集为训练集和测试集"><a class="markdownIt-Anchor" href="#划分数据集为训练集和测试集"></a> 划分数据集为训练集和测试集</h3>
+<p>划分数据集为75%训练集25%测试集</p>
+<div class="hljs"><pre><code class="hljs python">X_train, X_test, Y_train, Y_test = train_test_split(iris_df[iris_dataset.feature_names[:]], iris_df[<span class="hljs-string">&#x27;label&#x27;</span>], random_state=<span class="hljs-number">0</span>)</code></pre></div>
+<h3 id="训练决策树模型并测试"><a class="markdownIt-Anchor" href="#训练决策树模型并测试"></a> 训练决策树模型并测试</h3>
+<p>从sklearn库里导入决策树分类器，设置一些参数将模型实例化，然后用训练集进行决策树模型训练，最大深度设置为3。</p>
+<div class="hljs"><pre><code class="hljs python">dt_clf = DecisionTreeClassifier(max_depth = <span class="hljs-number">3</span>, random_state = <span class="hljs-number">0</span>)
+dt_clf.fit(X_train, Y_train)
+
+&gt; DecisionTreeClassifier(max_depth=<span class="hljs-number">3</span>, random_state=<span class="hljs-number">0</span>)
+
+用测试集来预测测试准确度accuracy
+
+​````python
+pred = dt_clf.predict(X_test)
+print(<span class="hljs-string">&#x27;决策树的 accuracy 为 &#123;0&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(metrics.accuracy_score(pred,Y_test)))</code></pre></div>
+<blockquote>
+<p>决策树的 accuracy 为 0.9736842105263158</p>
+</blockquote>
+<h3 id="模型可视化"><a class="markdownIt-Anchor" href="#模型可视化"></a> 模型可视化</h3>
+<h4 id="用sklearn自带的tree包进行决策树可视化"><a class="markdownIt-Anchor" href="#用sklearn自带的tree包进行决策树可视化"></a> 用Sklearn自带的tree包进行决策树可视化</h4>
+<div class="hljs"><pre><code class="hljs python">tree.plot_tree(dt_clf);
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+fn=iris_dataset.feature_names  <span class="hljs-comment"># fn=[&#x27;sepal length (cm)&#x27;,&#x27;sepal width (cm)&#x27;,&#x27;petal length (cm)&#x27;,&#x27;petal width (cm)&#x27;</span>
+cn=iris_dataset.target_names  <span class="hljs-comment"># cn=[&#x27;setosa&#x27;, &#x27;versicolor&#x27;, &#x27;virginica&#x27;]</span>
+fig, axes = plt.subplots(nrows=<span class="hljs-number">1</span>,ncols=<span class="hljs-number">1</span>,figsize = (<span class="hljs-number">6</span>,<span class="hljs-number">6</span>), dpi=<span class="hljs-number">300</span>)
+tree.plot_tree(dt_clf,
+               feature_names=fn, 
+               class_names=cn,
+               filled = <span class="hljs-literal">True</span>);
+fig.savefig(<span class="hljs-string">&#x27;vis_dt.png&#x27;</span>)</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/lztwkJhITQYCyxK.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<h4 id="使用graphviz可视化决策树"><a class="markdownIt-Anchor" href="#使用graphviz可视化决策树"></a> 使用graphviz可视化决策树</h4>
+<div class="hljs"><pre><code class="hljs python">tree.export_graphviz(dt_clf,
+                     out_file=<span class="hljs-string">&quot;dt.dot&quot;</span>,
+                     feature_names = fn, 
+                     class_names=cn,
+                     filled = <span class="hljs-literal">True</span>)</code></pre></div>
+<div class="hljs"><pre><code class="hljs shell">! dot -Tpng -Gdpi=300 dt.dot -o dt_graphviz.png
+
+![img](https://i.loli.net/2021/05/08/JHwuO5xtPbZBcEG.jpg)
+
+
+
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">### 使用dtreeviz包进行可视化</span></span>
+
+​````python
+from dtreeviz.trees import dtreeviz
+viz = dtreeviz(dt_clf,
+               iris_dataset.data,
+               iris_dataset.target,
+               target_name=&#x27;Species&#x27;,
+               feature_names=iris_dataset.feature_names,
+               class_names=&#123;0:&#x27;setosa&#x27;,1:&#x27;versicolor&#x27;,2:&#x27;virginica&#x27;&#125;)
+viz.save(&quot;dtreeviz.svg&quot;)</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/i8serTvCJdHF32N.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<p>从最后这张dtreeviz生成的图可以看出，决策树通过petal width分出setosa，与versicolor和virginica分离开，再从versicolor和virginica里通过petal length和petal width分类，petal width小于1.65cm的就是versicolor，petal length大于等于5.05cm的就是virginica。</p>
+<h3 id="模型调参调优效果对比"><a class="markdownIt-Anchor" href="#模型调参调优效果对比"></a> 模型调参调优效果对比</h3>
+<p>经过前面数据探索已经初步确定花瓣对鸢尾花分类更有效果，下面还可以继续分析花瓣的长度和宽度对分类的影响，为了对比明显，加上了花萼的数据。</p>
+<h4 id="单个特征对分类准确率得分的比较"><a class="markdownIt-Anchor" href="#单个特征对分类准确率得分的比较"></a> 单个特征对分类准确率得分的比较</h4>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">acc_test</span>(<span class="hljs-params">fn</span>):</span>
+    acc_list=[]
+    X_train, X_test, Y_train, Y_test = train_test_split(iris_df[[fn]], iris_df[<span class="hljs-string">&#x27;label&#x27;</span>], random_state=<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">6</span>):
+        dt_clf = DecisionTreeClassifier(max_depth = i, random_state = <span class="hljs-number">0</span>)
+        dt_clf.fit(X_train, Y_train)
+        pred = dt_clf.predict(X_test)
+        res = metrics.accuracy_score(pred,Y_test)
+        acc_list.append(res)
+    <span class="hljs-keyword">return</span> acc_list
+        
+acc_pl = acc_test(<span class="hljs-string">&#x27;petal length (cm)&#x27;</span>)
+acc_pw = acc_test(<span class="hljs-string">&#x27;petal width (cm)&#x27;</span>)
+acc_sl = acc_test(<span class="hljs-string">&#x27;sepal length (cm)&#x27;</span>)
+acc_sw = acc_test(<span class="hljs-string">&#x27;sepal width (cm)&#x27;</span>)
+
+<span class="hljs-keyword">import</span> matplotlib
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+matplotlib.rcParams[<span class="hljs-string">&#x27;font.sans-serif&#x27;</span>] = [<span class="hljs-string">&#x27;SimHei&#x27;</span>]
+
+x=<span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">6</span>)
+plt.figure(figsize=(<span class="hljs-number">10</span>,<span class="hljs-number">5</span>))
+plt.title(<span class="hljs-string">&quot;花萼长度vs花萼宽度vs花瓣长度vs花瓣宽度&quot;</span>)
+plt.xlabel(<span class="hljs-string">&quot;max_depth&quot;</span>)
+plt.xticks(rotation=<span class="hljs-number">45</span>)
+plt.ylabel(<span class="hljs-string">&quot;accuracy&quot;</span>)
+plt.plot(x,acc_pl,<span class="hljs-string">&#x27;-&#x27;</span>,label=<span class="hljs-string">&quot;花瓣长度&quot;</span>)
+plt.plot(x,acc_pw,<span class="hljs-string">&#x27;-&#x27;</span>,color=<span class="hljs-string">&#x27;r&#x27;</span>,label=<span class="hljs-string">&quot;花瓣宽度&quot;</span>)
+plt.plot(x,acc_sl,<span class="hljs-string">&#x27;-&#x27;</span>,color=<span class="hljs-string">&#x27;g&#x27;</span>,label=<span class="hljs-string">&quot;花萼长度&quot;</span>)
+plt.plot(x,acc_sw,<span class="hljs-string">&#x27;-&#x27;</span>,color=<span class="hljs-string">&#x27;limegreen&#x27;</span>,label=<span class="hljs-string">&quot;花萼宽度&quot;</span>)
+plt.legend()
+plt.grid()
+plt.savefig(<span class="hljs-string">&quot;pl_pw_sl_sw.png&quot;</span>)
+plt.show()</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/fyuWLUEKg7se9Mx.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<p>通过对比可以发现花瓣宽度比长度对分类更有效，且在最大深度为2时就收敛。</p>
+<h4 id="多个特征时不同最大深度对分类准确率得分的影响"><a class="markdownIt-Anchor" href="#多个特征时不同最大深度对分类准确率得分的影响"></a> 多个特征时不同最大深度对分类准确率得分的影响</h4>
+<div class="hljs"><pre><code class="hljs python">acc = []
+X_train, X_test, Y_train, Y_test = train_test_split(iris_df[[<span class="hljs-string">&#x27;petal length (cm)&#x27;</span>,<span class="hljs-string">&#x27;petal width (cm)&#x27;</span>]], iris_df[<span class="hljs-string">&#x27;label&#x27;</span>], random_state=<span class="hljs-number">0</span>)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>):
+    dt_clf = DecisionTreeClassifier(max_depth = i, random_state = <span class="hljs-number">0</span>)
+    dt_clf.fit(X_train, Y_train)
+    pred = dt_clf.predict(X_test)
+    res = metrics.accuracy_score(pred,Y_test)
+    acc.append(res)
+    
+print(acc)
+<span class="hljs-keyword">import</span> matplotlib
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+matplotlib.rcParams[<span class="hljs-string">&#x27;font.sans-serif&#x27;</span>] = [<span class="hljs-string">&#x27;SimHei&#x27;</span>]
+y1=acc
+x1=<span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>)
+plt.plot(x1,y1,label=<span class="hljs-string">&#x27;&#x27;</span>,linewidth=<span class="hljs-number">2</span>,color=<span class="hljs-string">&#x27;limegreen&#x27;</span>,marker=<span class="hljs-string">&#x27;o&#x27;</span>,markerfacecolor=<span class="hljs-string">&#x27;c&#x27;</span>,markersize=<span class="hljs-number">8</span>,alpha=<span class="hljs-number">0.9</span>)
+plt.xlabel(<span class="hljs-string">&#x27;max_depth&#x27;</span>)
+plt.ylabel(<span class="hljs-string">&#x27;accuracy&#x27;</span>)
+plt.title(<span class="hljs-string">&#x27;花瓣宽度+花瓣长度&#x27;</span>)
+plt.savefig(<span class="hljs-string">&quot;petal_width_lenth.png&quot;</span>)
+plt.show()</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/rDqTnfHRP8gBFvc.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<p>通过实验，当使用花瓣的两个特征训练决策树时，最大深度参数设置为3时较好。</p>
+<h2 id="04-随机森林"><a class="markdownIt-Anchor" href="#04-随机森林"></a> 04 / 随机森林</h2>
+<p>随机森林就是很多棵决策树的集成模型，由很多决策树构成的，不同决策树之间没有关联。</p>
+<p>当我们进行分类任务时，新的输入样本进入，就让森林中的每一棵决策树分别进行判断和分类，每个决策树会得到一个自己的分类结果，决策树的分类结果中哪一个分类最多，那么随机森林就会把这个结果当做最终的结果。</p>
+<h3 id="随机森林模型训练"><a class="markdownIt-Anchor" href="#随机森林模型训练"></a> 随机森林模型训练</h3>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestClassifier
+
+df = pd.DataFrame(iris_dataset.data, columns=iris_dataset.feature_names)
+df[<span class="hljs-string">&#x27;target&#x27;</span>] = iris_dataset.target
+<span class="hljs-comment"># 将数据转换为特征矩阵和目标向量</span>
+X = df.loc[:, df.columns != <span class="hljs-string">&#x27;target&#x27;</span>]
+y = df.loc[:, <span class="hljs-string">&#x27;target&#x27;</span>].values
+<span class="hljs-comment"># 将数据集分割为训练集和测试集</span>
+X_train, X_test, Y_train, Y_test = train_test_split(X, y, random_state=<span class="hljs-number">0</span>)
+<span class="hljs-comment"># scikit-learn里的随机森林模型 (N = 100)</span>
+rf = RandomForestClassifier(n_estimators=<span class="hljs-number">100</span>,
+                            random_state=<span class="hljs-number">0</span>)
+rf.fit(X_train, Y_train)</code></pre></div>
+<h3 id="随机森林部分可视化"><a class="markdownIt-Anchor" href="#随机森林部分可视化"></a> 随机森林部分可视化</h3>
+<p>这里设置了100棵树，可视化模型中的第一棵树。</p>
+<div class="hljs"><pre><code class="hljs python">fn=iris_dataset.feature_names
+cn=iris_dataset.target_names
+fig, axes = plt.subplots(nrows = <span class="hljs-number">1</span>,ncols = <span class="hljs-number">1</span>,figsize = (<span class="hljs-number">4</span>,<span class="hljs-number">4</span>), dpi=<span class="hljs-number">300</span>)
+tree.plot_tree(rf.estimators_[<span class="hljs-number">0</span>],
+               feature_names = fn, 
+               class_names=cn,
+               filled = <span class="hljs-literal">True</span>);
+fig.savefig(<span class="hljs-string">&#x27;rf_individualtree.png&#x27;</span>)</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/gZJDfFTVC2NWx9o.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<h3 id="可视化其中的前五棵树"><a class="markdownIt-Anchor" href="#可视化其中的前五棵树"></a> 可视化其中的前五棵树</h3>
+<div class="hljs"><pre><code class="hljs python">fig, axes = plt.subplots(nrows = <span class="hljs-number">1</span>,ncols = <span class="hljs-number">5</span>,figsize = (<span class="hljs-number">10</span>,<span class="hljs-number">2</span>), dpi=<span class="hljs-number">800</span>)
+<span class="hljs-keyword">for</span> index <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>):
+    tree.plot_tree(rf.estimators_[index],
+                   feature_names = fn, 
+                   class_names=cn,
+                   filled = <span class="hljs-literal">True</span>,
+                   ax = axes[index]);
+    axes[index].set_title(<span class="hljs-string">&#x27;Estimator: &#x27;</span> + <span class="hljs-built_in">str</span>(index), fontsize = <span class="hljs-number">11</span>)
+fig.savefig(<span class="hljs-string">&#x27;rf_5trees.png&#x27;</span>)</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/lrS5nBMTJC6u4aL.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<blockquote>
+<p>由于图太大就放不下，这里设置的小一点。</p>
+</blockquote>
+<h3 id="随机森林调参"><a class="markdownIt-Anchor" href="#随机森林调参"></a> 随机森林调参</h3>
+<p>下面设置从1到10棵树参数进行随机森林的训练，对比不同参数下的准确率：</p>
+<div class="hljs"><pre><code class="hljs python">acc_rf = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>):
+    rf = RandomForestClassifier(n_estimators=i,
+                                random_state=<span class="hljs-number">0</span>)
+    rf.fit(X_train, Y_train)
+    pred = rf.predict(X_test)
+    acc_rf.append(metrics.accuracy_score(pred,Y_test))
+
+<span class="hljs-keyword">import</span> matplotlib
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+matplotlib.rcParams[<span class="hljs-string">&#x27;font.sans-serif&#x27;</span>] = [<span class="hljs-string">&#x27;SimHei&#x27;</span>]
+
+x=<span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>)
+plt.figure(figsize=(<span class="hljs-number">10</span>,<span class="hljs-number">5</span>))
+plt.title(<span class="hljs-string">&quot;随机森林&quot;</span>)
+plt.xlabel(<span class="hljs-string">&quot;n_estimators&quot;</span>)
+plt.xticks(rotation=<span class="hljs-number">45</span>)
+plt.ylabel(<span class="hljs-string">&quot;accuracy&quot;</span>)
+plt.plot(x,acc_rf,<span class="hljs-string">&#x27;-&#x27;</span>,color=<span class="hljs-string">&#x27;limegreen&#x27;</span>,marker=<span class="hljs-string">&#x27;o&#x27;</span>,markerfacecolor=<span class="hljs-string">&#x27;c&#x27;</span>,markersize=<span class="hljs-number">6</span>)
+plt.grid()
+plt.savefig(<span class="hljs-string">&quot;rf_acc_curve.png&quot;</span>)
+plt.show()</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/iL4RIq1SmNOdazF.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<p>可以发现当随机森林参数设置为5之后分类准确率就基本稳定了，且其最高准确率和决策树一样，都是97.37%。</p>
+<h2 id="一点感想"><a class="markdownIt-Anchor" href="#一点感想"></a> 一点感想</h2>
+<p>决策树这类传统机器学习算法有极高的可解释性，可能有助于应用在深度学习的可解释性上，或许可以在帮助人们理解深度学习如何决策的方面作为辅助模型进行使用。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%B8%A2%E5%B0%BE%E8%8A%B1%E5%88%86%E7%B1%BB/">鸢尾花分类</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/02/07/get_qq_info_via_js/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">获取Q群成员数据并分析考研竞争情况</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/05/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">
+                        <span class="hidden-mobile">编译原理2-词法分析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "7ijcKFMdQOMyuAVqQDIHrHCb-MdYXbMMI",
+          app_key: "ML1YIYKYfCIHsAykhvlLQqWM",
+          placeholder: "看完了说点什么吧~😊",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+             
+            <span id="leancloud-site-pv"></span>
+             👀
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+             
+            <span id="leancloud-site-uv"></span>
+             🚶
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/2021/01/06/dm_iris/');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = '7ijcKFMdQOMyuAVqQDIHrHCb-MdYXbMMI'
+    var app_key = 'ML1YIYKYfCIHsAykhvlLQqWM'
+    var server_url = ''
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 1,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "数据挖掘 | 鸢尾花分类&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?8640170a62926ba1fcfd12b372c8460c";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
