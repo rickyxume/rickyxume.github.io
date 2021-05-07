@@ -161,40 +161,13 @@
     
     <tags>
       
+      <tag>环境部署</tag>
+      
       <tag>CMU</tag>
       
       <tag>数据库</tag>
       
       <tag>Docker</tag>
-      
-      <tag>环境部署</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>文件系统格式问题导致U盘拷贝失败解决方案</title>
-    <link href="/2021/04/09/u_copy_fs_type_problem/"/>
-    <url>/2021/04/09/u_copy_fs_type_problem/</url>
-    
-    <content type="html"><![CDATA[<p># 文件系统格式问题导致U盘拷贝失败解决方案</p><h2 id="踩坑描述"><a class="markdownIt-Anchor" href="#踩坑描述"></a> 踩坑描述</h2><p>帮npy下载考研视频资料20G压缩包，想拷贝到U盘却发现内存不够，删了点视频后再试，还是不行，即使U盘有大于20G的空间也不行，这是为什么呢？</p><h2 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h2><p>最终发现罪魁祸首是U盘的文件系统。</p><p>U盘的文件系统格式为FAT32，单个文件最大只能存4G，也就是说，我需要将视频分批压缩成小于4G的文件才行。</p><p>另一种解决方案是将U盘格式化为NTFS</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>覆辙</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>踩坑记录</tag>
-      
-      <tag>文件系统</tag>
       
     </tags>
     
@@ -278,6 +251,33 @@
       <tag>VS Code</tag>
       
       <tag>环境配置</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>文件系统格式问题导致U盘拷贝失败解决方案</title>
+    <link href="/2021/04/07/u_copy_fs_type_problem/"/>
+    <url>/2021/04/07/u_copy_fs_type_problem/</url>
+    
+    <content type="html"><![CDATA[<p># 文件系统格式问题导致U盘拷贝失败解决方案</p><h2 id="踩坑描述"><a class="markdownIt-Anchor" href="#踩坑描述"></a> 踩坑描述</h2><p>帮npy下载考研视频资料20G压缩包，想拷贝到U盘却发现内存不够，删了点视频后再试，还是不行，即使U盘有大于20G的空间也不行，这是为什么呢？</p><h2 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h2><p>最终发现罪魁祸首是U盘的文件系统。</p><p>U盘的文件系统格式为FAT32，单个文件最大只能存4G，也就是说，我需要将视频分批压缩成小于4G的文件才行。</p><p>另一种解决方案是将U盘格式化为NTFS</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>覆辙</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>踩坑记录</tag>
+      
+      <tag>文件系统</tag>
       
     </tags>
     
@@ -517,11 +517,11 @@
     
     <tags>
       
-      <tag>环境部署</tag>
-      
       <tag>MySQL</tag>
       
       <tag>Ubuntu</tag>
+      
+      <tag>环境部署</tag>
       
     </tags>
     
