@@ -17,7 +17,7 @@
   <meta name="description" content="日日自新，步履不停。">
   <meta name="author" content="Ricky Xu">
   <meta name="keywords" content="">
-  <title>数据可视化 | Tableau地理数据可视化 - 方塘的半亩塘</title>
+  <title>LeetCode172 - 阶乘后的零 Python3和C++解法 - 方塘的半亩塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -170,8 +170,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-05-05 21:30" pubdate>
-        2021年5月5日 晚上
+      <time datetime="2021-05-07 21:30" pubdate>
+        2021年5月7日 晚上
       </time>
     </span>
   
@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      386 字
+      868 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      12
        分钟
     </span>
   
@@ -230,42 +230,131 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">数据可视化 | Tableau地理数据可视化</h1>
+            <h1 style="display: none">LeetCode172 - 阶乘后的零 Python3和C++解法</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年5月7日 凌晨
+                  本文最后更新于：2021年5月8日 下午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <p># 数据可视化 | Tableau地理数据可视化</p>
-<p>这里以我从北大法宝网采集的各省份的法律文书数据为例对中国各省份的数据进行可视化，数据集可以从我的[github](<a target="_blank" rel="noopener" href="https://github.com/rickyxume/Law_Mining/tree/main/dataset">Law_Mining/dataset at main · rickyxume/Law_Mining (github.com)</a>)上找到，或者可以发邮箱问我要。</p>
-<h2 id="导入数据"><a class="markdownIt-Anchor" href="#导入数据"></a> 导入数据</h2>
-<p>导入包含地理位置信息（如省份）的数据表，进入工作表</p>
-<h2 id="编辑字段角色"><a class="markdownIt-Anchor" href="#编辑字段角色"></a> 编辑字段角色</h2>
-<p>右键<code>省份</code>依次选择<code>地理角色</code>-<code>州/省/市/自治区</code></p>
-<p>之后下面会自动生成经度和纬度</p>
-<p><img src="https://i.loli.net/2021/05/06/dwhSgQbROraEJse.png" srcset="/img/loading.gif" alt="image-20210506194630873" /></p>
-<h2 id="拖动对应字段"><a class="markdownIt-Anchor" href="#拖动对应字段"></a> 拖动对应字段</h2>
-<p>将<code>省份</code>拖到右边的<code>标记</code>一栏下面</p>
-<p>tableau会自动识别帮你把地图画出来</p>
-<p>接着继续拖入<code>省份</code>，左键下图中黄框的图标，选择两项将其数据属性切换为<code>大小</code>和<code>标签</code>，</p>
-<p><img src="https://i.loli.net/2021/05/06/5X6PziLvjMNmpIO.png" srcset="/img/loading.gif" alt="image-20210506200511802" /></p>
-<p>对最后一项<code>省份</code>右键，依次点击<code>度量</code>-<code>计数</code>，然后将其拖到<code>颜色</code>处，</p>
-<p><img src="https://i.loli.net/2021/05/06/3ziKbk5faDF1HCS.png" srcset="/img/loading.gif" alt="image-20210506200736682" /></p>
-<p>再增加一个<code>计数</code>将其属性换成<code>标签</code>，这样可以将数量显示在省份名称下面。</p>
-<p><img src="https://i.loli.net/2021/05/06/aUQZ1EmYcjJXyBK.png" srcset="/img/loading.gif" alt="image-20210506205928138" /></p>
-<h2 id="修改细节美化"><a class="markdownIt-Anchor" href="#修改细节美化"></a> 修改细节&amp;美化</h2>
-<p>在<code>大小</code>那一项那里右键排序，按字段升序排序，用聚合计数来决定显示圈的大小。</p>
-<p><img src="https://i.loli.net/2021/05/06/fAudQl821OvPYpJ.png" srcset="/img/loading.gif" alt="image-20210506202606751" /></p>
-<p>右键<code>颜色</code>点击<code>编辑颜色</code>可以编辑修改配色</p>
-<p><img src="https://i.loli.net/2021/05/06/jPkztlImDTYuyMb.png" srcset="/img/loading.gif" alt="image-20210506201006482" /></p>
-<p>标题那些都可以双击编辑，地图背景也可以在菜单栏<code>地图</code>那里换成其他样式，个人觉得浅色她好看的就没换。</p>
-<p><img src="https://i.loli.net/2021/05/06/S4bRvxpZrnNiQI3.png" srcset="/img/loading.gif" alt="image-20210506201552150" /></p>
-<h2 id="展示"><a class="markdownIt-Anchor" href="#展示"></a> 展示</h2>
-<p>最后展示效果如下</p>
-<p><img src="https://i.loli.net/2021/05/06/Pt3Xo71YOjfF5eV.png" srcset="/img/loading.gif" alt="image-20210506210105097" /></p>
+              <h1 id="172-阶乘后的零"><a class="markdownIt-Anchor" href="#172-阶乘后的零"></a> <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/factorial-trailing-zeroes/">172. 阶乘后的零</a></h1>
+<h2 id="题述"><a class="markdownIt-Anchor" href="#题述"></a> 题述</h2>
+<p>给定一个整数 n，返回 n! 结果尾数中零的数量。</p>
+<p>示例 1:</p>
+<blockquote>
+<p>输入: 3<br />
+输出: 0<br />
+解释: 3! = 6, 尾数中没有零。</p>
+</blockquote>
+<p>示例 2:</p>
+<blockquote>
+<p>输入: 5<br />
+输出: 1<br />
+解释: 5! = 120, 尾数中有 1 个零.</p>
+</blockquote>
+<p>说明: 你算法的时间复杂度应为 O(log n) 。</p>
+<h2 id="思路解法1模拟"><a class="markdownIt-Anchor" href="#思路解法1模拟"></a> 思路（解法1——模拟）</h2>
+<p>最初的思路是计算阶乘，按照人的计算思维来模拟计算步骤，先求阶乘运算的结果再从后往前对阶乘结果中数零。</p>
+<p>还特意选了个效率高的求阶乘orz，结果不尽人意。</p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trailingZeroes</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; int:</span>
+    <span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+    <span class="hljs-comment"># 求阶乘</span>
+    N2 = n
+    a = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, n+<span class="hljs-number">1</span>))
+    <span class="hljs-keyword">while</span> N2 &gt; <span class="hljs-number">1</span>:
+        N1 = N2 % <span class="hljs-number">2</span>
+        N2 = N2//<span class="hljs-number">2</span>+N1
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(N2-N1):
+            a[i] *= a[N2+i]
+        a = a[<span class="hljs-number">0</span>:N2]
+    <span class="hljs-comment"># 对结果数零</span>
+    num = <span class="hljs-built_in">str</span>(a[<span class="hljs-number">0</span>])
+    end = <span class="hljs-built_in">len</span>(num)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(end):
+        cnt = i
+        <span class="hljs-keyword">if</span> num[end - i - <span class="hljs-number">1</span>] != <span class="hljs-string">&#x27;0&#x27;</span>:
+            <span class="hljs-keyword">break</span>
+    <span class="hljs-keyword">return</span> cnt</code></pre></div>
+<p>最后惨不忍睹</p>
+<p><img src="https://i.loli.net/2021/05/08/cfuTRKMjQUd1G6X.png" srcset="/img/loading.gif" alt="image-20210508125027759" /></p>
+<p>翻看<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/factorial-trailing-zeroes/solution/jie-cheng-hou-de-ling-by-leetcode/">官方题解</a>，按照最初的思路其给出的代码如下：</p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trailingZeroes</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; int:</span>
+        
+    <span class="hljs-comment"># Calculate n!</span>
+    n_factorial = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, n + <span class="hljs-number">1</span>):
+        n_factorial *= i
+    
+    <span class="hljs-comment"># Count how many 0&#x27;s are on the end.</span>
+    zero_count = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">while</span> n_factorial % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>:
+        zero_count += <span class="hljs-number">1</span>
+        n_factorial //= <span class="hljs-number">10</span>
+        
+    <span class="hljs-keyword">return</span> zero_count</code></pre></div>
+<p>由于没有优化过所以TLE了</p>
+<p><img src="https://i.loli.net/2021/05/08/DziMpvd5lgFRxck.png" srcset="/img/loading.gif" alt="image-20210508135659200" /></p>
+<p>时间复杂度小于O(n^2)，空间复杂度O(logn!)=O(nlogn)</p>
+<p>当然还有更好的解法，</p>
+<h2 id="解法2计算因数5"><a class="markdownIt-Anchor" href="#解法2计算因数5"></a> 解法2——计算因数5</h2>
+<p>为了确定最后有多少个零，我们应该看有多少对 2 和 5 的因子。在一个阶乘中，我们把所有 1 和 n 之间的数相乘和把所有 1 和 n 之间所有数字的因子相乘是一样的。</p>
+<p>例如，如果 n=16，我们需要查看 1 到 16 之间所有数字的因子。我们只对 2 和 5 有兴趣。包含 5 因子的数字是 {5，10，15}，包含因子 22 的数字是 {2、4、6、8、10、12、14、16}。只需要看最少的对有多少个，因为只有三个完整的对，即包含 5 的因子数，因此 16! 后有三个零。</p>
+<p>由于只计算5的倍数，所以可以五步五步地迭代</p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trailingZeroes</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; int:</span>
+    zero_count = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>, n + <span class="hljs-number">1</span>, <span class="hljs-number">5</span>):
+        current = i
+        <span class="hljs-keyword">while</span> current % <span class="hljs-number">5</span> == <span class="hljs-number">0</span>:
+            zero_count += <span class="hljs-number">1</span>
+            current //= <span class="hljs-number">5</span>
+    <span class="hljs-keyword">return</span> zero_count</code></pre></div>
+<p>不过这种解法还是很慢</p>
+<p><img src="https://i.loli.net/2021/05/08/JBY4QFgsxNbECzc.png" srcset="/img/loading.gif" alt="image-20210508140626374" /></p>
+<p>时间复杂度O(n)，空间复杂度O(1)</p>
+<h2 id="解法3高效计算因子5"><a class="markdownIt-Anchor" href="#解法3高效计算因子5"></a> 解法3——高效计算因子5</h2>
+<p>不必每次尝试 5 的幂，而是每次将 n 本身除以 5。另外，可以从5开始计数。</p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trailingZeroes</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; int:</span>
+    zero_count = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">while</span> n &gt;= <span class="hljs-number">5</span>:
+        n //= <span class="hljs-number">5</span>
+        zero_count += n
+    <span class="hljs-keyword">return</span> zero_count</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/px2SwCLJFfNriDZ.png" srcset="/img/loading.gif" alt="image-20210508162605684" /></p>
+<p>时间复杂度O(logn)，空间复杂度O(1)</p>
+<p>递推公式：$ res = \frac{n}{5}+\frac{(\frac{n}{5})}{5}+\frac{(\frac{(\frac{n}{5})}{5})}{5}+… $</p>
+<p>依照上面找出的规律也可以通过递归实现，更简洁。</p>
+<h2 id="解法4递归一行代码秒杀"><a class="markdownIt-Anchor" href="#解法4递归一行代码秒杀"></a> 解法4——递归（一行代码秒杀）</h2>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trailingZeroes</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; int:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">5</span>) <span class="hljs-keyword">else</span> self.trailingZeroes(n//<span class="hljs-number">5</span>)+n//<span class="hljs-number">5</span></code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/yvX8o7HDxw1dftA.png" srcset="/img/loading.gif" alt="image-20210508170118473" /></p>
+<p>python还是太慢了，用C++实现一下。</p>
+<h2 id="c实现"><a class="markdownIt-Anchor" href="#c实现"></a> C++实现</h2>
+<p>高效计算因数5用C++再写一遍如下：</p>
+<div class="hljs"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">trailingZeroes</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> zero_conut = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">while</span>(n &gt;= <span class="hljs-number">5</span>)&#123;
+		n /=<span class="hljs-number">5</span>;
+		zero_conut += n;
+	&#125;
+	<span class="hljs-keyword">return</span> zero_conut;
+&#125;</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/YXOwgJHmPByrLCW.png" srcset="/img/loading.gif" alt="image-20210508163349906" /></p>
+<p>改成for循环会比while快一点</p>
+<div class="hljs"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">trailingZeroes</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> zero_conut = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (; n &gt;= <span class="hljs-number">5</span>; n /= <span class="hljs-number">5</span>,zero_conut += n)&#123;&#125;
+	<span class="hljs-keyword">return</span> zero_conut;
+&#125;</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/GfnsEoLxrZ5RNVd.png" srcset="/img/loading.gif" alt="image-20210508165021662" /></p>
+<p>用递归一行代码实现</p>
+<div class="hljs"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">trailingZeroes</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> n&lt;<span class="hljs-number">5</span>?<span class="hljs-number">0</span>:(n/<span class="hljs-number">5</span>+trailingZeroes(n/<span class="hljs-number">5</span>));
+    &#125;</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/08/zlg5G3WavrsXPQ8.png" srcset="/img/loading.gif" alt="image-20210508163554632" /></p>
+<p>leetcode给出的结果总是有点抽风，不过效率看起来不错。beat100%，好耶！</p>
 
             </div>
             <hr>
@@ -275,7 +364,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">数据可视化</a>
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
                     
                   </div>
                 
@@ -283,9 +372,13 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">数据可视化</a>
+                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
                     
-                      <a class="hover-with-bg" href="/tags/Tableau/">Tableau</a>
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
+                    
+                      <a class="hover-with-bg" href="/tags/C-C/">C/C++</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
                     
                   </div>
                 
@@ -298,18 +391,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/05/07/Leetcode_172_trailingZeroes_easy_by_py3_cpp/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LeetCode172 - 阶乘后的零 Python3和C++解法</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/04/29/USACO_ride/">
-                        <span class="hidden-mobile">USACO - PROB Your Ride Is Here</span>
+                      <a href="/2021/05/05/data_vis_tableau_geo_vis/">
+                        <span class="hidden-mobile">数据可视化 | Tableau地理数据可视化</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -597,7 +684,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2021/05/05/data_vis_tableau_geo_vis/');
+          var target = decodeURI('/2021/05/07/Leetcode_172_trailingZeroes_easy_by_py3_cpp/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -691,7 +778,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "数据可视化 | Tableau地理数据可视化&nbsp;",
+        "LeetCode172 - 阶乘后的零 Python3和C++解法&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
