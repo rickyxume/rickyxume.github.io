@@ -17,10 +17,23 @@
   <meta name="description" content="日日自新，步履不停。">
   <meta name="author" content="Ricky Xu">
   <meta name="keywords" content="">
-  <title>归档 - 方塘的半亩塘</title>
+  <title>cpp[警告] 控制到达非void函数的末尾”解决方案 - 方塘的半亩塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +56,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -147,6 +160,56 @@
             </span>
 
             
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ricky Xu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-09 11:30" pubdate>
+        2021年5月9日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      397 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      5
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
           
@@ -157,61 +220,168 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 28 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/05/09/cpp_warning_no_return_value_problem/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">cpp[警告] 控制到达非void函数的末尾”解决方案</span>
-      <time style="float: right;">05-09</time>
-    </a>
-  
-    
-    <a href="/2021/05/08/windows_cpp_precise_timer/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">用windows.h封装一个C++高精度计时器</span>
-      <time style="float: right;">05-08</time>
-    </a>
-  
-    
-    <a href="/2021/05/07/Leetcode_1006_clumsy_medium_by_py3_cpp/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">LeetCode1006 - 笨阶乘 Py3&amp;C++</span>
-      <time style="float: right;">05-07</time>
-    </a>
-  
-    
-    <a href="/2021/05/07/Leetcode_172_trailingZeroes_easy_by_py3_cpp/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">LeetCode172 - 阶乘后的零 Py3&amp;C++</span>
-      <time style="float: right;">05-07</time>
-    </a>
-  
-    
-    <a href="/2021/05/05/data_vis_tableau_geo_vis/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">数据可视化 | Tableau地理数据可视化</span>
-      <time style="float: right;">05-05</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">cpp[警告] 控制到达非void函数的末尾”解决方案</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年5月9日 晚上
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p>#“cpp[警告] 控制到达非void函数的末尾”解决方案</p>
+<p>在用C++写<a target="_blank" rel="noopener" href="https://blog.rickyxu.cc/2021/05/07/leetcode_1006_clumsy_medium_by_py3_cpp/">Leetcode1006笨阶乘</a>那题时遇到的问题，devcpp是可以正常运行给出答案但编译器给出了警告，而且leetcode上编译错误，报错信息如下：</p>
+<p><img src="https://i.loli.net/2021/05/09/S8PRQyNsAvdrgto.png" srcset="/img/loading.gif" alt="image-20210509192545128" /></p>
+<p>错误的代码如下：</p>
+<div class="hljs"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">clumsy_error</span><span class="hljs-params">(<span class="hljs-keyword">int</span> N)</span> </span>&#123;
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; um = &#123;&#123; <span class="hljs-number">1</span>, <span class="hljs-number">1</span> &#125;, &#123; <span class="hljs-number">2</span>, <span class="hljs-number">2</span> &#125;, &#123; <span class="hljs-number">3</span>, <span class="hljs-number">6</span> &#125;, &#123;<span class="hljs-number">4</span>, <span class="hljs-number">7</span>&#125; &#125;;
+	<span class="hljs-keyword">if</span> (N &lt;= <span class="hljs-number">4</span>) &#123;
+		<span class="hljs-keyword">return</span> um[N];
+	&#125;
+	<span class="hljs-keyword">if</span> (N &gt; <span class="hljs-number">4</span>) &#123;
+		<span class="hljs-keyword">int</span> t = N % <span class="hljs-number">4</span>;
+		<span class="hljs-keyword">int</span> res = <span class="hljs-keyword">static_cast</span>&lt;<span class="hljs-keyword">double</span>&gt;(N * (N - <span class="hljs-number">1</span>) / (N - <span class="hljs-number">2</span>));
+		<span class="hljs-keyword">if</span> (t == <span class="hljs-number">0</span>) &#123;
+			<span class="hljs-keyword">return</span> res;
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (t == <span class="hljs-number">3</span>) &#123;
+			<span class="hljs-keyword">return</span> res - <span class="hljs-number">2</span>;
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			<span class="hljs-keyword">return</span> res + <span class="hljs-number">1</span>;
+		&#125;
+	&#125;
+&#125;</code></pre></div>
+<blockquote>
+<p>原始代码我忘了，反正逻辑上看这个除了比较傻逼以外没大问题，但就是会warning，而且leetcode就是不给过。</p>
+</blockquote>
+<h2 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h2>
+<p>在网上搜了下了解到它大概意思是：<code>非空返回值(非void)的函数必须要有返回值，而我写的函数里仅在满足某些条件时才返回值。</code></p>
+<p>也就是说，我在 if 语句里给定的范围漏了返回值，if有些分支没有返回值就不给过！每个地方都要有值return回来。</p>
+<p>把else写进去代替之前那个范围之后就OK了</p>
+<div class="hljs"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">clumsy_correct</span><span class="hljs-params">(<span class="hljs-keyword">int</span> N)</span> </span>&#123;
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; um = &#123;&#123; <span class="hljs-number">1</span>, <span class="hljs-number">1</span> &#125;, &#123; <span class="hljs-number">2</span>, <span class="hljs-number">2</span> &#125;, &#123; <span class="hljs-number">3</span>, <span class="hljs-number">6</span> &#125;, &#123;<span class="hljs-number">4</span>, <span class="hljs-number">7</span>&#125; &#125;;
+	<span class="hljs-keyword">if</span> (N &lt;= <span class="hljs-number">4</span>) &#123;
+		<span class="hljs-keyword">return</span> um[N];
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		<span class="hljs-keyword">int</span> t = N % <span class="hljs-number">4</span>;
+		<span class="hljs-keyword">int</span> res = <span class="hljs-keyword">static_cast</span>&lt;<span class="hljs-keyword">double</span>&gt;(N * (N - <span class="hljs-number">1</span>) / (N - <span class="hljs-number">2</span>));
+		<span class="hljs-keyword">if</span> (t == <span class="hljs-number">0</span>) &#123;
+			<span class="hljs-keyword">return</span> res;
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (t == <span class="hljs-number">3</span>) &#123;
+			<span class="hljs-keyword">return</span> res - <span class="hljs-number">2</span>;
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			<span class="hljs-keyword">return</span> res + <span class="hljs-number">1</span>;
+		&#125;
+	&#125;
+&#125;</code></pre></div>
 
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%A6%86%E8%BE%99/">覆辙</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C-C/">C/C++</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">踩坑记录</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/08/windows_cpp_precise_timer/">
+                        <span class="hidden-mobile">用windows.h封装一个C++高精度计时器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "7ijcKFMdQOMyuAVqQDIHrHCb-MdYXbMMI",
+          app_key: "ML1YIYKYfCIHsAykhvlLQqWM",
+          placeholder: "看完了说点什么吧~😊",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -300,6 +470,8 @@
 
 
   
+    
+      <script  src="/js/lazyload.js" ></script>
     
   
 
@@ -433,10 +605,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/2021/05/index.html');
+          var target = decodeURI('/2021/05/09/cpp_warning_no_return_value_problem/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -498,6 +670,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 1,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -505,7 +702,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "cpp[警告] 控制到达非void函数的末尾”解决方案&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -520,6 +717,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -533,6 +745,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 

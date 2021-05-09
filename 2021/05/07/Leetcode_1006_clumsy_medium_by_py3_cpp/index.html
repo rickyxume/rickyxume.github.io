@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      699 字
+      784 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      10
        分钟
     </span>
   
@@ -234,7 +234,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年5月9日 下午
+                  本文最后更新于：2021年5月9日 晚上
                 
               </p>
             
@@ -271,6 +271,9 @@
 <p>4！=7</p>
 <p>乍一看，看起来没啥规律，草稿纸上多写了几个，慢慢发现好像是有规律可循的。</p>
 <p><img src="https://i.loli.net/2021/05/09/qrtmkzBeJA7c6Nl.png" srcset="/img/loading.gif" alt="image-20210509153851937" /></p>
+<blockquote>
+<p>注意，后来我检查了一下，发现12! 和13! 那里答案写错了，应该是12!=13，13!=14+1=15，不过问题不大，懒得改了，反正右边的规律没变~</p>
+</blockquote>
 <p>好像python不考虑数据范围直接写也没啥事，就直接用python了。</p>
 <h2 id="python3解法打表找规律"><a class="markdownIt-Anchor" href="#python3解法打表找规律"></a> Python3解法（打表+找规律）</h2>
 <p>前4项打表，后面的根据规律写出python代码，如下：</p>
@@ -293,7 +296,7 @@
 </blockquote>
 <p><img src="https://i.loli.net/2021/05/09/2N5RDTzcp7ZS6fF.png" srcset="/img/loading.gif" alt="image-20210509170316388" /></p>
 <h2 id="c解法打表找规律"><a class="markdownIt-Anchor" href="#c解法打表找规律"></a> C++解法（打表+找规律）</h2>
-<p>一开始不知道为啥warning了，后来发现解决方案了，必须要有返回值，不能因为if有些分支没有返回值而遗漏。</p>
+<p>一开始不知道为啥warning了，后来发现解决方案了，必须要有返回值，不能因为if有些分支没有返回值而遗漏。此外，要注意floor操作的类型转换，我这里用<code>static_cast\&lt;double\&gt;</code>转浮点之后再隐式转换成<code>int</code>实现。</p>
 <p>AC代码如下：</p>
 <div class="hljs"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;map&gt;</span></span>
