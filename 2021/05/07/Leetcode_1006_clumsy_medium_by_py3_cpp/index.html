@@ -296,7 +296,7 @@
 </blockquote>
 <p><img src="https://i.loli.net/2021/05/09/2N5RDTzcp7ZS6fF.png" srcset="/img/loading.gif" alt="image-20210509170316388" /></p>
 <h2 id="c解法打表找规律"><a class="markdownIt-Anchor" href="#c解法打表找规律"></a> C++解法（打表+找规律）</h2>
-<p>一开始不知道为啥warning了，后来发现解决方案了，必须要有返回值，不能因为if有些分支没有返回值而遗漏。此外，要注意floor操作的类型转换，我这里用<code>static_cast\&lt;double\&gt;</code>转浮点之后再隐式转换成<code>int</code>实现。</p>
+<p>一开始不知道为啥warning了，后来发现<a target="_blank" rel="noopener" href="https://blog.rickyxu.cc/2021/05/09/cpp_warning_no_return_value_problem/">解决方案</a>了，必须要有返回值，不能因为if有些分支没有返回值而遗漏。此外，要注意floor操作的类型转换，我这里用<code>static_cast\&lt;double\&gt;</code>转浮点之后再隐式转换成<code>int</code>实现。</p>
 <p>AC代码如下：</p>
 <div class="hljs"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;map&gt;</span></span>
