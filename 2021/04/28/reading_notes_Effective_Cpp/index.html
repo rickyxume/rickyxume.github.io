@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1k 字
+      1.1k 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      13
        分钟
     </span>
   
@@ -259,6 +259,7 @@
 </blockquote>
 <p>意思就是，尽量用编译器的工作换掉预处理的工作。</p>
 <p>编译过程：.c源代码文件 – 预处理（宏替换等操作） --&gt; .i文件 – 编译器 --&gt; .s文件（汇编代码）–&gt; .o对象文件 – 链接 --&gt; bin文件</p>
+<p>详见</p>
 <h4 id="单纯常量用const-enum替代"><a class="markdownIt-Anchor" href="#单纯常量用const-enum替代"></a> 单纯常量用const、enum替代</h4>
 <p><code>#define =&gt; const [type] [variable]</code></p>
 <p>用 #define 来声明常量时，由于 #define 往往不是语言的一部分，记号名称可能不会被记入记号表导致不方便 debug 排查问题，最好替换成一个常量。</p>
@@ -311,6 +312,13 @@
 <p>令函数返回常量值，避免错误行为。</p>
 <p>mutable关键字</p>
 <h3 id="04-确保对象被使用前已先被初始化"><a class="markdownIt-Anchor" href="#04-确保对象被使用前已先被初始化"></a> 04 / 确保对象被使用前已先被初始化</h3>
+<blockquote>
+<ul>
+<li>为内置型对象进行手工初始化，因为C++不保证初始化它们。</li>
+<li>构造函数最好使用成员初值列（member initialization list），而不要在构造函数本体内使用赋值操作（assignment）。初值列列出的成员变量，其排列次序应该和它们在class中的声明次序相同。</li>
+<li>为免除“跨编译单元之初始化次序”问题，请以local static对象替换non-localstatic对象。</li>
+</ul>
+</blockquote>
 
             </div>
             <hr>
@@ -320,7 +328,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+                      <a class="hover-with-bg" href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">阅读笔记</a>
                     
                   </div>
                 
