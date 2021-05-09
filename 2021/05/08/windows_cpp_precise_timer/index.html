@@ -17,7 +17,7 @@
   <meta name="description" content="日日自新，步履不停。">
   <meta name="author" content="Ricky Xu">
   <meta name="keywords" content="">
-  <title>LeetCode172 - 阶乘后的零 Python3和C++解法 - 方塘的半亩塘</title>
+  <title>用windows.h封装一个C++高精度计时器 - 方塘的半亩塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -170,8 +170,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-05-07 21:30" pubdate>
-        2021年5月7日 晚上
+      <time datetime="2021-05-08 21:30" pubdate>
+        2021年5月8日 晚上
       </time>
     </span>
   
@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      868 字
+      451 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      7
        分钟
     </span>
   
@@ -230,131 +230,108 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">LeetCode172 - 阶乘后的零 Python3和C++解法</h1>
+            <h1 style="display: none">用windows.h封装一个C++高精度计时器</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年5月8日 下午
+                  本文最后更新于：2021年5月9日 下午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="172-阶乘后的零"><a class="markdownIt-Anchor" href="#172-阶乘后的零"></a> <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/factorial-trailing-zeroes/">172. 阶乘后的零</a></h1>
-<h2 id="题述"><a class="markdownIt-Anchor" href="#题述"></a> 题述</h2>
-<p>给定一个整数 n，返回 n! 结果尾数中零的数量。</p>
-<p>示例 1:</p>
-<blockquote>
-<p>输入: 3<br />
-输出: 0<br />
-解释: 3! = 6, 尾数中没有零。</p>
-</blockquote>
-<p>示例 2:</p>
-<blockquote>
-<p>输入: 5<br />
-输出: 1<br />
-解释: 5! = 120, 尾数中有 1 个零.</p>
-</blockquote>
-<p>说明: 你算法的时间复杂度应为 O(log n) 。</p>
-<h2 id="思路解法1模拟"><a class="markdownIt-Anchor" href="#思路解法1模拟"></a> 思路（解法1——模拟）</h2>
-<p>最初的思路是计算阶乘，按照人的计算思维来模拟计算步骤，先求阶乘运算的结果再从后往前对阶乘结果中数零。</p>
-<p>还特意选了个效率高的求阶乘orz，结果不尽人意。</p>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trailingZeroes</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; int:</span>
-    <span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span>:
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
-    <span class="hljs-comment"># 求阶乘</span>
-    N2 = n
-    a = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, n+<span class="hljs-number">1</span>))
-    <span class="hljs-keyword">while</span> N2 &gt; <span class="hljs-number">1</span>:
-        N1 = N2 % <span class="hljs-number">2</span>
-        N2 = N2//<span class="hljs-number">2</span>+N1
-        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(N2-N1):
-            a[i] *= a[N2+i]
-        a = a[<span class="hljs-number">0</span>:N2]
-    <span class="hljs-comment"># 对结果数零</span>
-    num = <span class="hljs-built_in">str</span>(a[<span class="hljs-number">0</span>])
-    end = <span class="hljs-built_in">len</span>(num)
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(end):
-        cnt = i
-        <span class="hljs-keyword">if</span> num[end - i - <span class="hljs-number">1</span>] != <span class="hljs-string">&#x27;0&#x27;</span>:
-            <span class="hljs-keyword">break</span>
-    <span class="hljs-keyword">return</span> cnt</code></pre></div>
-<p>最后惨不忍睹</p>
-<p><img src="https://i.loli.net/2021/05/08/cfuTRKMjQUd1G6X.png" srcset="/img/loading.gif" alt="image-20210508125027759" /></p>
-<p>翻看<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/factorial-trailing-zeroes/solution/jie-cheng-hou-de-ling-by-leetcode/">官方题解</a>，按照最初的思路其给出的代码如下：</p>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trailingZeroes</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; int:</span>
-        
-    <span class="hljs-comment"># Calculate n!</span>
-    n_factorial = <span class="hljs-number">1</span>
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, n + <span class="hljs-number">1</span>):
-        n_factorial *= i
-    
-    <span class="hljs-comment"># Count how many 0&#x27;s are on the end.</span>
-    zero_count = <span class="hljs-number">0</span>
-    <span class="hljs-keyword">while</span> n_factorial % <span class="hljs-number">10</span> == <span class="hljs-number">0</span>:
-        zero_count += <span class="hljs-number">1</span>
-        n_factorial //= <span class="hljs-number">10</span>
-        
-    <span class="hljs-keyword">return</span> zero_count</code></pre></div>
-<p>由于没有优化过所以TLE了</p>
-<p><img src="https://i.loli.net/2021/05/08/DziMpvd5lgFRxck.png" srcset="/img/loading.gif" alt="image-20210508135659200" /></p>
-<p>时间复杂度小于O(n^2)，空间复杂度O(logn!)=O(nlogn)</p>
-<p>当然还有更好的解法，</p>
-<h2 id="解法2计算因数5"><a class="markdownIt-Anchor" href="#解法2计算因数5"></a> 解法2——计算因数5</h2>
-<p>为了确定最后有多少个零，我们应该看有多少对 2 和 5 的因子。在一个阶乘中，我们把所有 1 和 n 之间的数相乘和把所有 1 和 n 之间所有数字的因子相乘是一样的。</p>
-<p>例如，如果 n=16，我们需要查看 1 到 16 之间所有数字的因子。我们只对 2 和 5 有兴趣。包含 5 因子的数字是 {5，10，15}，包含因子 22 的数字是 {2、4、6、8、10、12、14、16}。只需要看最少的对有多少个，因为只有三个完整的对，即包含 5 的因子数，因此 16! 后有三个零。</p>
-<p>由于只计算5的倍数，所以可以五步五步地迭代</p>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trailingZeroes</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; int:</span>
-    zero_count = <span class="hljs-number">0</span>
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>, n + <span class="hljs-number">1</span>, <span class="hljs-number">5</span>):
-        current = i
-        <span class="hljs-keyword">while</span> current % <span class="hljs-number">5</span> == <span class="hljs-number">0</span>:
-            zero_count += <span class="hljs-number">1</span>
-            current //= <span class="hljs-number">5</span>
-    <span class="hljs-keyword">return</span> zero_count</code></pre></div>
-<p>不过这种解法还是很慢</p>
-<p><img src="https://i.loli.net/2021/05/08/JBY4QFgsxNbECzc.png" srcset="/img/loading.gif" alt="image-20210508140626374" /></p>
-<p>时间复杂度O(n)，空间复杂度O(1)</p>
-<h2 id="解法3高效计算因子5"><a class="markdownIt-Anchor" href="#解法3高效计算因子5"></a> 解法3——高效计算因子5</h2>
-<p>不必每次尝试 5 的幂，而是每次将 n 本身除以 5。另外，可以从5开始计数。</p>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trailingZeroes</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; int:</span>
-    zero_count = <span class="hljs-number">0</span>
-    <span class="hljs-keyword">while</span> n &gt;= <span class="hljs-number">5</span>:
-        n //= <span class="hljs-number">5</span>
-        zero_count += n
-    <span class="hljs-keyword">return</span> zero_count</code></pre></div>
-<p><img src="https://i.loli.net/2021/05/08/px2SwCLJFfNriDZ.png" srcset="/img/loading.gif" alt="image-20210508162605684" /></p>
-<p>时间复杂度O(logn)，空间复杂度O(1)</p>
-<p>递推公式：$ res = \frac{n}{5}+\frac{(\frac{n}{5})}{5}+\frac{(\frac{(\frac{n}{5})}{5})}{5}+… $</p>
-<p>依照上面找出的规律也可以通过递归实现，更简洁。</p>
-<h2 id="解法4递归一行代码秒杀"><a class="markdownIt-Anchor" href="#解法4递归一行代码秒杀"></a> 解法4——递归（一行代码秒杀）</h2>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trailingZeroes</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; int:</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">5</span>) <span class="hljs-keyword">else</span> self.trailingZeroes(n//<span class="hljs-number">5</span>)+n//<span class="hljs-number">5</span></code></pre></div>
-<p><img src="https://i.loli.net/2021/05/08/yvX8o7HDxw1dftA.png" srcset="/img/loading.gif" alt="image-20210508170118473" /></p>
-<p>python还是太慢了，用C++实现一下。</p>
-<h2 id="c实现"><a class="markdownIt-Anchor" href="#c实现"></a> C++实现</h2>
-<p>高效计算因数5用C++再写一遍如下：</p>
-<div class="hljs"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">trailingZeroes</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;
+              <p># 用windows.h封装一个C++高精度计时器</p>
+<p>在Windows上直接调官方给出的API（<a target="_blank" rel="noopener" href="http://msdn.microsoft.com/zh-cn/ms644905">QueryPerformanceFrequency</a>、<a target="_blank" rel="noopener" href="http://msdn.microsoft.com/zh-cn/ms644904">QueryPerformanceCounter</a>），在程序里加上<code>windows.h</code>头文件，再通过下面封装好的计时器可以很方便地测试自己写的算法效率。</p>
+<h2 id="计时器封装"><a class="markdownIt-Anchor" href="#计时器封装"></a> 计时器封装</h2>
+<div class="hljs"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;windows.h&gt;</span></span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Timer</span>&#123;</span>
+<span class="hljs-keyword">public</span>:
+    Timer()
+        : elapsed_(<span class="hljs-number">0</span>)
+    &#123;
+        QueryPerformanceFrequency(&amp;freq_);
+    &#125;
+    ~Timer()&#123;&#125;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">start</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        QueryPerformanceCounter(&amp;begin_time_);
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stop</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        LARGE_INTEGER end_time;
+        QueryPerformanceCounter(&amp;end_time);
+        elapsed_ += (end_time.QuadPart - begin_time_.QuadPart) * <span class="hljs-number">1000000</span> / freq_.QuadPart;
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">restart</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        elapsed_ = <span class="hljs-number">0</span>;
+        start();
+    &#125;
+    <span class="hljs-comment">//微秒</span>
+    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">elapsed</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">static_cast</span>&lt;<span class="hljs-keyword">double</span>&gt;(elapsed_);
+    &#125;
+    <span class="hljs-comment">//毫秒</span>
+    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">elapsed_ms</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">return</span> elapsed_ / <span class="hljs-number">1000.0</span>;
+    &#125;
+    <span class="hljs-comment">//秒</span>
+    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">elapsed_second</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">return</span> elapsed_ / <span class="hljs-number">1000000.0</span>;
+    &#125;
+
+<span class="hljs-keyword">private</span>:
+    LARGE_INTEGER freq_;
+    LARGE_INTEGER begin_time_;
+    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> elapsed_;
+&#125;;</code></pre></div>
+<h2 id="计时器使用"><a class="markdownIt-Anchor" href="#计时器使用"></a> 计时器使用</h2>
+<div class="hljs"><pre><code class="hljs cpp">Timer t;
+t.start();
+<span class="hljs-comment">//do something;</span>
+t.stop();
+<span class="hljs-built_in">cout</span> &lt;&lt; t.elapsed() &lt;&lt; <span class="hljs-string">&quot; ns&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; t.elapsed_ms() &lt;&lt; <span class="hljs-string">&quot; ms&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; t.elapsed_second() &lt;&lt; <span class="hljs-string">&quot; s&quot;</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</code></pre></div>
+<h2 id="效果演示"><a class="markdownIt-Anchor" href="#效果演示"></a> 效果演示</h2>
+<p>运行代码</p>
+<div class="hljs"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">trailingZeroes1</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;
 	<span class="hljs-keyword">int</span> zero_conut = <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">while</span>(n &gt;= <span class="hljs-number">5</span>)&#123;
-		n /=<span class="hljs-number">5</span>;
-		zero_conut += n;
-	&#125;
+	<span class="hljs-keyword">for</span> (; n &gt;= <span class="hljs-number">5</span>; n /= <span class="hljs-number">5</span>, zero_conut += n) &#123;&#125;
 	<span class="hljs-keyword">return</span> zero_conut;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">trailingZeroes2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;
+	<span class="hljs-keyword">return</span> n &lt; <span class="hljs-number">5</span> ? <span class="hljs-number">0</span> : (n / <span class="hljs-number">5</span> + trailingZeroes2(n / <span class="hljs-number">5</span>));
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-keyword">int</span> n = <span class="hljs-number">26678</span>;
+
+	Timer t1;
+	t1.start();
+	<span class="hljs-keyword">int</span> res1 = trailingZeroes1(n);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n%d末尾有%d个零\n&quot;</span>, n, res1);
+	t1.stop();
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;for循环方法 耗时：%f ns\n\n&quot;</span>, t1.elapsed());
+
+	Timer t2;
+	t2.start();
+	<span class="hljs-keyword">int</span> res2 = trailingZeroes2(n);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d末尾有%d个零\n&quot;</span>, n, res2);
+	t2.stop();
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;递归方法 耗时：%f ns\n&quot;</span>, t2.elapsed());
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre></div>
-<p><img src="https://i.loli.net/2021/05/08/YXOwgJHmPByrLCW.png" srcset="/img/loading.gif" alt="image-20210508163349906" /></p>
-<p>改成for循环会比while快一点</p>
-<div class="hljs"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">trailingZeroes</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;
-	<span class="hljs-keyword">int</span> zero_conut = <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">for</span> (; n &gt;= <span class="hljs-number">5</span>; n /= <span class="hljs-number">5</span>,zero_conut += n)&#123;&#125;
-	<span class="hljs-keyword">return</span> zero_conut;
-&#125;</code></pre></div>
-<p><img src="https://i.loli.net/2021/05/08/GfnsEoLxrZ5RNVd.png" srcset="/img/loading.gif" alt="image-20210508165021662" /></p>
-<p>用递归一行代码实现</p>
-<div class="hljs"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">trailingZeroes</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;
-        <span class="hljs-keyword">return</span> n&lt;<span class="hljs-number">5</span>?<span class="hljs-number">0</span>:(n/<span class="hljs-number">5</span>+trailingZeroes(n/<span class="hljs-number">5</span>));
-    &#125;</code></pre></div>
-<p><img src="https://i.loli.net/2021/05/08/zlg5G3WavrsXPQ8.png" srcset="/img/loading.gif" alt="image-20210508163554632" /></p>
-<p>leetcode给出的结果总是有点抽风，不过效率看起来不错。beat100%，好耶！</p>
+<p>在devcpp上使用64位用于性能分析的GCC编译器得到的结果如下。</p>
+<p><img src="https://i.loli.net/2021/05/09/v7EIN1zgwXMdHJW.png" srcset="/img/loading.gif" alt="image-20210509125301299" /></p>
+<p>两种写法时间复杂度都是O(logn)，在之前写的<a target="_blank" rel="noopener" href="https://blog.rickyxu.cc/2021/05/07/leetcode_172_trailingzeroes_easy_by_py3_cpp/">LeetCode172 - 阶乘后的零 Python3和C++解法 </a>里两种写法都beat100%了，不知道哪个更快，现在通过这次实验可以看到递归写法还是会快一丢丢的。</p>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/hbccdf/p/microsecond_performance_statistics.html">C++高精度计时器——微秒级时间统计</a></p>
+</blockquote>
 
             </div>
             <hr>
@@ -364,7 +341,9 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
+                      <a class="hover-with-bg" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C-C/">C/C++</a>
                     
                   </div>
                 
@@ -372,13 +351,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/">算法题</a>
-                    
                       <a class="hover-with-bg" href="/tags/C-C/">C/C++</a>
                     
-                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                      <a class="hover-with-bg" href="/tags/%E6%8A%80%E5%B7%A7/">技巧</a>
                     
                   </div>
                 
@@ -684,7 +659,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2021/05/07/Leetcode_172_trailingZeroes_easy_by_py3_cpp/');
+          var target = decodeURI('/2021/05/08/windows_cpp_precise_timer/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -778,7 +753,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "LeetCode172 - 阶乘后的零 Python3和C++解法&nbsp;",
+        "用windows.h封装一个C++高精度计时器&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

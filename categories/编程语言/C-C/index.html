@@ -17,23 +17,10 @@
   <meta name="description" content="日日自新，步履不停。">
   <meta name="author" content="Ricky Xu">
   <meta name="keywords" content="">
-  <title>低配Win10部署TensorFlow1.15GPU版+Keras2.15深度学习环境 - 方塘的半亩塘</title>
+  <title>分类 - C/C++ - 方塘的半亩塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-    
-  
-
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -56,7 +43,7 @@
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 60vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -160,56 +147,6 @@
             </span>
 
             
-              <div class="mt-3">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-author" aria-hidden="true"></i>
-      Ricky Xu
-    </span>
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-11-27 19:43" pubdate>
-        2020年11月27日 晚上
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      557 字
-    </span>
-  
-
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      6
-       分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- LeanCloud 统计文章PV -->
-      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="leancloud-post-views"></span> 次
-      </span>
-    
-  
-</div>
-
-            
           </div>
 
           
@@ -220,180 +157,37 @@
 
   <main>
     
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">共计 1 篇文章</p>
+  <hr>
+  
+    
       
+      <p class="h5">2021</p>
+    
+    <a href="/2021/05/08/windows_cpp_precise_timer/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">用windows.h封装一个C++高精度计时器</span>
+      <time style="float: right;">05-08</time>
+    </a>
+  
+</div>
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">低配Win10部署TensorFlow1.15GPU版+Keras2.15深度学习环境</h1>
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：2021年4月9日 下午
-                
-              </p>
-            
-            <div class="markdown-body" id="post-body">
-              <p># 低配Win10部署TensorFlow1.15GPU版+Keras2.15深度学习环境</p>
-<p>最近打算参加一个 NLP 文本分类比赛（顺便水一下数据挖掘实验大作业），遇到一些好用的开源模型，可惜没有 PyTorch 版的，又得下回 TensorFlow1.0+ 版的了，顺便记录一下安装过程，还是挺顺利的~</p>
-<h3 id="0x00-安装前提"><a class="markdownIt-Anchor" href="#0x00-安装前提"></a> 0x00 安装前提</h3>
-<ol>
-<li>装好 Anaconda 环境</li>
-<li>装好 NVIDIA 显卡驱动</li>
-</ol>
-<p>我的机器配置可以看我之前写的文章<a target="_blank" rel="noopener" href="https://blog.rickyxu.cc/2020/10/29/%E4%BD%8E%E9%85%8D-win10-%E9%83%A8%E7%BD%B2-pytorch-gpu-%E7%8E%AF%E5%A2%83%EF%BC%88win10-mx150-cuda10-2%EF%BC%89/">低配Win10部署TensorFlow1.15GPU版+Keras2.15深度学习环境</a></p>
-<h3 id="0x01-安装步骤"><a class="markdownIt-Anchor" href="#0x01-安装步骤"></a> 0x01 安装步骤</h3>
-<p>如果前面前提搞定了后面安装就两步</p>
-<ol>
-<li>建环境</li>
-<li>安装</li>
-</ol>
-<h4 id="建环境"><a class="markdownIt-Anchor" href="#建环境"></a> 建环境</h4>
-<p>在命令行执行指令创建一个新环境用来安装 TensorFLow，以下遇到([y]/n)?都一路按y回车</p>
-<div class="hljs"><pre><code class="hljs bash">conda create --name tf1 python=3.6</code></pre></div>
-<p>–name 后面是你自己定义的环境名称，我这里就是 tf1，后面指定环境所用的 python 版本为3.6</p>
-<p>切换到刚刚建好的环境</p>
-<div class="hljs"><pre><code class="hljs bash">conda activate tf1</code></pre></div>
-<h4 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h4>
-<p>安装 TensorFlow 1.15 版本和GPU版本</p>
-<div class="hljs"><pre><code class="hljs bash">conda install tensorflow==1.15.0
-conda install --channel https://conda.anaconda.org/hanyucui tensorflow-gpu=1.15</code></pre></div>
-<p>conda方式下载安装时不需要指定cudatoolkit的版本，因为conda会解决这种版本依赖问题同时会自动安装好CUDA所对应的cuDNN。</p>
-<p>每个虚拟环境都需要单独安装它所对应的CUDA以及cuDNN，所以按照同样的方式新建一个环境又可以装另一个版本的 TensorFlow 环境。</p>
-<p>安装好之后就可以测试一下效果啦</p>
-<h3 id="0x02-安装测试"><a class="markdownIt-Anchor" href="#0x02-安装测试"></a> 0x02 安装测试</h3>
-<p>键入python进入交互环境，随便找了别人<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/107683614">文章</a>写的一段代码代码测试了一下</p>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
 
-gpu_ok = tf.test.is_gpu_available()
-print(<span class="hljs-string">&quot;tf version:&quot;</span>, tf.__version__)
-print(<span class="hljs-string">&quot;use GPU&quot;</span>, gpu_ok)</code></pre></div>
-<p>结果如下：</p>
-<p><img src="https://i.loli.net/2020/11/27/z82XOl3bGMdYsgx.png" srcset="/img/loading.gif" alt="image-20201127005843813" /></p>
-<p>我只有一块渣渣GPU所以就显示设备0，blabla…总之有输出就证明安装成功啦~</p>
-<p>后面就自己随便玩了~</p>
-<p>我自己是准备比赛就装了个NLP工具库 kashgari，还有分词工具包 jieba</p>
-<div class="hljs"><pre><code class="hljs bash">pip3 install jieba
-pip3 install <span class="hljs-string">&quot;kashgari&gt;=1.1,&lt;2.0&quot;</span></code></pre></div>
-<p>如果pip用不了可以试下改成pip3</p>
-<p>下好上面的包自然就把keras下载了</p>
-<p>暂时这样，Over~</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/ML-DL/">ML/DL</a>
-                    
-                      <a class="hover-with-bg" href="/categories/ML-DL/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a>
-                    
-                      <a class="hover-with-bg" href="/tags/TensorFlow/">TensorFlow</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Keras/">Keras</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
-                    
-                  </div>
-                
               </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/01/03/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%861-%E5%BC%95%E8%AE%BA-%E6%A6%82%E8%BF%B0/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">编译原理1-引论&概述</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2020/11/10/%E4%BA%91%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83Anaconda-Jupyterlab/">
-                        <span class="hidden-mobile">云端部署数据科学开发环境Anaconda+Jupyterlab</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
-
-            
-              <!-- Comments -->
-              <article class="comments" id="comments">
-                
-                
-  <div id="vcomments"></div>
-  <script type="text/javascript">
-    function loadValine() {
-      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
-        new Valine({
-          el: "#vcomments",
-          app_id: "7ijcKFMdQOMyuAVqQDIHrHCb-MdYXbMMI",
-          app_key: "ML1YIYKYfCIHsAykhvlLQqWM",
-          placeholder: "看完了说点什么吧~😊",
-          path: window.location.pathname,
-          avatar: "retro",
-          meta: ["nick","mail","link"],
-          pageSize: "10",
-          lang: "zh-CN",
-          highlight: true,
-          recordIP: true,
-          serverURLs: "",
-        });
-      });
-    }
-    waitElementVisible('vcomments', loadValine);
-  </script>
-  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
-      powered by Valine.</a></noscript>
-
-
-              </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
     
   </main>
 
@@ -482,8 +276,6 @@ pip3 install <span class="hljs-string">&quot;kashgari&gt;=1.1,&lt;2.0&quot;</spa
 
 
   
-    
-      <script  src="/js/lazyload.js" ></script>
     
   
 
@@ -617,10 +409,10 @@ pip3 install <span class="hljs-string">&quot;kashgari&gt;=1.1,&lt;2.0&quot;</spa
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('true' === 'true') {
+      if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2020/11/27/%E4%BD%8E%E9%85%8DWin10%E9%83%A8%E7%BD%B2TensorFlow1-15GPU%E7%89%88-Keras2-15%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83/');
+          var target = decodeURI('/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C-C/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -682,31 +474,6 @@ pip3 install <span class="hljs-string">&quot;kashgari&gt;=1.1,&lt;2.0&quot;</spa
 
 
 
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 1,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
-
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -714,7 +481,7 @@ pip3 install <span class="hljs-string">&quot;kashgari&gt;=1.1,&lt;2.0&quot;</spa
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "低配Win10部署TensorFlow1.15GPU版+Keras2.15深度学习环境&nbsp;",
+        "分类 - C/C++&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -729,21 +496,6 @@ pip3 install <span class="hljs-string">&quot;kashgari&gt;=1.1,&lt;2.0&quot;</spa
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
-
 
 
   <script  src="/js/local-search.js" ></script>
@@ -757,20 +509,6 @@ pip3 install <span class="hljs-string">&quot;kashgari&gt;=1.1,&lt;2.0&quot;</spa
   </script>
 
 
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
 
 
 
