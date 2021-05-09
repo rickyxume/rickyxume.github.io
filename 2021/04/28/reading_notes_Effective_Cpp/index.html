@@ -259,7 +259,7 @@
 </blockquote>
 <p>意思就是，尽量用编译器的工作换掉预处理的工作。</p>
 <p>编译过程：.c源代码文件 – 预处理（宏替换等操作） --&gt; .i文件 – 编译器 --&gt; .s文件（汇编代码）–&gt; .o对象文件 – 链接 --&gt; bin文件</p>
-<p>详见</p>
+<p>详见<a target="_blank" rel="noopener" href="https://blog.rickyxu.cc/2021/04/20/cpp_compilation_linking_process/">C/C++编译链接过程</a></p>
 <h4 id="单纯常量用const-enum替代"><a class="markdownIt-Anchor" href="#单纯常量用const-enum替代"></a> 单纯常量用const、enum替代</h4>
 <p><code>#define =&gt; const [type] [variable]</code></p>
 <p>用 #define 来声明常量时，由于 #define 往往不是语言的一部分，记号名称可能不会被记入记号表导致不方便 debug 排查问题，最好替换成一个常量。</p>
