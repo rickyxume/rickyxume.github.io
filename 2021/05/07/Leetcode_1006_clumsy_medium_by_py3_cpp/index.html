@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      363 字
+      699 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      9
        分钟
     </span>
   
@@ -264,11 +264,57 @@
 <li><code>-2^31 &lt;= answer &lt;= 2^31 - 1</code>  （答案保证符合 32 位整数。）</li>
 </ol>
 <h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
-<p>我看到题目先是感觉可以用栈来当算术表达式题来做，但是自己不太熟悉，考虑到应该有更简单的解法就手算了前几项，尝试找规律。</p>
+<p>我看到题目先是感觉可以用栈来当算术表达式题来做，但是自己还不太熟悉，考虑到应该有更简单的解法就手算了前几项，尝试找规律。</p>
 <p>1！=1</p>
 <p>2！=2</p>
 <p>3！=6</p>
 <p>4！=7</p>
+<p>乍一看，看起来没啥规律，草稿纸上多写了几个，慢慢发现好像是有规律可循的。</p>
+<p><img src="https://i.loli.net/2021/05/09/qrtmkzBeJA7c6Nl.png" srcset="/img/loading.gif" alt="image-20210509153851937" /></p>
+<p>好像python不考虑数据范围直接写也没啥事，就直接用python了。</p>
+<h2 id="python3解法打表找规律"><a class="markdownIt-Anchor" href="#python3解法打表找规律"></a> Python3解法（打表+找规律）</h2>
+<p>前4项打表，后面的根据规律写出python代码，如下：</p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">clumsy</span>(<span class="hljs-params">N: <span class="hljs-built_in">int</span></span>) -&gt; int:</span>
+    dic = &#123;<span class="hljs-number">1</span>: <span class="hljs-number">1</span>, <span class="hljs-number">2</span>: <span class="hljs-number">2</span>, <span class="hljs-number">3</span>: <span class="hljs-number">6</span>, <span class="hljs-number">4</span>: <span class="hljs-number">7</span>&#125;
+    <span class="hljs-keyword">if</span> N &lt;= <span class="hljs-number">4</span>:
+        <span class="hljs-keyword">return</span> dic[N]
+    <span class="hljs-keyword">else</span>:
+        t = N % <span class="hljs-number">4</span>
+        res = math.floor(N * (N - <span class="hljs-number">1</span>) / (N - <span class="hljs-number">2</span>))
+        <span class="hljs-keyword">if</span> t == <span class="hljs-number">0</span>:
+            <span class="hljs-keyword">return</span> res
+        <span class="hljs-keyword">elif</span> t == <span class="hljs-number">3</span>:
+            <span class="hljs-keyword">return</span> res - <span class="hljs-number">2</span>
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-keyword">return</span> res + <span class="hljs-number">1</span></code></pre></div>
+<blockquote>
+<p>这里需要注意的就是floor函数用的范围是<code>(N * (N - 1) / (N - 2))</code>（也不知道能不能直接用内置函数hhh，不管了）</p>
+</blockquote>
+<p><img src="https://i.loli.net/2021/05/09/2N5RDTzcp7ZS6fF.png" srcset="/img/loading.gif" alt="image-20210509170316388" /></p>
+<h2 id="c解法打表找规律"><a class="markdownIt-Anchor" href="#c解法打表找规律"></a> C++解法（打表+找规律）</h2>
+<p>一开始不知道为啥warning了，后来发现解决方案了，必须要有返回值，不能因为if有些分支没有返回值而遗漏。</p>
+<p>AC代码如下：</p>
+<div class="hljs"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;map&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">clumsy</span><span class="hljs-params">(<span class="hljs-keyword">int</span> N)</span> </span>&#123;
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; um = &#123;&#123; <span class="hljs-number">1</span>, <span class="hljs-number">1</span> &#125;, &#123; <span class="hljs-number">2</span>, <span class="hljs-number">2</span> &#125;, &#123; <span class="hljs-number">3</span>, <span class="hljs-number">6</span> &#125;, &#123;<span class="hljs-number">4</span>, <span class="hljs-number">7</span>&#125; &#125;;
+	<span class="hljs-keyword">if</span> (N &lt;= <span class="hljs-number">4</span>) &#123;
+		<span class="hljs-keyword">return</span> um[N];
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		<span class="hljs-keyword">int</span> t = N % <span class="hljs-number">4</span>;
+		<span class="hljs-keyword">int</span> res = <span class="hljs-keyword">static_cast</span>&lt;<span class="hljs-keyword">double</span>&gt;(N * (N - <span class="hljs-number">1</span>) / (N - <span class="hljs-number">2</span>));
+		<span class="hljs-keyword">if</span> (t == <span class="hljs-number">0</span>) &#123;
+			<span class="hljs-keyword">return</span> res;
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (t == <span class="hljs-number">3</span>) &#123;
+			<span class="hljs-keyword">return</span> res - <span class="hljs-number">2</span>;
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			<span class="hljs-keyword">return</span> res + <span class="hljs-number">1</span>;
+		&#125;
+	&#125;
+&#125;</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/09/l5J9tYIrXBTxhWD.png" srcset="/img/loading.gif" alt="image-20210509171913255" /></p>
+<p>其它解法可以看看别人的，<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/clumsy-factorial/solution/">Leetcode题解指路</a></p>
 
             </div>
             <hr>
