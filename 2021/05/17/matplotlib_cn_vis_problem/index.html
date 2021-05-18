@@ -17,10 +17,23 @@
   <meta name="description" content="日日自新，步履不停。">
   <meta name="author" content="Ricky Xu">
   <meta name="keywords" content="">
-  <title>归档 - 方塘的半亩塘</title>
+  <title>Matplotlib可视化中文字体显示问题解决方案 - 方塘的半亩塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +56,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -147,6 +160,56 @@
             </span>
 
             
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ricky Xu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-17 21:30" pubdate>
+        2021年5月17日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      319 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      4
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
           
@@ -157,49 +220,173 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 35 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/04/07/u_copy_fs_type_problem/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">文件系统格式问题导致U盘拷贝失败解决方案</span>
-      <time style="float: right;">04-07</time>
-    </a>
-  
-</div>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/2021/04/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/2021/04/">1</a><span class="page-number current">2</span>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Matplotlib可视化中文字体显示问题解决方案</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年5月18日 晚上
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p># matplotlib可视化中文字体显示问题解决方案</p>
+<h2 id="踩坑描述"><a class="markdownIt-Anchor" href="#踩坑描述"></a> 踩坑描述</h2>
+<p>使用matplotlib这个python数据可视化包总是会遇到中文字体变成方框，指定字体也不奏效。</p>
+<h2 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h2>
+<blockquote>
+<p>注：方案一是万能的，方案一yyds！</p>
+</blockquote>
+<h3 id="方案一-使用自定义字体"><a class="markdownIt-Anchor" href="#方案一-使用自定义字体"></a> 方案一 使用自定义字体</h3>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> font_manager
+<span class="hljs-comment"># 自定义字体文件存放的路径</span>
+font_dirs = [<span class="hljs-string">&#x27;path/to/font/&#x27;</span>]
+font_files = font_manager.findSystemFonts(fontpaths=font_dirs)
 
+<span class="hljs-keyword">for</span> font_file <span class="hljs-keyword">in</span> font_files:
+<span class="hljs-comment">#     print(font_file)</span>
+    font_manager.fontManager.addfont(font_file)
+<span class="hljs-comment"># 设置字体，这里是微软雅黑</span>
+plt.rcParams[<span class="hljs-string">&#x27;font.family&#x27;</span>] = <span class="hljs-string">&#x27;SimHei&#x27;</span></code></pre></div>
+<p>比如说要解决Windows端的字体显示问题，直接把系统字体路径搬来就行。</p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> font_manager
+<span class="hljs-comment"># 使用Windows系统自带字体库</span>
+font_dirs = [<span class="hljs-string">&#x27;C:/Windows/Fonts/&#x27;</span>]
+font_files = font_manager.findSystemFonts(fontpaths=font_dirs)
 
+<span class="hljs-keyword">for</span> font_file <span class="hljs-keyword">in</span> font_files:
+    <span class="hljs-comment"># print(font_file)</span>
+    font_manager.fontManager.addfont(font_file)
+<span class="hljs-comment"># 设置中文字体</span>
+plt.rcParams[<span class="hljs-string">&#x27;font.family&#x27;</span>] = <span class="hljs-string">&#x27;SimHei&#x27;</span></code></pre></div>
+<h2 id="方案二-添加字体到matplotlib资源包"><a class="markdownIt-Anchor" href="#方案二-添加字体到matplotlib资源包"></a> 方案二 添加字体到matplotlib资源包</h2>
+<p>找到matplotlib包所在路径</p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib
+print(matplotlib.matplotlib_fname())</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/18/lbyrOiFXtWRaIMq.png" srcset="/img/loading.gif" alt="image-20210518110451931" /></p>
+<p>打开windows自带字体文件夹C:\Windows\Fonts</p>
+<p><img src="https://i.loli.net/2021/05/18/yKgrUbxhVIcW3wu.png" srcset="/img/loading.gif" alt="image-20210518121407282" /></p>
+<p>将里面的字体文件复制到</p>
+<p><img src="https://i.loli.net/2021/05/18/xQJwU4bV8Gie5Id.png" srcset="/img/loading.gif" alt="image-20210518110152870" /></p>
+<p>去掉注释加入simhei</p>
+<p><img src="https://i.loli.net/2021/05/18/HrDxqgscVUIoT3u.png" srcset="/img/loading.gif" alt="image-20210518110338316" /></p>
+<blockquote>
+<p>font.family那行注释不用动</p>
+</blockquote>
+<div class="hljs"><pre><code class="hljs python">plt.rcParams[<span class="hljs-string">&#x27;font.sans-serif&#x27;</span>]=[<span class="hljs-string">&#x27;simhei&#x27;</span>]</code></pre></div>
+<p>方案一比较万能，方案二是我的一次尝试，也记录一下。</p>
 
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%A6%86%E8%BE%99/">覆辙</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">踩坑记录</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">数据可视化</a>
+                    
+                      <a class="hover-with-bg" href="/tags/matplotlib/">matplotlib</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/14/python_extract_num_via_re/">
+                        <span class="hidden-mobile">Python正则表达式提取数字（包括正负浮点数）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "7ijcKFMdQOMyuAVqQDIHrHCb-MdYXbMMI",
+          app_key: "ML1YIYKYfCIHsAykhvlLQqWM",
+          placeholder: "看完了说点什么吧~😊",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -288,6 +475,8 @@
 
 
   
+    
+      <script  src="/js/lazyload.js" ></script>
     
   
 
@@ -421,10 +610,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/2021/04/page/2/index.html');
+          var target = decodeURI('/2021/05/17/matplotlib_cn_vis_problem/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -486,6 +675,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 1,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -493,7 +707,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "Matplotlib可视化中文字体显示问题解决方案&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -508,6 +722,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -521,6 +750,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 

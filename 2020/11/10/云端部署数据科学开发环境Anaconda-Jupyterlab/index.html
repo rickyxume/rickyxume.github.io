@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.3k 字
+      2.4k 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      28
+      29
        分钟
     </span>
   
@@ -234,7 +234,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年4月9日 下午
+                  本文最后更新于：2021年5月15日 下午
                 
               </p>
             
@@ -251,12 +251,16 @@
 <p>详情可见阿里云文档<a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/25471.html?spm=a2c4g.11186623.6.899.2fc72976cOcJrd">添加安全组规则</a></p>
 <h2 id="0x01-部署anaconda"><a class="markdownIt-Anchor" href="#0x01-部署anaconda"></a> 0x01 部署Anaconda</h2>
 <h3 id="下载anaconda"><a class="markdownIt-Anchor" href="#下载anaconda"></a> 下载Anaconda</h3>
-<div class="hljs"><pre><code class="hljs bash">wget -P /tmp https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh</code></pre></div>
+<div class="hljs"><pre><code class="hljs bash">wget -P /tmp https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda2-2.5.0-Linux-x86_64.sh</code></pre></div>
+<p>这里用清华源的镜像</p>
 <h3 id="安装anaconda"><a class="markdownIt-Anchor" href="#安装anaconda"></a> 安装Anaconda</h3>
-<div class="hljs"><pre><code class="hljs bash">bash /tmp/Anaconda3-2020.02-Linux-x86_64.sh</code></pre></div>
+<div class="hljs"><pre><code class="hljs bash">bash /tmp/Anaconda2-2.5.0-Linux-x86_64.sh</code></pre></div>
 <p>中间可能有一个设置安装路径的，我没理…一路回车yes完事~</p>
 <h3 id="激活anaconda环境"><a class="markdownIt-Anchor" href="#激活anaconda环境"></a> 激活Anaconda环境</h3>
 <div class="hljs"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> ~/.bashrc</code></pre></div>
+<p><img src="https://i.loli.net/2021/05/14/ADYRc3zOMiUhvHx.png" srcset="/img/loading.gif" alt="image-20210514230643251" /></p>
+<p>如果出现上图这个路径，就根据路径用这个命令</p>
+<div class="hljs"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> /home/ubuntu/.bashrc</code></pre></div>
 <h3 id="更新所有包"><a class="markdownIt-Anchor" href="#更新所有包"></a> 更新所有包</h3>
 <div class="hljs"><pre><code class="hljs bash">conda update --all</code></pre></div>
 <h3 id="创建环境"><a class="markdownIt-Anchor" href="#创建环境"></a> 创建环境</h3>
@@ -264,6 +268,9 @@
 <div class="hljs"><pre><code class="hljs bash">conda create -n jupyter python=3.6</code></pre></div>
 <h3 id="激活环境"><a class="markdownIt-Anchor" href="#激活环境"></a> 激活环境</h3>
 <div class="hljs"><pre><code class="hljs bash">conda activate jupyter</code></pre></div>
+<blockquote>
+<p>或source activate jupyter</p>
+</blockquote>
 <h3 id="conda环境迁移"><a class="markdownIt-Anchor" href="#conda环境迁移"></a> conda环境迁移</h3>
 <h4 id="导出本地conda环境"><a class="markdownIt-Anchor" href="#导出本地conda环境"></a> 导出本地conda环境</h4>
 <div class="hljs"><pre><code class="hljs bash">conda env <span class="hljs-built_in">export</span> &gt; environment.yaml</code></pre></div>
@@ -292,6 +299,9 @@ conda config --add channels https:<span class="hljs-regexp">//mi</span>rrors.tun
 conda config --set show_channel_urls yes</code></pre></div>
 <p>假如想直接写进配置文件里也可以用编辑器打开.condarc文件编辑来加入想要的源。</p>
 <div class="hljs"><pre><code class="hljs bash">vim ~/.condarc</code></pre></div>
+<blockquote>
+<p>或输入vim /home/ubuntu/.bashrc</p>
+</blockquote>
 <p>往配置文件加入下面的文本即可</p>
 <div class="hljs"><pre><code class="hljs bash">channels:
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
@@ -305,6 +315,9 @@ show_channel_urls: <span class="hljs-literal">true</span></code></pre></div>
   reason: invalid yaml at line 2, column 0</code></pre></div>
 <p>可能是哪里配置出了小问题，没关系，直接将对应路径文件删除即可</p>
 <div class="hljs"><pre><code class="hljs bash">rm /root/.condarc</code></pre></div>
+<blockquote>
+<p>或rm /home/ubuntu/.bashrc</p>
+</blockquote>
 <p>然后还是按照换源的步骤重新配置一下即可。</p>
 <h3 id="配置开发环境"><a class="markdownIt-Anchor" href="#配置开发环境"></a> 配置开发环境</h3>
 <p>这个环境看自己需要来配置啦，我自己配的是 PyTorch ，因为跑实验用的是基于 PyTorch 框架写的代码。</p>
@@ -331,7 +344,7 @@ passwd()</code></pre></div>
 <p>注意：不同的路径可能命令也不同，根据自己的来配置。</p>
 <p>先生成配置文件</p>
 <div class="hljs"><pre><code class="hljs bash">jupyter notebook --generate-config</code></pre></div>
-<p>找到 jupyter_notebook_config.py 这个文件，然后用vim打开编辑。</p>
+<p>根据它给出的文件路径，找到 jupyter_notebook_config.py 这个文件，然后用vim打开编辑。</p>
 <div class="hljs"><pre><code class="hljs bash">vim /root/.jupyter/jupyter_notebook_config.py</code></pre></div>
 <p>会发现里面一堆配置，莫慌</p>
 <p>vim模式下输入命令</p>
@@ -342,7 +355,7 @@ passwd()</code></pre></div>
 c.NotebookApp.ip = <span class="hljs-string">&#x27;*&#x27;</span>
 <span class="hljs-comment"># 这里的密码就是之前生成的那一串</span>
 c.NotebookApp.password = <span class="hljs-string">&#x27;argon2:$argon2id$v=19$m=10240,t=10,p=8$Q7DXnvrOurcEo50YfUdbYA$kzzuUEzrXvg6USTan07KUA&#x27;</span>
-<span class="hljs-comment"># 服务器上并没有浏览器可以供Jupyter打开</span>
+<span class="hljs-comment"># 服务器上并没有浏览器可以供Jupyter打开，这项没有的话不管也行</span>
 c.NotebookApp.open_browser = <span class="hljs-literal">False</span>
 <span class="hljs-comment"># 监听端口设置为8888或其他自己喜欢的端口</span>
 c.NotebookApp.port = <span class="hljs-number">8888</span>
@@ -351,6 +364,9 @@ c.MappingKernelManager.root_dir = <span class="hljs-string">&#x27;&#x27;</span>
 <span class="hljs-comment">#c.MappingKernelManager.root_dir = &#x27;/root/anaconda3/envs/jupyter&#x27;</span>
 <span class="hljs-comment"># 允许远程访问</span>
 c.NotebookApp.allow_remote_access = <span class="hljs-literal">True</span></code></pre></div>
+<blockquote>
+<p>P.S.新版本的jupyter将会把NotebookApp改成ServerApp</p>
+</blockquote>
 <p>修改完成之后输入vim命令保存退出</p>
 <div class="hljs"><pre><code class="hljs BASH">:wq</code></pre></div>
 <h3 id="切换-conda-环境"><a class="markdownIt-Anchor" href="#切换-conda-环境"></a> 切换 Conda 环境</h3>
