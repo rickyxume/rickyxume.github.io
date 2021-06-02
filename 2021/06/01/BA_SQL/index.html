@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      2.1k 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      27
+      31
        分钟
     </span>
   
@@ -242,7 +242,7 @@
               <p># 商分SQL小菜一碟</p>
 <h2 id="sql增改查"><a class="markdownIt-Anchor" href="#sql增改查"></a> SQL增改查</h2>
 <p>(1)在登录信息表中插入以下数据：</p>
-<p><img src="C:/Users/ricky/AppData/Local/Temp/ksohtml18088/wps1.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<p>​                 <img src="https://docimg1.docs.qq.com/image/EW4-QdQDUrCWA59aabx57Q?w=554&amp;h=228" srcset="/img/loading.gif" alt="img" /></p>
 <div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40000&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
 <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40001&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
 <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40002&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
@@ -254,7 +254,7 @@
 <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40008&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
 <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40009&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);</code></pre></div>
 <p>(2) 修改以下用户的密码，密码值和 loginId 的值相同：</p>
-<p><img src="C:/Users/ricky/AppData/Local/Temp/ksohtml18088/wps2.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<p>​                 <img src="https://docimg9.docs.qq.com/image/CbeQfaWgnZ7T4QgdzckU7g?w=309&amp;h=242" srcset="/img/loading.gif" alt="img" /></p>
 <div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span> login 
 <span class="hljs-keyword">SET</span> <span class="hljs-keyword">password</span>=loginId 
 <span class="hljs-keyword">WHERE</span> loginId <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;2000%&#x27;</span>;</code></pre></div>
@@ -293,23 +293,17 @@
 <span class="hljs-keyword">SET</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&#x27;音乐&#x27;</span>
 <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%音乐%&#x27;</span>;</code></pre></div>
 <p>(7) 统计用户基本信息表中，用户的性别数量及其比例并汇总。</p>
-<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> sex,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> sex;
-
-(8) 统计用户基本信息表中，用户各年龄的数量及其比例并汇总。 
-
-​````sql
-<span class="hljs-keyword">SELECT</span> age,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> age;</code></pre></div>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> sex,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> sex;</code></pre></div>
+<p>(8) 统计用户基本信息表中，用户各年龄的数量及其比例并汇总。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> age,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> age;</code></pre></div>
 <p>(9) 统计用户基本信息表中，用户各年龄段{[0,20),[20,25),[25,30),[30,40),[40,50),[50,100)}的数量及其比例并汇总。</p>
 <div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">20</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">25</span>;
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">25</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">30</span>;
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">30</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">40</span>;
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">40</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">50</span>;
-<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">50</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">100</span>;
-
-(10) 统计用户基本信息表中，各所在地的用户总数量及其比例并汇总。
-
- ````sql
- <span class="hljs-keyword">SELECT</span> location,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> location;</code></pre></div>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">50</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">100</span>;</code></pre></div>
+<p>(10) 统计用户基本信息表中，各所在地的用户总数量及其比例并汇总。</p>
+ <div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> location,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> location;</code></pre></div>
 <p>(11) 在用户基本信息表中，所在地值为 0 的所有数据，修改为北京。</p>
 <div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span> userbaseinfo
 <span class="hljs-keyword">SET</span> location=<span class="hljs-string">&#x27;北京&#x27;</span>
@@ -346,12 +340,9 @@
 		<span class="hljs-keyword">FROM</span> userworks 
 		<span class="hljs-keyword">WHERE</span> workId <span class="hljs-keyword">IN</span>(<span class="hljs-keyword">SELECT</span> workId 
 				<span class="hljs-keyword">FROM</span> userlikeworks 
-				<span class="hljs-keyword">WHERE</span> userId=<span class="hljs-string">&#x27;20000&#x27;</span>));
-
-(21) 查询 userId 值为 15000 的用户发布的作品(workId)。 
-
-​````sql
-<span class="hljs-keyword">SELECT</span> workId <span class="hljs-keyword">FROM</span> userworks <span class="hljs-keyword">WHERE</span> userId=<span class="hljs-string">&#x27;15000&#x27;</span>;</code></pre></div>
+				<span class="hljs-keyword">WHERE</span> userId=<span class="hljs-string">&#x27;20000&#x27;</span>));</code></pre></div>
+<p>(21) 查询 userId 值为 15000 的用户发布的作品(workId)。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> workId <span class="hljs-keyword">FROM</span> userworks <span class="hljs-keyword">WHERE</span> userId=<span class="hljs-string">&#x27;15000&#x27;</span>;</code></pre></div>
 <p>(22) 查询 userId 值为 15000 的用户发布的作品的信息。</p>
 <div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> works <span class="hljs-keyword">WHERE</span> workId <span class="hljs-keyword">IN</span>(<span class="hljs-keyword">SELECT</span> workId <span class="hljs-keyword">FROM</span> userworks <span class="hljs-keyword">WHERE</span> userId=<span class="hljs-string">&#x27;15000&#x27;</span>);</code></pre></div>
 <p>(23) 在作品信息表中，统计时长分别在 0min-5min，5min-10min,10min-15min,15min-20min 区间的作品数量及比例。</p>
@@ -427,6 +418,103 @@
 </tr>
 </tbody>
 </table>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建数据库</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> newTiktok;
+<span class="hljs-keyword">USE</span> newTiktok;
+
+<span class="hljs-comment">-- 创建登录信息表</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Login
+(
+loginId <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>) PRIMARY <span class="hljs-keyword">KEY</span>, 
+<span class="hljs-keyword">password</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>)
+);
+
+<span class="hljs-comment">-- 创建用户基本信息表</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> UserBaseInfo
+(
+usertId <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>) PRIMARY <span class="hljs-keyword">KEY</span>,
+<span class="hljs-keyword">name</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>)  <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+intro <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">500</span>), 
+age <span class="hljs-built_in">int</span>, 
+birthday <span class="hljs-built_in">DATE</span>, 
+location <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>), 
+school <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>)
+)
+
+<span class="hljs-comment">-- 创建登录信息与用户基本信息关联表</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> LoginIdUserId
+(
+loginId <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>), 
+usertId <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>),
+<span class="hljs-keyword">foreign</span> <span class="hljs-keyword">key</span>(loginId) <span class="hljs-keyword">references</span> Login(loginId),
+<span class="hljs-keyword">foreign</span> <span class="hljs-keyword">key</span>(usertId) <span class="hljs-keyword">references</span> UserBaseInfo(usertId)
+);
+
+<span class="hljs-comment">-- 创建作品信息表</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Works
+(
+workId <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>) PRIMARY <span class="hljs-keyword">KEY</span>,
+description <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">500</span>),
+<span class="hljs-keyword">category</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">5</span>),
+love <span class="hljs-built_in">int</span>, 
+commentNum <span class="hljs-built_in">int</span>, 
+shareNum <span class="hljs-built_in">int</span>, 
+viewtime <span class="hljs-built_in">TIMESTAMP</span>, 
+totalDuration <span class="hljs-built_in">time</span>
+)
+
+<span class="hljs-comment">-- 创建用户浏览行为信息表</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> useractioninfo
+(
+userId <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>),
+workid <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>),
+viewtotalDuration <span class="hljs-built_in">time</span>,
+viewDate datetime,
+<span class="hljs-keyword">foreign</span> <span class="hljs-keyword">key</span>(userId) <span class="hljs-keyword">references</span> UserBaseInfo(usertId),
+<span class="hljs-keyword">foreign</span> <span class="hljs-keyword">key</span>(workId) <span class="hljs-keyword">references</span> works(workId)
+)
+
+<span class="hljs-comment">-- 创建流程效率表</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> ProcessEfficiency
+(
+userId <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>),
+loginDate datetime,
+exitDate datetime,
+<span class="hljs-keyword">foreign</span> <span class="hljs-keyword">key</span>(userId) <span class="hljs-keyword">references</span> UserBaseInfo(usertId)
+)
+
+<span class="hljs-comment">-- 创建流程指标统计表</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> flowStatistics
+(
+workId <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>),
+viewNum <span class="hljs-built_in">int</span>,
+visitorNum <span class="hljs-built_in">int</span>,
+revisitorNum <span class="hljs-built_in">int</span>,
+onlineVisitorNum <span class="hljs-built_in">int</span>,
+dayFlow <span class="hljs-built_in">int</span>,
+<span class="hljs-keyword">foreign</span> <span class="hljs-keyword">key</span>(workId) <span class="hljs-keyword">references</span> works(workId)
+)
+
+
+<span class="hljs-comment">-- 创建转化率指标统计表</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> conversionStatistics
+(
+workId <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>),
+collectRate <span class="hljs-built_in">FLOAT</span>(<span class="hljs-number">4</span>),
+attentionRate <span class="hljs-built_in">FLOAT</span>(<span class="hljs-number">4</span>),
+buyRate <span class="hljs-built_in">FLOAT</span>(<span class="hljs-number">4</span>),
+<span class="hljs-keyword">foreign</span> <span class="hljs-keyword">key</span>(workId) <span class="hljs-keyword">references</span> works(workId)
+)
+
+<span class="hljs-comment">-- 创建作品指标统计表</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> workStatistics
+(
+workId <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>),
+downloadRate <span class="hljs-built_in">FLOAT</span>(<span class="hljs-number">4</span>),
+activeUserNum <span class="hljs-built_in">int</span>,
+ADtransfromRate <span class="hljs-built_in">FLOAT</span>(<span class="hljs-number">4</span>),
+<span class="hljs-keyword">foreign</span> <span class="hljs-keyword">key</span>(workId) <span class="hljs-keyword">references</span> works(workId)
+)</code></pre></div>
 <h2 id="数据清洗"><a class="markdownIt-Anchor" href="#数据清洗"></a> 数据清洗</h2>
 <p>1.完成为数据添加字段‘user_id’,‘item_id’, ‘category_id’,‘behavior’,‘timestamps’,并清洗数据<br />
 2.转换时间数据类型，并添加datentime，dates，hours三个字段，将转换好的数据放进去<br />
