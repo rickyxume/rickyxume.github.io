@@ -1,0 +1,977 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="日日自新，步履不停。">
+  <meta name="author" content="Ricky Xu">
+  <meta name="keywords" content="">
+  <title>商分SQL小菜一碟 - 方塘的半亩塘</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>方塘的半亩塘</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/home_bg1.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ricky Xu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-06-01 21:30" pubdate>
+        2021年6月1日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">商分SQL小菜一碟</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年6月2日 下午
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <p># 商分SQL小菜一碟</p>
+<h2 id="sql增改查"><a class="markdownIt-Anchor" href="#sql增改查"></a> SQL增改查</h2>
+<p>(1)在登录信息表中插入以下数据：</p>
+<p><img src="C:/Users/ricky/AppData/Local/Temp/ksohtml18088/wps1.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40000&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40001&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40002&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40003&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40004&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40005&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40006&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40007&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40008&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40009&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);</code></pre></div>
+<p>(2) 修改以下用户的密码，密码值和 loginId 的值相同：</p>
+<p><img src="C:/Users/ricky/AppData/Local/Temp/ksohtml18088/wps2.jpg" srcset="/img/loading.gif" alt="img" /></p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span> login 
+<span class="hljs-keyword">SET</span> <span class="hljs-keyword">password</span>=loginId 
+<span class="hljs-keyword">WHERE</span> loginId <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;2000%&#x27;</span>;</code></pre></div>
+<p>(3) 查询操作后，登录信息表中的数据量(记录条数)。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">FROM</span> login;</code></pre></div>
+<p>(4) 查看用户基本信息表中，用户名、年龄、所在地、学校信息。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>,age,location,school <span class="hljs-keyword">FROM</span> userbaseinfo;</code></pre></div>
+<p>(5) 统计用户基本信息表中，用户名含’服装’,‘穿搭’,‘汽车’,‘手机’,‘电影’,'音乐’关键字的用户数量及其比例并汇总。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%服装%&#x27;</span>;
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%穿搭%&#x27;</span>;
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%汽车%&#x27;</span>;
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%手机%&#x27;</span>;
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%电影%&#x27;</span>;
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%音乐%&#x27;</span>;
+
+<span class="hljs-comment">-- 或者</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%服装%&#x27;</span> <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">name</span>;
+<span class="hljs-comment">-- 依此类推</span></code></pre></div>
+<p>(6) 在用户基本信息表中，把用户名含’服装’,‘穿搭’,‘汽车’,‘手机’,‘电影’,'音乐’关键字的用户的用户名改为只含关键字。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span> userbaseinfo
+<span class="hljs-keyword">SET</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&#x27;服装&#x27;</span>
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%服装%&#x27;</span>;
+<span class="hljs-keyword">UPDATE</span> userbaseinfo
+<span class="hljs-keyword">SET</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&#x27;穿搭&#x27;</span>
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%穿搭%&#x27;</span>;
+<span class="hljs-keyword">UPDATE</span> userbaseinfo
+<span class="hljs-keyword">SET</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&#x27;汽车&#x27;</span>
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%汽车%&#x27;</span>;
+<span class="hljs-keyword">UPDATE</span> userbaseinfo
+<span class="hljs-keyword">SET</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&#x27;手机&#x27;</span>
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%手机%&#x27;</span>;
+<span class="hljs-keyword">UPDATE</span> userbaseinfo
+<span class="hljs-keyword">SET</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&#x27;电影&#x27;</span>
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%电影%&#x27;</span>;
+<span class="hljs-keyword">UPDATE</span> userbaseinfo
+<span class="hljs-keyword">SET</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&#x27;音乐&#x27;</span>
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%音乐%&#x27;</span>;</code></pre></div>
+<p>(7) 统计用户基本信息表中，用户的性别数量及其比例并汇总。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> sex,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> sex;
+
+(8) 统计用户基本信息表中，用户各年龄的数量及其比例并汇总。 
+
+​````sql
+<span class="hljs-keyword">SELECT</span> age,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> age;</code></pre></div>
+<p>(9) 统计用户基本信息表中，用户各年龄段{[0,20),[20,25),[25,30),[30,40),[40,50),[50,100)}的数量及其比例并汇总。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">20</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">25</span>;
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">25</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">30</span>;
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">30</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">40</span>;
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">40</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">50</span>;
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">50</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">100</span>;
+
+(10) 统计用户基本信息表中，各所在地的用户总数量及其比例并汇总。
+
+ ````sql
+ <span class="hljs-keyword">SELECT</span> location,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> location;</code></pre></div>
+<p>(11) 在用户基本信息表中，所在地值为 0 的所有数据，修改为北京。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span> userbaseinfo
+<span class="hljs-keyword">SET</span> location=<span class="hljs-string">&#x27;北京&#x27;</span>
+<span class="hljs-keyword">WHERE</span> location=<span class="hljs-number">0</span></code></pre></div>
+<p>(12) 统计用户基本信息表中，所在地值为 1 并且性别取值为 0 的数据量。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> location=<span class="hljs-number">1</span> <span class="hljs-keyword">and</span> sex=<span class="hljs-number">0</span></code></pre></div>
+<p>(13) 统计用户基本信息表中，各学校的用户总数量及其比例。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> school,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> school;</code></pre></div>
+<p>(14) 删除用户基本信息表中的简介属性。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">Alter</span> <span class="hljs-keyword">TABLE</span> userbaseinfo <span class="hljs-keyword">DROP</span> intro;</code></pre></div>
+<p>(15) 添加用户基本信息表中的简介属性，并将所有记录简介属性的值设置为”简介”。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> userbaseinfo <span class="hljs-keyword">ADD</span> intro <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">500</span>);
+<span class="hljs-keyword">UPDATE</span> userbaseinfo
+<span class="hljs-keyword">SET</span> intro=<span class="hljs-string">&#x27;简介&#x27;</span>;</code></pre></div>
+<p>(16) 在用户基本信息表中，用户名含有’服装’关键字的所有用户的名字改为’服装类 up 主’。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span> userbaseinfo
+<span class="hljs-keyword">SET</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&#x27;服装类up主&#x27;</span>
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%服装%&#x27;</span>;</code></pre></div>
+<p>(17) 在用户获赞关注粉丝统计信息表中，统计获赞数超过 500000 并且粉丝数超过 10000 的用户数量。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">FROM</span> userstatistics <span class="hljs-keyword">WHERE</span> love&gt;<span class="hljs-number">500000</span> <span class="hljs-keyword">and</span> fans&gt;<span class="hljs-number">10000</span>;</code></pre></div>
+<p>(18) 在用户喜欢的作品表中，查询 userId 值为 20000 的用户喜欢的作品(workId)。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> workid <span class="hljs-keyword">FROM</span> userlikeworks <span class="hljs-keyword">WHERE</span> userId=<span class="hljs-string">&#x27;20000&#x27;</span>;</code></pre></div>
+<p>(19) 查询 userId 值为 20000 的用户喜欢的作品的发布用户(userId)。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> userId 
+<span class="hljs-keyword">FROM</span> userworks 
+<span class="hljs-keyword">WHERE</span> workId <span class="hljs-keyword">IN</span>(<span class="hljs-keyword">SELECT</span> workId 
+		<span class="hljs-keyword">FROM</span> userlikeworks 
+		<span class="hljs-keyword">WHERE</span> userId=<span class="hljs-string">&#x27;20000&#x27;</span>);</code></pre></div>
+<p>(20) 查询 userId 值为 20000 的用户喜欢的作品的发布用户的用户类型(用户名name视为用户类型)。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> 
+<span class="hljs-keyword">FROM</span> userbaseinfo 
+<span class="hljs-keyword">WHERE</span> userId <span class="hljs-keyword">IN</span>
+		(<span class="hljs-keyword">SELECT</span> userId 
+		<span class="hljs-keyword">FROM</span> userworks 
+		<span class="hljs-keyword">WHERE</span> workId <span class="hljs-keyword">IN</span>(<span class="hljs-keyword">SELECT</span> workId 
+				<span class="hljs-keyword">FROM</span> userlikeworks 
+				<span class="hljs-keyword">WHERE</span> userId=<span class="hljs-string">&#x27;20000&#x27;</span>));
+
+(21) 查询 userId 值为 15000 的用户发布的作品(workId)。 
+
+​````sql
+<span class="hljs-keyword">SELECT</span> workId <span class="hljs-keyword">FROM</span> userworks <span class="hljs-keyword">WHERE</span> userId=<span class="hljs-string">&#x27;15000&#x27;</span>;</code></pre></div>
+<p>(22) 查询 userId 值为 15000 的用户发布的作品的信息。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> works <span class="hljs-keyword">WHERE</span> workId <span class="hljs-keyword">IN</span>(<span class="hljs-keyword">SELECT</span> workId <span class="hljs-keyword">FROM</span> userworks <span class="hljs-keyword">WHERE</span> userId=<span class="hljs-string">&#x27;15000&#x27;</span>);</code></pre></div>
+<p>(23) 在作品信息表中，统计时长分别在 0min-5min，5min-10min,10min-15min,15min-20min 区间的作品数量及比例。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*),<span class="hljs-keyword">COUNT</span>(*)/<span class="hljs-number">100000</span> <span class="hljs-keyword">FROM</span> works <span class="hljs-keyword">WHERE</span> totalDuration&gt;<span class="hljs-string">&#x27;00:00:00&#x27;</span> <span class="hljs-keyword">AND</span> totalDuration&lt;<span class="hljs-string">&#x27;00:05:00&#x27;</span>;
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*),<span class="hljs-keyword">COUNT</span>(*)/<span class="hljs-number">100000</span> <span class="hljs-keyword">FROM</span> works <span class="hljs-keyword">WHERE</span> totalDuration&gt;<span class="hljs-string">&#x27;00:05:00&#x27;</span> <span class="hljs-keyword">AND</span> totalDuration&lt;=<span class="hljs-string">&#x27;00:10:00&#x27;</span>;
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*),<span class="hljs-keyword">COUNT</span>(*)/<span class="hljs-number">100000</span> <span class="hljs-keyword">FROM</span> works <span class="hljs-keyword">WHERE</span> totalDuration&gt;<span class="hljs-string">&#x27;00:10:00&#x27;</span> <span class="hljs-keyword">AND</span> totalDuration&lt;=<span class="hljs-string">&#x27;00:15:00&#x27;</span>;
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*),<span class="hljs-keyword">COUNT</span>(*)/<span class="hljs-number">100000</span> <span class="hljs-keyword">FROM</span> works <span class="hljs-keyword">WHERE</span> totalDuration&gt;<span class="hljs-string">&#x27;00:15:00&#x27;</span> <span class="hljs-keyword">AND</span> totalDuration&lt;=<span class="hljs-string">&#x27;00:20:00&#x27;</span>;</code></pre></div>
+<p>(24) 用户名含有(‘服装’,‘穿搭’,‘汽车’,‘手机’,‘电影’,‘音乐’)关键字的关键字视为作品类型，统计时长在 10min-15min 的各作品类型的比例。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>,<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">100000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> userId <span class="hljs-keyword">IN</span>(
+<span class="hljs-keyword">SELECT</span> userId <span class="hljs-keyword">FROM</span> userworks <span class="hljs-keyword">WHERE</span> workId <span class="hljs-keyword">IN</span>(
+<span class="hljs-keyword">SELECT</span> workId <span class="hljs-keyword">FROM</span> works <span class="hljs-keyword">WHERE</span> totalDuration&gt;<span class="hljs-string">&#x27;00:10:00&#x27;</span> <span class="hljs-keyword">AND</span> totalDuration&lt;=<span class="hljs-string">&#x27;00:15:00&#x27;</span>)) <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">name</span>;</code></pre></div>
+<p>(25) 查询 userId 值为 12345 的用户的粉丝数量及粉丝类型(用户名视为类型名)。</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>,<span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> userId <span class="hljs-keyword">IN</span>(<span class="hljs-keyword">SELECT</span> userId2 <span class="hljs-keyword">FROM</span> userfans <span class="hljs-keyword">WHERE</span> userId1=<span class="hljs-string">&#x27;12345&#x27;</span>) <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">name</span>;</code></pre></div>
+<h2 id="字段设计"><a class="markdownIt-Anchor" href="#字段设计"></a> 字段设计</h2>
+<p>根据抖音服装带货类用户的作品，基于流量指标，转化率指标，搭建数据库。</p>
+<p>数据库包含以下基本表：</p>
+<table>
+<thead>
+<tr>
+<th>表名</th>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Login</td>
+<td>(<strong>loginId</strong>,password)</td>
+<td>登录用户信息表</td>
+</tr>
+<tr>
+<td>UserBaseInfo</td>
+<td>(<strong>userId</strong>,name,intro,age,sex,birthday,location,school)</td>
+<td>用户基本信息表</td>
+</tr>
+<tr>
+<td>LoginIdUserId</td>
+<td>(<em>loginId,userId</em>)</td>
+<td>登录信息与用户信息关联基本表</td>
+</tr>
+<tr>
+<td>Works</td>
+<td>(<strong>workId</strong>,description,category,love,commentNum,shareNum,viewtime,totalDuration)</td>
+<td>作品信息表</td>
+</tr>
+<tr>
+<td>UserActionInfo</td>
+<td>(<em>userId,workId</em>,viewDate)</td>
+<td>用户浏览行为信息表</td>
+</tr>
+<tr>
+<td>ProcessEfficiency</td>
+<td>(<em>userId</em>,loginDate,exitDate)</td>
+<td>流程效率表</td>
+</tr>
+<tr>
+<td>flowStatistics</td>
+<td>(<em>workId</em>,viewNum,visitorNum,revisitorNum,onlineVisitorNum,dayFlow)</td>
+<td>流量指标统计表</td>
+</tr>
+<tr>
+<td>conversionStatistics</td>
+<td>(<em>workId</em>,collectRate,attentionRate,buyRate)</td>
+<td>转化率指标统计表</td>
+</tr>
+<tr>
+<td>workStatistics</td>
+<td>(<em>workId</em>,downloadRate,activateUserNum,ADtransfromRate)</td>
+<td>作品数据指标统计表</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据清洗"><a class="markdownIt-Anchor" href="#数据清洗"></a> 数据清洗</h2>
+<p>1.完成为数据添加字段‘user_id’,‘item_id’, ‘category_id’,‘behavior’,‘timestamps’,并清洗数据<br />
+2.转换时间数据类型，并添加datentime，dates，hours三个字段，将转换好的数据放进去<br />
+3.检查日期是否在规定范围内：2017年11月25日至2017年12月3日，检查时间是否正确，并将不符合规定的数据删除</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment">-- 新增字段</span>
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> UserBehavior <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> datentime <span class="hljs-built_in">TIMESTAMP</span>(<span class="hljs-number">0</span>) <span class="hljs-literal">NULL</span>;
+<span class="hljs-keyword">UPDATE</span> UserBehavior
+<span class="hljs-keyword">SET</span> datentime = FROM_UNIXTIME(timestamps);
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> UserBehavior <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> dates <span class="hljs-built_in">CHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-literal">NULL</span>;
+<span class="hljs-keyword">UPDATE</span> UserBehavior
+<span class="hljs-keyword">SET</span> dates = <span class="hljs-keyword">SUBSTRING</span>(datentime <span class="hljs-keyword">FROM</span> <span class="hljs-number">1</span> <span class="hljs-keyword">FOR</span> <span class="hljs-number">10</span>);
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> UserBehavior <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> <span class="hljs-keyword">hours</span> <span class="hljs-built_in">CHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-literal">NULL</span>;
+<span class="hljs-keyword">UPDATE</span> UserBehavior
+<span class="hljs-keyword">SET</span> <span class="hljs-keyword">hours</span> = <span class="hljs-keyword">SUBSTRING</span>(datentime <span class="hljs-keyword">FROM</span> <span class="hljs-number">12</span> <span class="hljs-keyword">FOR</span> <span class="hljs-number">2</span>);
+<span class="hljs-comment">-- 检查范围</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MAX</span>(timestamps),
+       <span class="hljs-keyword">MIN</span>(timestamps),
+       <span class="hljs-keyword">MAX</span>(datentime),
+       <span class="hljs-keyword">MIN</span>(datentime)
+<span class="hljs-keyword">FROM</span> UserBehavior;
+<span class="hljs-comment">-- 删数据</span>
+<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> UserBehavior
+<span class="hljs-keyword">WHERE</span> datentime &lt; <span class="hljs-string">&#x27;2017-11-25 00:00:00&#x27;</span>
+<span class="hljs-keyword">OR</span> datentime &gt; <span class="hljs-string">&#x27;2017-12-04 00:00:00&#x27;</span>;</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/SQL/">SQL</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/17/matplotlib_cn_vis_problem/">
+                        <span class="hidden-mobile">Matplotlib可视化中文字体显示问题解决方案</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "7ijcKFMdQOMyuAVqQDIHrHCb-MdYXbMMI",
+          app_key: "ML1YIYKYfCIHsAykhvlLQqWM",
+          placeholder: "看完了说点什么吧~😊",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+             
+            <span id="leancloud-site-pv"></span>
+             👀
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+             
+            <span id="leancloud-site-uv"></span>
+             🚶
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    
+      <script  src="/js/lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer>
+  (function () {
+    // 查询存储的记录
+    function getRecord(Counter, target) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {target, time: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    }
+
+    // 发起自增请求
+    function increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    }
+
+    // 构建自增请求体
+    function buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "time": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    }
+
+    // 校验是否为有效的 UV
+    function validUV() {
+      var key = 'LeanCloud_UV_Flag';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    }
+
+    function addCount(Counter) {
+      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
+      var getterArr = [];
+      var incrArr = [];
+
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#leancloud-site-pv-container');
+      if (pvCtn || enableIncr) {
+        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
+          incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-pv');
+          if (ele) {
+            ele.innerText = record.time + 1;
+            if (pvCtn) {
+              pvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#leancloud-site-uv-container');
+      if (uvCtn || enableIncr) {
+        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
+          var vuv = validUV();
+          vuv && incrArr.push(buildIncrement(record.objectId))
+          var ele = document.querySelector('#leancloud-site-uv');
+          if (ele) {
+            ele.innerText = record.time + (vuv ? 1 : 0);
+            if (uvCtn) {
+              uvCtn.style.display = 'inline';
+            }
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 如果是文章，请求文章的浏览数，并自增
+      if ('true' === 'true') {
+        var viewCtn = document.querySelector('#leancloud-post-views-container');
+        if (viewCtn || enableIncr) {
+          var target = decodeURI('/2021/06/01/BA_SQL/');
+          var viewGetter = getRecord(Counter, target).then((record) => {
+            incrArr.push(buildIncrement(record.objectId))
+            if (viewCtn) {
+              var ele = document.querySelector('#leancloud-post-views');
+              if (ele) {
+                ele.innerText = (record.time || 0) + 1;
+                viewCtn.style.display = 'inline';
+              }
+            }
+          });
+          getterArr.push(viewGetter);
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && increment(Counter, incrArr);
+        })
+      }
+    }
+
+    var app_id = '7ijcKFMdQOMyuAVqQDIHrHCb-MdYXbMMI'
+    var app_key = 'ML1YIYKYfCIHsAykhvlLQqWM'
+    var server_url = ''
+
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': app_id,
+            'X-LC-Key': app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+
+      addCount(Counter);
+    }
+
+    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(resp => resp.json())
+        .then(({api_server}) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 1,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "商分SQL小菜一碟&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?8640170a62926ba1fcfd12b372c8460c";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
