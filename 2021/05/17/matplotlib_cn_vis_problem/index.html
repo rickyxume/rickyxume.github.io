@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      319 字
+      541 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      7
        分钟
     </span>
   
@@ -234,7 +234,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年5月18日 晚上
+                  本文最后更新于：2021年6月2日 下午
                 
               </p>
             
@@ -286,6 +286,21 @@ print(matplotlib.matplotlib_fname())</code></pre></div>
 </blockquote>
 <div class="hljs"><pre><code class="hljs python">plt.rcParams[<span class="hljs-string">&#x27;font.sans-serif&#x27;</span>]=[<span class="hljs-string">&#x27;simhei&#x27;</span>]</code></pre></div>
 <p>方案一比较万能，方案二是我的一次尝试，也记录一下。</p>
+<p>– 2021.6.1更新 –</p>
+<h2 id="方案三-fontproperties"><a class="markdownIt-Anchor" href="#方案三-fontproperties"></a> 方案三 FontProperties</h2>
+<p>方案一有时候好像也会失效[啪啪打脸]，那就把所有解决过我问题的方案都记录下，方案三应该是万能的了吧[嗯!]</p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment"># 字体配置</span>
+<span class="hljs-keyword">from</span> matplotlib.font_manager <span class="hljs-keyword">import</span> FontProperties
+myfont = FontProperties(fname=<span class="hljs-string">r&quot;/simhei.ttf&quot;</span>, size=<span class="hljs-number">14</span>) <span class="hljs-comment">#fname指定字体文件  选简体显示中文</span>
+<span class="hljs-comment"># 之后所有使用中文字体的地方只字符串都以u&quot;&quot;的形式出现，并指定fontproperties属性为我们的指定的myfont就行</span>
+mpl.rcParams[<span class="hljs-string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="hljs-literal">False</span> <span class="hljs-comment"># 消除更换为unicode字体之后0、负数之类的显示异常</span>
+
+<span class="hljs-comment"># ==中文字体用法==</span>
+<span class="hljs-comment"># ax1.set_ylabel(u&#x27;测试&#x27;,fontproperties=myfont)</span>
+<span class="hljs-comment"># plt.title(u&quot;中文字体测试&quot;, fontproperties=myfont)</span>
+<span class="hljs-comment"># plt.xlabel(u&quot;年龄&quot;, fontproperties=myfont)</span>
+<span class="hljs-comment"># # plt.ylabel(u&quot;密度&quot;, fontproperties=myfont)</span>
+<span class="hljs-comment"># plt.legend((u&#x27;测试1&#x27;, u&#x27;测试AAA&#x27;,),loc=&#x27;best&#x27;, prop=myfont)</span></code></pre></div>
 
             </div>
             <hr>
@@ -320,9 +335,9 @@ print(matplotlib.matplotlib_fname())</code></pre></div>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/06/01/BA_SQL/">
+                      <a href="/2021/05/31/re_dsa/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">商分SQL小菜一碟</span>
+                        <span class="hidden-mobile">数据统计与分析竞赛简单复盘</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
