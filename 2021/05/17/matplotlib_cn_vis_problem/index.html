@@ -234,7 +234,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年6月2日 下午
+                  本文最后更新于：2021年7月10日 下午
                 
               </p>
             
@@ -270,7 +270,7 @@ font_files = font_manager.findSystemFonts(fontpaths=font_dirs)
     font_manager.fontManager.addfont(font_file)
 <span class="hljs-comment"># 设置中文字体</span>
 plt.rcParams[<span class="hljs-string">&#x27;font.family&#x27;</span>] = <span class="hljs-string">&#x27;SimHei&#x27;</span></code></pre></div>
-<h2 id="方案二-添加字体到matplotlib资源包"><a class="markdownIt-Anchor" href="#方案二-添加字体到matplotlib资源包"></a> 方案二 添加字体到matplotlib资源包</h2>
+<h3 id="方案二-添加字体到matplotlib资源包"><a class="markdownIt-Anchor" href="#方案二-添加字体到matplotlib资源包"></a> 方案二 添加字体到matplotlib资源包</h3>
 <p>找到matplotlib包所在路径</p>
 <div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib
 print(matplotlib.matplotlib_fname())</code></pre></div>
@@ -287,7 +287,7 @@ print(matplotlib.matplotlib_fname())</code></pre></div>
 <div class="hljs"><pre><code class="hljs python">plt.rcParams[<span class="hljs-string">&#x27;font.sans-serif&#x27;</span>]=[<span class="hljs-string">&#x27;simhei&#x27;</span>]</code></pre></div>
 <p>方案一比较万能，方案二是我的一次尝试，也记录一下。</p>
 <p>– 2021.6.1更新 –</p>
-<h2 id="方案三-fontproperties"><a class="markdownIt-Anchor" href="#方案三-fontproperties"></a> 方案三 FontProperties</h2>
+<h3 id="方案三-fontproperties"><a class="markdownIt-Anchor" href="#方案三-fontproperties"></a> 方案三 FontProperties</h3>
 <p>方案一有时候好像也会失效[啪啪打脸]，那就把所有解决过我问题的方案都记录下，方案三应该是万能的了吧[嗯!]</p>
 <div class="hljs"><pre><code class="hljs python"><span class="hljs-comment"># 字体配置</span>
 <span class="hljs-keyword">from</span> matplotlib.font_manager <span class="hljs-keyword">import</span> FontProperties
@@ -318,9 +318,9 @@ mpl.rcParams[<span class="hljs-string">&#x27;axes.unicode_minus&#x27;</span>] = 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">踩坑记录</a>
-                    
                       <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">数据可视化</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">踩坑记录</a>
                     
                       <a class="hover-with-bg" href="/tags/matplotlib/">matplotlib</a>
                     

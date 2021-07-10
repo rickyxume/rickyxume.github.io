@@ -17,10 +17,23 @@
   <meta name="description" content="日日自新，步履不停。">
   <meta name="author" content="Ricky Xu">
   <meta name="keywords" content="">
-  <title>归档 - 方塘的半亩塘</title>
+  <title>Benchmarking Differential Privacy and Federated Learning for BERT Models 阅读笔记 - 方塘的半亩塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +56,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -147,6 +160,56 @@
             </span>
 
             
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Ricky Xu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-09 21:30" pubdate>
+        2021年7月9日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      580 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      6
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-post-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
           
@@ -157,55 +220,155 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 39 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/01/25/pkulaw_data_spider/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">北大法宝法律文书数据爬取方案</span>
-      <time style="float: right;">01-25</time>
-    </a>
-  
-    
-    <a href="/2021/01/06/dm_iris/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">数据挖掘 | 决策树/随机森林应用于鸢尾花分类</span>
-      <time style="float: right;">01-06</time>
-    </a>
-  
-    
-    <a href="/2021/01/05/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">编译原理2-词法分析</span>
-      <time style="float: right;">01-05</time>
-    </a>
-  
-    
-    <a href="/2021/01/03/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%861-%E5%BC%95%E8%AE%BA-%E6%A6%82%E8%BF%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">编译原理1-引论&amp;概述</span>
-      <time style="float: right;">01-03</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Benchmarking Differential Privacy and Federated Learning for BERT Models 阅读笔记</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年7月10日 下午
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="benchmarking-differential-privacy-and-federated-learning-for-bert-models-论文笔记"><a class="markdownIt-Anchor" href="#benchmarking-differential-privacy-and-federated-learning-for-bert-models-论文笔记"></a> Benchmarking Differential Privacy and Federated Learning for BERT Models 论文笔记</h1>
+<p><strong>作者团队</strong>：MIT &amp; CMU(Rakshit Naidu) 等</p>
+<p>日期：2021.6.26 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.13973v1.pdf">原文PDF链接</a></p>
+<h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要：</h2>
+<p>通过NLP技术使用一个人的话语集合可用于帮助诊断抑郁症等医疗状况。由于此类数据的敏感性，需要采取隐私措施来处理和训练具有此类数据的模型。在这项工作中，作者<strong>在集中式和分布式(联邦学习(FL))设置下研究差分隐私(DP)应用在训练上下文语言模型（BERT、ALBERT、RoBERTa 和 DistilBERT）的影响，并提供有关如何隐私(privately)训练 NLP 模型以及哪些架构和设置提供更理想的隐私效用权衡的见解</strong>。作者打算将这项工作用于未来的医疗保健和心理健康研究以保持病史的私密性，因此提供了这项工作的<a target="_blank" rel="noopener" href="https://github.com/benchmarkpaper/Benchmarking-Differential-Privacy-and-FederatedLearning-for-Healthcare-Data">开源实现</a></p>
+<h2 id="实验"><a class="markdownIt-Anchor" href="#实验"></a> 实验：</h2>
+<p>基于BERT模型及其三个变种在不同数据分布下做集中式和分布式的差分隐私和联邦学习的实验，有四种实验设置：集中式传统训练，集中式差分隐私训练，分布式联邦学习训练，DP应用在FL上训练；FL里又有两种分布IID和Non-IID。</p>
+<p><strong>工具包</strong>： Opacus</p>
+<p><strong>实验模型</strong>: BERT, RoBERTa, DistillBERT and ALBERT</p>
+<p><strong>数据集</strong>：推特Depression抑郁检测数据集、Sexual Harassment数据集（从推特爬取，作者的Github里有）</p>
+<p><strong>变量设置</strong>：隐私预算epsilon= 0.5, 5, 15, ∞</p>
+<p><strong>评估标准</strong>： accuracy+标准差</p>
+<p><strong>实验结果</strong>：</p>
+<p><img src="https://i.loli.net/2021/07/10/P7crqZDXJQdlTWt.png" srcset="/img/loading.gif" alt="image-20210710124700099" /></p>
+<p><strong>作者发现</strong>：</p>
+<ul>
+<li>
+<p>epsilon越大，标准差越小。</p>
+</li>
+<li>
+<p>FL+DP，准确度会降，FL表现比DP更好。</p>
+</li>
+</ul>
+<h2 id="结论"><a class="markdownIt-Anchor" href="#结论"></a> 结论：</h2>
+<p>（1）当采用DP训练时，较小的网络（如 ALBERT 和 DistillBERT）比较大的模型（如 BERT 和 RoBERTa）降级得更优雅（即DP训练时，小模型epsilon越大准确度越高，大模型epsilon越大准确率越低）（这里缺少数据可视化不太直观）</p>
+<p>（2）在 FL 的 Non-IID 设置（医疗应用中的现实场景）中，效用退化平均高于 IID 设置（即准确率较之下降），这表明需要针对 Non-IID设置定制训练算法</p>
+<p>（3）DP在训练数据量小的情况下比数据量大的情况下对效用的影响更不利。</p>
 
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">阅读笔记</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">论文笔记</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/">差分隐私</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/">联邦学习</a>
+                    
+                      <a class="hover-with-bg" href="/tags/BERT/">BERT</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/01/recoding_MySQL_problem/">
+                        <span class="hidden-mobile">MySQL踩坑记录及解决方案</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "7ijcKFMdQOMyuAVqQDIHrHCb-MdYXbMMI",
+          app_key: "ML1YIYKYfCIHsAykhvlLQqWM",
+          placeholder: "看完了说点什么吧~😊",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "",
+        });
+      });
+    }
+    waitElementVisible('vcomments', loadValine);
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -294,6 +457,8 @@
 
 
   
+    
+      <script  src="/js/lazyload.js" ></script>
     
   
 
@@ -427,10 +592,10 @@
       }
 
       // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
+      if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/2021/01/index.html');
+          var target = decodeURI('/2021/07/09/Notes_Benchmarking_Differential_Privacy_and_Federated_Learning_for_BERT_Models/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -492,6 +657,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 1,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -499,7 +689,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "Benchmarking Differential Privacy and Federated Learning for BERT Models 阅读笔记&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -514,6 +704,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -527,6 +732,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 

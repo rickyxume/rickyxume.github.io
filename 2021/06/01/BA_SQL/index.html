@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.1k 字
+      2.2k 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      31
+      33
        分钟
     </span>
   
@@ -234,7 +234,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年6月2日 下午
+                  本文最后更新于：2021年7月4日 晚上
                 
               </p>
             
@@ -243,36 +243,25 @@
 <h2 id="sql增改查"><a class="markdownIt-Anchor" href="#sql增改查"></a> SQL增改查</h2>
 <p>(1)在登录信息表中插入以下数据：</p>
 <p>​                 <img src="https://docimg1.docs.qq.com/image/EW4-QdQDUrCWA59aabx57Q?w=554&amp;h=228" srcset="/img/loading.gif" alt="img" /></p>
-<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40000&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40001&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40002&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40003&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40004&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40005&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40006&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40007&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40008&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
-<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login (loginId,  <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;40009&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);</code></pre></div>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> login(loginId, <span class="hljs-keyword">password</span>) <span class="hljs-keyword">VALUES</span> 
+(<span class="hljs-number">40000</span>,<span class="hljs-number">123456</span>),(<span class="hljs-number">40001</span>,<span class="hljs-number">123456</span>),(<span class="hljs-number">40002</span>,<span class="hljs-number">123456</span>),(<span class="hljs-number">40003</span>,<span class="hljs-number">123456</span>),(<span class="hljs-number">40004</span>,<span class="hljs-number">123456</span>),(<span class="hljs-number">40005</span>,<span class="hljs-number">123456</span>),(<span class="hljs-number">40006</span>,<span class="hljs-number">123456</span>),(<span class="hljs-number">40007</span>,<span class="hljs-number">123456</span>),(<span class="hljs-number">40008</span>,<span class="hljs-number">123456</span>),(<span class="hljs-number">40009</span>,<span class="hljs-number">123456</span>);</code></pre></div>
 <p>(2) 修改以下用户的密码，密码值和 loginId 的值相同：</p>
 <p>​                 <img src="https://docimg9.docs.qq.com/image/CbeQfaWgnZ7T4QgdzckU7g?w=309&amp;h=242" srcset="/img/loading.gif" alt="img" /></p>
-<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span> login 
-<span class="hljs-keyword">SET</span> <span class="hljs-keyword">password</span>=loginId 
-<span class="hljs-keyword">WHERE</span> loginId <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;2000%&#x27;</span>;</code></pre></div>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span> login <span class="hljs-keyword">SET</span> <span class="hljs-keyword">password</span>=loginid 
+<span class="hljs-keyword">WHERE</span> (loginid&gt;<span class="hljs-number">19999</span> <span class="hljs-keyword">AND</span> loginid&lt;<span class="hljs-number">20010</span>);
+<span class="hljs-comment">-- 或者：UPDATE login SET password=loginId WHERE loginId LIKE&#x27;2000%&#x27;;</span></code></pre></div>
 <p>(3) 查询操作后，登录信息表中的数据量(记录条数)。</p>
 <div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">FROM</span> login;</code></pre></div>
 <p>(4) 查看用户基本信息表中，用户名、年龄、所在地、学校信息。</p>
 <div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>,age,location,school <span class="hljs-keyword">FROM</span> userbaseinfo;</code></pre></div>
 <p>(5) 统计用户基本信息表中，用户名含’服装’,‘穿搭’,‘汽车’,‘手机’,‘电影’,'音乐’关键字的用户数量及其比例并汇总。</p>
-<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%服装%&#x27;</span>;
-<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%穿搭%&#x27;</span>;
-<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%汽车%&#x27;</span>;
-<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%手机%&#x27;</span>;
-<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%电影%&#x27;</span>;
-<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%音乐%&#x27;</span>;
-
-<span class="hljs-comment">-- 或者</span>
-<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%服装%&#x27;</span> <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">name</span>;
-<span class="hljs-comment">-- 依此类推</span></code></pre></div>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;类别&quot;</span>,
+<span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;用户数量&quot;</span>,
+<span class="hljs-keyword">COUNT</span>(*)/(<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> userbaseinfo) <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;比例&quot;</span>
+<span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%服装%&#x27;</span> <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">name</span>;
+<span class="hljs-comment">-- 以此类推，其中 COUNT(*)/(SELECT COUNT(*)from userbaseinfo) 可以先运行一次计算总数再计算比例，可改成 COUNT(*)/20000</span>
+<span class="hljs-comment">-- 即：SELECT name AS &quot;类别&quot;,COUNT(*) AS &quot;用户数量&quot;,COUNT(*)/20000 AS &quot;比例&quot; FROM userbaseinfo WHERE name LIKE&#x27;%服装%&#x27; GROUP BY name;</span>
+<span class="hljs-comment">-- 或者：SELECT count(*),count(*)/20000 FROM userbaseinfo WHERE name LIKE&#x27;%服装%&#x27;;</span></code></pre></div>
 <p>(6) 在用户基本信息表中，把用户名含’服装’,‘穿搭’,‘汽车’,‘手机’,‘电影’,'音乐’关键字的用户的用户名改为只含关键字。</p>
 <div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span> userbaseinfo
 <span class="hljs-keyword">SET</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&#x27;服装&#x27;</span>
@@ -293,17 +282,33 @@
 <span class="hljs-keyword">SET</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&#x27;音乐&#x27;</span>
 <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;%音乐%&#x27;</span>;</code></pre></div>
 <p>(7) 统计用户基本信息表中，用户的性别数量及其比例并汇总。</p>
-<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> sex,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> sex;</code></pre></div>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> sex <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;性别&quot;</span>,
+<span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;数量&quot;</span>,
+<span class="hljs-keyword">COUNT</span>(*)/(<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> userbaseinfo) <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;比例&quot;</span> 
+<span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> sex;</code></pre></div>
 <p>(8) 统计用户基本信息表中，用户各年龄的数量及其比例并汇总。</p>
-<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> age,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> age;</code></pre></div>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> age <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;年龄&quot;</span>,
+<span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;数量&quot;</span>,
+<span class="hljs-keyword">COUNT</span>(*)/(<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> userbaseinfo) <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;比例&quot;</span>
+<span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> age;</code></pre></div>
 <p>(9) 统计用户基本信息表中，用户各年龄段{[0,20),[20,25),[25,30),[30,40),[40,50),[50,100)}的数量及其比例并汇总。</p>
-<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">20</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">25</span>;
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;[0,20)数量&quot;</span>,
+<span class="hljs-keyword">count</span>(*)/(<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> userbaseinfo) <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;比例&quot;</span>
+<span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">0</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">20</span>;
+<span class="hljs-comment">-- 以此类推，或着</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;[20,25)数量&quot;</span>,
+<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;比例&quot;</span>
+<span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">20</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">25</span>;
+
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">25</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">30</span>;
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">30</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">40</span>;
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">40</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">50</span>;
 <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">WHERE</span> age&gt;=<span class="hljs-number">50</span> <span class="hljs-keyword">and</span> age&lt;<span class="hljs-number">100</span>;</code></pre></div>
 <p>(10) 统计用户基本信息表中，各所在地的用户总数量及其比例并汇总。</p>
- <div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> location,<span class="hljs-keyword">count</span>(*),<span class="hljs-keyword">count</span>(*)/<span class="hljs-number">20000</span> <span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> location;</code></pre></div>
+ <div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> location <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;用户所在地&quot;</span>,
+<span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;用户总数&quot;</span>,
+<span class="hljs-keyword">count</span>(*)/(<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">FROM</span> userbaseinfo) <span class="hljs-keyword">AS</span> <span class="hljs-string">&quot;比例&quot;</span> 
+<span class="hljs-keyword">FROM</span> userbaseinfo <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> location;</code></pre></div>
 <p>(11) 在用户基本信息表中，所在地值为 0 的所有数据，修改为北京。</p>
 <div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">UPDATE</span> userbaseinfo
 <span class="hljs-keyword">SET</span> location=<span class="hljs-string">&#x27;北京&#x27;</span>
@@ -541,6 +546,20 @@ ADtransfromRate <span class="hljs-built_in">FLOAT</span>(<span class="hljs-numbe
 <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> UserBehavior
 <span class="hljs-keyword">WHERE</span> datentime &lt; <span class="hljs-string">&#x27;2017-11-25 00:00:00&#x27;</span>
 <span class="hljs-keyword">OR</span> datentime &gt; <span class="hljs-string">&#x27;2017-12-04 00:00:00&#x27;</span>;</code></pre></div>
+<p>方法二：</p>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment">-- 扩大缓存，否则可能用不了</span>
+<span class="hljs-keyword">SET</span> <span class="hljs-keyword">GLOBAL</span>  tmp_table_size =<span class="hljs-number">1024</span>*<span class="hljs-number">1024</span>*<span class="hljs-number">1024</span>;
+<span class="hljs-keyword">SET</span> <span class="hljs-keyword">GLOBAL</span> innodb_buffer_pool_size=<span class="hljs-number">3</span>*<span class="hljs-number">1024</span>*<span class="hljs-number">1024</span>*<span class="hljs-number">1024</span>;
+<span class="hljs-comment">-- 添加字段</span>
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> UserBehavior <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> datentime datetime;
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> UserBehavior <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> dates <span class="hljs-built_in">date</span>;
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> UserBehavior <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> <span class="hljs-keyword">hours</span> <span class="hljs-built_in">int</span>;
+<span class="hljs-comment">-- 更新数据</span>
+<span class="hljs-keyword">UPDATE</span> UserBehavior <span class="hljs-keyword">SET</span> datentime = FROM_UNIXTIME(timestamps);
+<span class="hljs-keyword">UPDATE</span> UserBehavior <span class="hljs-keyword">SET</span> dates = FROM_UNIXTIME(timestamps,<span class="hljs-string">&#x27;%Y-%m-%d&#x27;</span>);
+<span class="hljs-keyword">UPDATE</span> UserBehavior <span class="hljs-keyword">SET</span> <span class="hljs-keyword">hours</span> = FROM_UNIXTIME(timestamps,<span class="hljs-string">&#x27;%H&#x27;</span>);
+<span class="hljs-comment">#剔除不符合数据</span>
+<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> userbehavior <span class="hljs-keyword">WHERE</span> dates&lt;<span class="hljs-string">&#x27;2017-11-25&#x27;</span> <span class="hljs-keyword">or</span> dates&gt;<span class="hljs-string">&#x27;2017-12-03&#x27;</span>;</code></pre></div>
 
             </div>
             <hr>
@@ -572,6 +591,12 @@ ADtransfromRate <span class="hljs-built_in">FLOAT</span>(<span class="hljs-numbe
                 <div class="post-prevnext row">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/07/01/recoding_MySQL_problem/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL踩坑记录及解决方案</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
