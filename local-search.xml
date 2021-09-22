@@ -29,6 +29,37 @@
   
   
   <entry>
+    <title>论文笔记 | Benchmarking Differential Privacy and Federated Learning for BERT Models</title>
+    <link href="/2021/07/09/Notes_Benchmarking_Differential_Privacy_and_Federated_Learning_for_BERT_Models/"/>
+    <url>/2021/07/09/Notes_Benchmarking_Differential_Privacy_and_Federated_Learning_for_BERT_Models/</url>
+    
+    <content type="html"><![CDATA[<h1 id="benchmarking-differential-privacy-and-federated-learning-for-bert-models-论文笔记"><a class="markdownIt-Anchor" href="#benchmarking-differential-privacy-and-federated-learning-for-bert-models-论文笔记"></a> Benchmarking Differential Privacy and Federated Learning for BERT Models 论文笔记</h1><p><strong>作者团队</strong>：MIT &amp; CMU(Rakshit Naidu) 等</p><p>日期：2021.6.26 <a href="https://arxiv.org/pdf/2106.13973v1.pdf">原文PDF链接</a></p><h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要：</h2><p>通过NLP技术使用一个人的话语集合可用于帮助诊断抑郁症等医疗状况。由于此类数据的敏感性，需要采取隐私措施来处理和训练具有此类数据的模型。在这项工作中，作者<strong>在集中式和分布式(联邦学习(FL))设置下研究差分隐私(DP)应用在训练上下文语言模型（BERT、ALBERT、RoBERTa 和 DistilBERT）的影响，并提供有关如何隐私(privately)训练 NLP 模型以及哪些架构和设置提供更理想的隐私效用权衡的见解</strong>。作者打算将这项工作用于未来的医疗保健和心理健康研究以保持病史的私密性，因此提供了这项工作的<a href="https://github.com/benchmarkpaper/Benchmarking-Differential-Privacy-and-FederatedLearning-for-Healthcare-Data">开源实现</a></p><h2 id="实验"><a class="markdownIt-Anchor" href="#实验"></a> 实验：</h2><p>基于BERT模型及其三个变种在不同数据分布下做集中式和分布式的差分隐私和联邦学习的实验，有四种实验设置：集中式传统训练，集中式差分隐私训练，分布式联邦学习训练，DP应用在FL上训练；FL里又有两种分布IID和Non-IID。</p><p><strong>工具包</strong>： Opacus</p><p><strong>实验模型</strong>: BERT, RoBERTa, DistillBERT and ALBERT</p><p><strong>数据集</strong>：推特Depression抑郁检测数据集、Sexual Harassment数据集（从推特爬取，作者的Github里有）</p><p><strong>变量设置</strong>：隐私预算epsilon= 0.5, 5, 15, ∞</p><p><strong>评估标准</strong>： accuracy+标准差</p><p><strong>实验结果</strong>：</p><p><img src="https://i.loli.net/2021/07/10/P7crqZDXJQdlTWt.png" srcset="/img/loading.gif" alt="image-20210710124700099" /></p><p><strong>作者发现</strong>：</p><ul><li><p>epsilon越大，标准差越小。</p></li><li><p>FL+DP，准确度会降，FL表现比DP更好。</p></li></ul><h2 id="结论"><a class="markdownIt-Anchor" href="#结论"></a> 结论：</h2><p>（1）当采用DP训练时，较小的网络（如 ALBERT 和 DistillBERT）比较大的模型（如 BERT 和 RoBERTa）降级得更优雅（即DP训练时，小模型epsilon越大准确度越高，大模型epsilon越大准确率越低）（这里缺少数据可视化不太直观）</p><p>（2）在 FL 的 Non-IID 设置（医疗应用中的现实场景）中，效用退化平均高于 IID 设置（即准确率较之下降），这表明需要针对 Non-IID设置定制训练算法</p><p>（3）DP在训练数据量小的情况下比数据量大的情况下对效用的影响更不利。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>阅读笔记</category>
+      
+      <category>论文笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>差分隐私</tag>
+      
+      <tag>联邦学习</tag>
+      
+      <tag>BERT</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>MySQL踩坑记录及解决方案</title>
     <link href="/2021/07/01/recoding_MySQL_problem/"/>
     <url>/2021/07/01/recoding_MySQL_problem/</url>
