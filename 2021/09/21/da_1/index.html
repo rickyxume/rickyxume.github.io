@@ -17,7 +17,7 @@
   <meta name="description" content="日日自新，步履不停。">
   <meta name="author" content="Ricky Xu">
   <meta name="keywords" content="">
-  <title>Benchmarking Differential Privacy and Federated Learning for BERT Models 阅读笔记 - 方塘的半亩塘</title>
+  <title>数据分析 | 当面试官问“分析一下为什么XX指标下降了？” - 方塘的半亩塘</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -170,8 +170,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-09 21:30" pubdate>
-        2021年7月9日 晚上
+      <time datetime="2021-09-21 21:30" pubdate>
+        2021年9月21日 晚上
       </time>
     </span>
   
@@ -182,7 +182,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      580 字
+      1.6k 字
     </span>
   
 
@@ -192,7 +192,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      16
        分钟
     </span>
   
@@ -230,42 +230,51 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Benchmarking Differential Privacy and Federated Learning for BERT Models 阅读笔记</h1>
+            <h1 style="display: none">数据分析 | 当面试官问“分析一下为什么XX指标下降了？”</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年7月10日 下午
+                  本文最后更新于：2021年9月22日 下午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="benchmarking-differential-privacy-and-federated-learning-for-bert-models-论文笔记"><a class="markdownIt-Anchor" href="#benchmarking-differential-privacy-and-federated-learning-for-bert-models-论文笔记"></a> Benchmarking Differential Privacy and Federated Learning for BERT Models 论文笔记</h1>
-<p><strong>作者团队</strong>：MIT &amp; CMU(Rakshit Naidu) 等</p>
-<p>日期：2021.6.26 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.13973v1.pdf">原文PDF链接</a></p>
-<h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要：</h2>
-<p>通过NLP技术使用一个人的话语集合可用于帮助诊断抑郁症等医疗状况。由于此类数据的敏感性，需要采取隐私措施来处理和训练具有此类数据的模型。在这项工作中，作者<strong>在集中式和分布式(联邦学习(FL))设置下研究差分隐私(DP)应用在训练上下文语言模型（BERT、ALBERT、RoBERTa 和 DistilBERT）的影响，并提供有关如何隐私(privately)训练 NLP 模型以及哪些架构和设置提供更理想的隐私效用权衡的见解</strong>。作者打算将这项工作用于未来的医疗保健和心理健康研究以保持病史的私密性，因此提供了这项工作的<a target="_blank" rel="noopener" href="https://github.com/benchmarkpaper/Benchmarking-Differential-Privacy-and-FederatedLearning-for-Healthcare-Data">开源实现</a></p>
-<h2 id="实验"><a class="markdownIt-Anchor" href="#实验"></a> 实验：</h2>
-<p>基于BERT模型及其三个变种在不同数据分布下做集中式和分布式的差分隐私和联邦学习的实验，有四种实验设置：集中式传统训练，集中式差分隐私训练，分布式联邦学习训练，DP应用在FL上训练；FL里又有两种分布IID和Non-IID。</p>
-<p><strong>工具包</strong>： Opacus</p>
-<p><strong>实验模型</strong>: BERT, RoBERTa, DistillBERT and ALBERT</p>
-<p><strong>数据集</strong>：推特Depression抑郁检测数据集、Sexual Harassment数据集（从推特爬取，作者的Github里有）</p>
-<p><strong>变量设置</strong>：隐私预算epsilon= 0.5, 5, 15, ∞</p>
-<p><strong>评估标准</strong>： accuracy+标准差</p>
-<p><strong>实验结果</strong>：</p>
-<p><img src="https://i.loli.net/2021/07/10/P7crqZDXJQdlTWt.png" srcset="/img/loading.gif" alt="image-20210710124700099" /></p>
-<p><strong>作者发现</strong>：</p>
-<ul>
-<li>
-<p>epsilon越大，标准差越小。</p>
-</li>
-<li>
-<p>FL+DP，准确度会降，FL表现比DP更好。</p>
-</li>
-</ul>
-<h2 id="结论"><a class="markdownIt-Anchor" href="#结论"></a> 结论：</h2>
-<p>（1）当采用DP训练时，较小的网络（如 ALBERT 和 DistillBERT）比较大的模型（如 BERT 和 RoBERTa）降级得更优雅（即DP训练时，小模型epsilon越大准确度越高，大模型epsilon越大准确率越低）（这里缺少数据可视化不太直观）</p>
-<p>（2）在 FL 的 Non-IID 设置（医疗应用中的现实场景）中，效用退化平均高于 IID 设置（即准确率较之下降），这表明需要针对 Non-IID设置定制训练算法</p>
-<p>（3）DP在训练数据量小的情况下比数据量大的情况下对效用的影响更不利。</p>
+              <h1 id="数据分析-当面试官问分析一下为什么xx指标下降了"><a class="markdownIt-Anchor" href="#数据分析-当面试官问分析一下为什么xx指标下降了"></a> 数据分析 | 当面试官问“分析一下为什么XX指标下降了？”</h1>
+<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<blockquote>
+<p>面试官：“分析一下，为什么今天的日活突然下降了？”</p>
+</blockquote>
+<blockquote>
+<p>我：“Emm…”（沉默）</p>
+</blockquote>
+<p>最近面试遇到这个问题，感觉也是数据分析面试的高频题，这类问题考察的是分析问题，验证猜想，结果呈现等一系列能力，看了一些大佬的总结，在这里用我自己所理解的再总结一下。</p>
+<h2 id="框架"><a class="markdownIt-Anchor" href="#框架"></a> 框架</h2>
+<p>分析流程总体可以归纳为三步：<strong>1看数据，2做拆分，3做假设</strong>。</p>
+<p><img src="https://i.loli.net/2021/09/20/8JmtW6oN1xVvpfs.png" srcset="/img/loading.gif" alt="image-20210920220252285" /></p>
+<h3 id="第一步看数据看数据本身及其变化是否存在问题"><a class="markdownIt-Anchor" href="#第一步看数据看数据本身及其变化是否存在问题"></a> <strong>第一步“看数据”，看数据本身及其变化是否存在问题。</strong></h3>
+<p>由于指标的波动可以分为正常的和异常的，按照持续时间又可以分为暂时性波动、周期性波动和持续性波动，所以要先明确这个波动是不是真的是异常的，可以和产品、运营、研发、运维等多方确认数据的真实性，然后观察数据波动持续了多久，判断波动程度是否是在合理的范围之内，比起昨天和上周，同比环比分别变化了多少等等。</p>
+<p><img src="https://i.loli.net/2021/09/20/bRpUS9fI25HOlCq.png" srcset="/img/loading.gif" alt="image-20210920181845319" /></p>
+<p>这一步可能发现的原因大致有：服务器异常、后台统计出错、报表数据异常、指标计算口径不一致等，也可能是外部的恶意行为造成的，需要根据后续步骤再仔细排查。</p>
+<h3 id="第二步做拆分将指标和业务流程多维度拆解缩小排查范围"><a class="markdownIt-Anchor" href="#第二步做拆分将指标和业务流程多维度拆解缩小排查范围"></a> <strong>第二步“做拆分”，将指标和业务流程多维度拆解，缩小排查范围。</strong></h3>
+<blockquote>
+<p>这一步要注意“辛普森悖论”，即在某些情况下，分析数据整体和分析数据的各个部分会得到相反的结论。</p>
+</blockquote>
+<p>①<strong>从指标上拆</strong>：一个指标一般可以由其他指标计算得到，指标的波动是若干个因素共同作用的结果。要想缩小问题的排查范围，可以在原始指标下尽量细分，不断地由粗到细拆解，找出可能影响指标波动的所有因素，得到一个类似树的结构。比如“DAU=新用户+老用户留存+流失用户回流”，新用户有来源渠道，老用户有留存渠道，流失用户有自然回流和干预回流，而用户共同的因素又有软件版本、地区、设备、活跃时间段等等。</p>
+<p><img src="https://i.loli.net/2021/09/20/PHuqFREapkVdhXY.png" srcset="/img/loading.gif" alt="image-20210920182131499" /></p>
+<p>另外，拆分不只是用加法，还需要针对具体指标做拆分，比如一些复合指标，“GMV=新用户x转化率x新用户客单价+老用户x转化率x老用户客单价”。</p>
+<p>②<strong>从业务流程上拆</strong>：一个用户从注册到进入首页再到流失或留存的整个过程，其中的任意一步都有可能会是指标下降的“罪魁祸首”。比如说，当一个新用户第一次进入首页时，发现首页推荐的内容并非他所喜欢的甚至是反感的，反手来一个卸载，这种因为推荐内容质量而导致的用户流失，锅就甩在推荐系统工程师的冷启动没做好上了。</p>
+<p><img src="https://i.loli.net/2021/09/20/ynbulPj8kXcAEzC.png" srcset="/img/loading.gif" alt="image-20210920182657914" /></p>
+<p>不止是这些“表面上”的因素，还有很多其他因素可以加入进来，它们大体上可以归纳为<strong>内因</strong>和<strong>外因</strong>两类，内因往往和用户、产品、运营和内容质量相关，外因则可能和政治、经济、法律、竞品的出现甚至疫情的爆发有关，外因可以从宏观上做PEST分析。</p>
+<p>往往在分析之前需要先判断指标波动的情况，一般来说，短期变化找内因，长期异动找外因。比如向外考虑国家是否有重大政策发布，向内考虑是否产品本身有问题，是否用户需求发生了转移，在数据上则需要关注数据指标的起点、拐点和终点。举个最近的例子就是，最近在线学科教育产品的日活为什么下降了？因素就很有可能是最近国家发布了双减政策，自国家发布消息的那一天起，指标数据开始下跌。</p>
+<p>除了使用拆分的方法外，还可以结合相关性分析的方法，思考目标指标与另外一个因素是否相关联。</p>
+<p>第二步可以总结成几个问句来辅助思考：<strong>指标构成是什么？业务流程是什么？是否有外部因素的影响？相关因素有哪些？有注意辛普森悖论吗？</strong></p>
+<h3 id="第三步做假设假设某因素就是原因做实验去验证假设"><a class="markdownIt-Anchor" href="#第三步做假设假设某因素就是原因做实验去验证假设"></a> <strong>第三步“做假设”，假设某因素就是原因，做实验去验证假设。</strong></h3>
+<p>第三步与第二步是紧密结合的，往往是先从理论上和经验上去分析，得到各种假设，再通过实验验证提出的假设，相当于前面提到的“树”，给它的各条分支路径做剪枝操作，一定要具体问题具体分析，具体措施就是做AB实验。</p>
+<p>由于真实场景下存在许多的变量，可能是产品迭代、运营策略改变，或者线上有另一个AB实验在做，都会导致最终结果存在差异，所以不同情况下的验证会有不同的解决方案。要验证一些可复现的问题或可实施的想法时，如果时间充裕就可以通过AB实验来做，其他情况则可以通过业务经验快速缩小验证范围，用业务指标拆分或相关分析来辅助排查问题，最终锁定一个或多个有意义的结果。</p>
+<p>需要注意的是，对于部分能稳定重现的问题来说是可以用AB实验来验证的，还有很多问题是不能稳定重现的，就需要另外思考解决方案了，例如某天发现有大量新增的用户，但是都是脚本模拟的假用户，这时就需要根据当天的用户行为记录，如ip地址与设备标识等已经产生的现有日志进行深入挖掘了。</p>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<p>最后，把前述梳理的思维框架总结成一个思维导图，当遇到要分析指标数据变动的问题时可以作为一个参考。</p>
+<p><img src="https://i.loli.net/2021/09/22/Tpu5JFGs3yUZcSW.png" srcset="/img/loading.gif" alt="image-20210922085713997" /></p>
 
             </div>
             <hr>
@@ -275,9 +284,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">阅读笔记</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">论文笔记</a>
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a>
                     
                   </div>
                 
@@ -285,11 +292,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/">差分隐私</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/">联邦学习</a>
-                    
-                      <a class="hover-with-bg" href="/tags/BERT/">BERT</a>
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a>
                     
                   </div>
                 
@@ -595,7 +598,7 @@
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2021/07/09/Notes_Benchmarking_Differential_Privacy_and_Federated_Learning_for_BERT_Models/');
+          var target = decodeURI('/2021/09/21/da_1/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -689,7 +692,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Benchmarking Differential Privacy and Federated Learning for BERT Models 阅读笔记&nbsp;",
+        "数据分析 | 当面试官问“分析一下为什么XX指标下降了？”&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
